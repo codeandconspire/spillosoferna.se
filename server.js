@@ -30,12 +30,9 @@ app.use(get('/api/prismic-proxy', async function (ctx) {
 app.use(post('/', compose([body({ multipart: true }), async function (ctx, next) {
   var body = ctx.request.body.fields || ctx.request.body
   try {
-    const api = await Prismic.getApi(REPOSITORY, {
-      req: ctx.req,
-      accessToken: process.env.PRISMIC_TOKEN
-    })
-    const user = await api.getByUID('user', body.code)
-    if (!user) ctx.throw(401, 'user not found')
+    const query = Prismic.Predicates.at('my.user.uid', body.code)
+    const { results: [user] } = await api(query, { req: ctx.req })
+    ctx.assert(user, 401, 'user not found')
     ctx.session.user = user.uid
     ctx.redirect('/start')
   } catch (err) {
@@ -49,14 +46,11 @@ app.use(post('/', compose([body({ multipart: true }), async function (ctx, next)
   }
 }])))
 
-app.use(get('/start/(.*)', async function (ctx, next) {
+app.use(get('/start/:thread?', async function (ctx, next) {
   try {
-    if (!ctx.session.user) throw new Error('user not found')
-    const api = await Prismic.getApi(REPOSITORY, {
-      req: ctx.req,
-      accessToken: process.env.PRISMIC_TOKEN
-    })
-    const user = await api.getByUID('user', ctx.session.user)
+    ctx.assert(ctx.session.user, 401, 'user not found')
+    const query = Prismic.Predicates.at('my.user.uid', ctx.session.user)
+    const { results: [user] } = await api(query, { req: ctx.req })
     if (!user) ctx.throw(401, 'user not found')
   } catch (err) {
     if (ctx.accepts('html')) ctx.redirect('/')
