@@ -2,72 +2,29 @@
 
 /** @define Text */
 .Text {
-  color: rgb(var(--current-color));
-  font-family: var(--default-font-family);
-  line-height: var(--default-line-height);
   font-size: 1rem;
   text-align: left;
-  max-width: var(--container-medium-width);
+}
+
+@media (min-width: 1000px) {
+  .Text {
+    font-size: 1.5rem;
+  }
 }
 
 .Text--center {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.Text--muted,
-.Text-muted {
-  color: rgb(var(--color-muted));
-}
-
-.Text--small,
-.Text-small {
-  font-size: 1rem;
-}
-
-@media (min-width: 350px) {
-  .Text {
-    font-size: 1.125rem;
-  }
-
-  .Text--small,
-  .Text-small {
-    font-size: 0.9rem;
-  }
-}
-
-@media (min-width: 800px) and (min-height: 400px) {
-  .Text {
-    font-size: 1.25rem;
-  }
-
-  .Text--small,
-  .Text-small {
-    font-size: 1rem;
-  }
+  text-align: center;
 }
 
 /**
- * Inline elements
+ * Links
  */
 
-.Text small {
-  font-size: 0.875rem;
-}
-
-.Text a:not(.Embed-link) {
-  color: rgb(var(--color-link));
-  text-decoration: underline;
-  font-weight: bold;
+.Text a {
+  text-decoration: none;
+  font-weight: 600;
   padding: 0.1em 0.3em;
   margin: -0.1em -0.3em;
-  border-radius: 0.1875rem;
-  transition: background 400ms var(--ease-out);
-}
-
-.Text a:not(.Embed-link):hover {
-  background: rgba(var(--color-blue), 0.05);
-  transition: none;
 }
 
 .Text a:not(.Embed-link):active {
@@ -83,11 +40,8 @@
 .Text ol,
 .Text h1,
 .Text h2,
-.Text h3,
-.Text h4,
-.Text h5,
-.Text h6 {
-  margin: 0.8em 0;
+.Text h3 {
+  margin: 1rem 0;
 }
 
 .Text p:first-child,
@@ -95,10 +49,7 @@
 .Text ol:first-child,
 .Text h1:first-child,
 .Text h2:first-child,
-.Text h3:first-child,
-.Text h4:first-child,
-.Text h5:first-child,
-.Text h6:first-child {
+.Text h3:first-child {
   margin-top: 0;
 }
 
@@ -107,53 +58,23 @@
 .Text ol:last-child,
 .Text h1:last-child,
 .Text h2:last-child,
-.Text h3:last-child,
-.Text h4:last-child,
-.Text h5:last-child,
-.Text h6:last-child {
+.Text h3:last-child {
   margin-bottom: 0;
 }
 
-.Text img:not(.Embed-image) {
+.Text img {
   display: block;
   width: 100%;
   height: auto;
   margin: 2.2em 0;
-  border-radius: 0;
-}
-
-@media (min-width: 600px) {
-  .Text img:not(.Embed-image) {
-    border-radius: 0.375rem;
-  }
-}
-
-.Text-caption {
-  margin: -1.2em 0 1.6em;
-  font-size: 1rem;
-  text-align: right;
-}
-
-.Text-caption:empty {
-  display: none;
-}
-
-@media (min-width: 800px) and (min-height: 400px) {
-  .Text img:not(.Embed-image) {
-    margin: 4em 0;
-  }
-
-  .Text-caption {
-    margin: -2.5em 0 2.5em;
-  }
 }
 
 .Text pre {
   font-size: 0.8rem;
   overflow: auto;
-  background: rgb(var(--color-blue));
-  color: rgb(255, 255, 255);
+  background: rgba(0, 0, 0, 0.1);
   padding: 1rem;
+  border-radius: 0.25rem;
   text-align: left;
 }
 
@@ -215,81 +136,26 @@
 
 .Text h1,
 .Text h2,
-.Text h3,
-.Text h4,
-.Text h5,
-.Text h6,
-.Text .Text-h1,
-.Text .Text-h2,
-.Text .Text-h3,
-.Text .Text-h4,
-.Text .Text-h5,
-.Text .Text-h6 {
-  font-weight: bold;
+.Text h3 {
+  font-weight: 600;
   line-height: 1.25;
+  margin: 1rem 0;
 }
 
-.Text h1,
-.Text .Text-h1 {
+.Text h1 {
   font-size: 1.55em;
 }
 
-.Text h2,
-.Text .Text-h2 {
-  font-size: 1.33rem;
-  line-height: 1.35;
-  margin-top: 2em;
+.Text h2 {
+  font-size: 1.125em;
 }
 
-.Text h3,
-.Text .Text-h3 {
+.Text h3 {
   margin: 0 0 -0.4em 0;
 }
 
-@media (min-width: 600px) {
-  .Text h2,
-  .Text .Text-h2 {
-    font-size: 1.8rem;
-  }
-
-  .Text h3,
-  .Text .Text-h3 {
-    margin: 0.8em 0;
-    font-size: 1.1em;
-  }
-}
-
-@media (min-width: 1400px) {
-  .Text h2,
-  .Text .Text-h2 {
-    font-size: 2.5rem;
-    line-height: 1.25;
-  }
-}
-
-.Text h4,
-.Text .Text-h4 {
-  font-size: 1em;
-  margin-top: 1.4em;
-}
-
-.Text h5,
-.Text .Text-h5 {
-  font-size: 0.9em;
-  text-transform: uppercase;
-}
-
-.Text h6,
-.Text .Text-h6 {
-  font-size: 0.8em;
-  font-weight: normal;
-  text-transform: uppercase;
-  color: rgba(var(--color-muted));
-}
-
-@media (min-width: 800px) and (min-height: 400px) {
-  .Text h1,
-  .Text .Text-h1 {
-    font-size: 2.1em;
+@media (min-width: 1000px) {
+  .Text h2 {
+    font-size: 1.5rem;
   }
 }

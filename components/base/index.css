@@ -1,11 +1,8 @@
+@import url("https://use.typekit.net/xzx7ryy.css");
 @import "normalize.css";
 @import "./global";
-@import "./utilities/colors";
 @import "./utilities/layout";
 @import "./utilities/loading";
-@import "./utilities/size";
-@import "./utilities/space";
-@import "./utilities/text";
 @import "./utilities/transitions";
 
 /**
@@ -14,9 +11,8 @@
  * 2. Guard for horizontal scrolling
  * 3. Support sticky footer solutions
  * 4. Simply feels better then global text cursor
- * 5. Site should have a background in case it's iframed
- * 6. Fabulous text rendering
- * 7. Fabulous svg text sizing
+ * 5. Fabulous text rendering
+ * 6. Fabulous svg text sizing
  */
 
 :root {
@@ -26,14 +22,14 @@
   overflow-x: hidden; /* 2 */
   cursor: default; /* 4 */
   font-family: var(--document-font-family);
-  background: rgb(var(--document-background-color)); /* 5 */
+  background: rgb(var(--document-background));
   color: rgb(var(--document-color));
   font-size: 100%;
   line-height: var(--document-line-height);
   -webkit-tap-highlight-color: transparent;
-  -webkit-font-smoothing: antialiased; /* 6 */
-  -moz-osx-font-smoothing: grayscale; /* 6 */
-  text-rendering: geometricPrecision; /* 7 */
+  -webkit-font-smoothing: antialiased; /* 5 */
+  -moz-osx-font-smoothing: grayscale; /* 5 */
+  text-rendering: geometricPrecision; /* 6 */
 }
 
 @media (min-width: 1500px) {
@@ -52,14 +48,6 @@
 *::before,
 *::after {
   box-sizing: inherit; /* 1 */
-}
-
-/**
- * Text selection
- */
-
-::selection {
-  background: rgba(var(--color-pink), 0.25);
 }
 
 /**
@@ -90,13 +78,12 @@ img {
  */
 
 strong {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 /*
  * Clickable elements
  * 1. Remove the gray background on active links in IE 10.
- * 2. Remove the tapping delay
  */
 
  a {
@@ -114,8 +101,8 @@ select,
 summary,
 textarea,
 [tabindex] {
-  -ms-touch-action: manipulation; /* 2 */
-  touch-action: manipulation; /* 2 */
+  -ms-touch-action: manipulation; /* 1 */
+  touch-action: manipulation; /* 1 */
 }
 
 input {
@@ -198,51 +185,4 @@ button {
 
 :focus-visible {
   outline: rgb(var(--focus-ring-color)) solid var(--focus-ring-width) !important;
-}
-
-/**
- * Print styles
- */
-
-@page {
-  margin: 2cm;
-}
-
-@media print {
-  a {
-    page-break-inside: avoid;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p {
-    page-break-after: avoid;
-    page-break-inside: avoid;
-  }
-
-  img {
-    page-break-inside: avoid;
-    page-break-after: avoid;
-  }
-
-  ul,
-  ol,
-  img {
-    page-break-before: avoid;
-  }
-
-  iframe {
-    display: none;
-  }
-
-  a,
-  a:link,
-  a:visited {
-    background: transparent;
-    text-decoration: underline;
-  }
 }

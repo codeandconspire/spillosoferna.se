@@ -1,6 +1,7 @@
 var html = require('choo/html')
 var error = require('./error')
-var header = require('../header')
+var Header = require('../header')
+var footer = require('../footer')
 var Player = require('../embed/player')
 var { text, asText } = require('../base')
 
@@ -43,8 +44,11 @@ function view (render, getMeta = Function.prototype) {
 
       return html`
         <body class="View">
-          ${header()}
+          ${state.cache(Header, 'header').render(state.href)}
           ${children}
+          <div class="u-container">
+            ${footer()}
+          </div>
           ${Player.render()}
         </body>
       `

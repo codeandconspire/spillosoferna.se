@@ -18,7 +18,7 @@ app.keys = [process.env.SESSION_SECRET]
 
 app.use(session({
   key: 'spillo:user',
-  maxAge: 604800,
+  maxAge: 2592000000, // one month
   renew: true
 }, app))
 

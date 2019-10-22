@@ -1,6 +1,63 @@
 @import "../base";
 
 /* @define Header */
-.Header {
+:root {
+  --Header-height: 4.2rem;
+  --Header-margin: 1.5rem;
+}
 
+@media (min-width: 350px) {
+  :root {
+    --Header-margin: 1.5rem;
+  }
+}
+
+@media (min-width: 400px) {
+  :root {
+    --Header-margin: 2rem;
+  }
+}
+
+.Header {
+  height: var(--Header-height);
+  margin-bottom: var(--document-margin);
+}
+
+.Header-bar {
+  background: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--Header-height);
+}
+
+.Header-logo {
+  display: block;
+  width: auto;
+  height: 1.2rem;
+  margin: 1.5rem var(--Header-margin) 0;
+}
+
+.Header-logo svg {
+  display: block;
+  width: auto;
+  height: 100%;
+}
+
+.Header-back {
+  display: inline-flex;
+  padding: 0 var(--Header-margin);
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+  align-items: center;
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  height: var(--Header-height);
+}
+
+.Header-back svg {
+  width: 0.4375rem;
+  height: auto;
+  margin-right: 0.5rem;
 }

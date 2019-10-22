@@ -29,17 +29,23 @@ function home (state, emit) {
 
     return html`
       <main class="View-main">
-        <div class="Text">
-          <h1>${asText(doc.data.title)}</h1>
-          ${asElement(doc.data.description, resolve)}
-          ${!doc.data.cta.isBroken && doc.data.cta.id ? html`
-            <a href="${resolve(doc.data.cta)}">${doc.data.cta_text || asText(doc.data.cta.data.title)}</a>
-          ` : null}
-          ${state.cache(Signin, 'landing-form').render()}
-          <address class="Text">
-            <h2>${text`Kontakt`}</h2>
-            ${asElement(doc.data.contact, resolve)}
-          </address>
+        <div class="u-container">
+          <div class="View-landing">
+            <div class="View-info">
+              <div class="Text">
+                <h1>${asText(doc.data.title)}</h1>
+                ${asElement(doc.data.description, resolve)}
+                ${!doc.data.cta.isBroken && doc.data.cta.id ? html`
+                  <p>
+                    <a href="${resolve(doc.data.cta)}">${doc.data.cta_text || asText(doc.data.cta.data.title)}</a>
+                  </p>
+                ` : null}
+              </div>
+            </div>
+            <div class="View-login">
+              ${state.cache(Signin, 'landing-form').render()}
+            </div>
+          </div>
         </div>
       </main>
     `
