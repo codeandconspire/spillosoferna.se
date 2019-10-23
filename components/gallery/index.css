@@ -9,19 +9,12 @@
 .Gallery-items {
   display: flex;
   flex-wrap: wrap;
-  margin: 0.75rem -0.75rem -0.75rem;
+  margin: 0.75rem -0.5rem -0.5rem;
 }
 
 .Gallery-item {
-  padding: 1.5rem;
+  padding: 0.5rem;
   flex: 0 0 50%;
-}
-
-@media (min-width: 1000px) {
-  .Gallery-item {
-    padding: 0.75rem;
-    flex: 0 0 25%;
-  }
 }
 
 .Gallery-image {
@@ -29,4 +22,15 @@
   width: 100%;
   height: auto;
   border-radius: 0.375rem;
+}
+
+@media (min-width: 1000px) {
+  .Gallery-items {
+    margin: 0.75rem -0.75rem -0.75rem;
+  }
+
+  .Gallery-item {
+    flex: 0 0 25%;
+    padding: 0.75rem;
+  }
 }
