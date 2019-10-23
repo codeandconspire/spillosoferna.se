@@ -8,7 +8,7 @@
 }
 
 @media (min-width: 1000px) {
-  .Text {
+  .Text:not(.Text--static) {
     font-size: 1.25rem;
   }
 }
@@ -167,12 +167,12 @@
 }
 
 @media (min-width: 1000px) {
-  .Text h1 {
+  .Text:not(.Text--static) h1 {
     font-size: 4.5rem;
     line-height: 1.1;
   }
 
-  .Text h2 {
+  .Text:not(.Text--static) h2 {
     font-size: 2rem;
   }
 }

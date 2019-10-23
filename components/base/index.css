@@ -3,6 +3,7 @@
 @import "./global";
 @import "./utilities/layout";
 @import "./utilities/loading";
+@import "./utilities/size";
 @import "./utilities/transitions";
 
 /**

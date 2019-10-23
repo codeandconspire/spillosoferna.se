@@ -3,6 +3,10 @@ var asElement = require('prismic-element')
 var accordion = require('../components/accordion')
 var callout = require('../components/callout')
 var view = require('../components/view')
+var goal = require('../components/goal')
+var more = require('../components/more')
+var grid = require('../components/grid')
+var card = require('../components/card')
 var hero = require('../components/hero')
 var gallery = require('../components/gallery')
 var symbols = require('../components/symbols')
@@ -56,11 +60,37 @@ function thread (state, emit) {
           title: asText(doc.data.title),
           body: asText(doc.data.description)
         })}
+        <div class="View-space u-container">
+          ${grid([
+            grid.cell({ size: { lg: '2of3' } }, html`
+              <div class="Text">
+                <h2>${text`Inledning`}</h2>
+                ${asElement(doc.data.body, resolve, serialize)}
+              </div>
+            `),
+            grid.cell({ size: { lg: '1of3' } }, html`
+              <div>
+                ${doc.data.goal.id && !doc.data.goal.isBroken ? card({
+                  panel: goal.heading({
+                    title: asText(doc.data.goal.data.title),
+                    number: doc.data.goal.data.number
+                  }),
+                  title: text`${asText(doc.data.title)} och mål ${doc.data.goal.data.number}`,
+                  body: more(html`
+                    <div class="Text Text--static">
+                      ${asElement(doc.data.goal_text.slice(0, 1), resolve, serialize)}
+                    </div>
+                  `, html`
+                    <div class="Text Text--static">
+                      ${asElement(doc.data.goal_text, resolve, serialize)}
+                    </div>
+                  `)
+                }) : null}
+              </div>
+            `)
+          ])}
+        </div>
         <div class="Text">
-          ${doc.data.goal.id && !doc.data.goal.isBroken ? html`
-            <h2>${text`Tråden ${asText(doc.data.title)} är framtagen primärt för mål ${doc.data.goal.data.number}`}</h2>
-            ${asElement(doc.data.goal.data.description)}
-          ` : null}
           <h2>${text`Lektioner`}</h2>
         </div>
         ${doc.data.lessons.map(function (slice) {

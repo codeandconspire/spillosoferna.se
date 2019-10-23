@@ -22,6 +22,25 @@
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+
+  --color-goal-1: 229, 36, 59;
+  --color-goal-2: 221, 166, 58;
+  --color-goal-3: 76, 159, 56;
+  --color-goal-4: 197, 25, 45;
+  --color-goal-5: 255, 58, 33;
+  --color-goal-6: 38, 189, 226;
+  --color-goal-7: 252, 195, 11;
+  --color-goal-8: 162, 25, 66;
+  --color-goal-9: 253, 105, 37;
+  --color-goal-10: 221, 19, 103;
+  --color-goal-11: 253, 157, 36;
+  --color-goal-12: 191, 139, 46;
+  --color-goal-13: 63, 126, 68;
+  --color-goal-14: 10, 151, 217;
+  --color-goal-15: 86, 192, 43;
+  --color-goal-16: 0, 104, 157;
+  --color-goal-17: 25, 72, 106;
 }
 
 @media (min-width: 350px) {

@@ -1,0 +1,45 @@
+@import "../base";
+
+/* @define Goal */
+.Goal {
+  color: #fff;
+}
+
+.Goal--7 {
+  color: #000;
+}
+
+.Goal--heading {
+  display: flex;
+  align-items: flex-start;
+  padding: 1.5em 1.25em;
+  font-size: 1.5em;
+  font-weight: bold;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.Goal-number {
+  display: block;
+  margin-right: 0.24em;
+  font-size: 2.5em;
+  line-height: 0.8;
+}
+
+.Goal--1 { background-color: rgb(var(--color-goal-1)); }
+.Goal--2 { background-color: rgb(var(--color-goal-2)); }
+.Goal--3 { background-color: rgb(var(--color-goal-3)); }
+.Goal--4 { background-color: rgb(var(--color-goal-4)); }
+.Goal--5 { background-color: rgb(var(--color-goal-5)); }
+.Goal--6 { background-color: rgb(var(--color-goal-6)); }
+.Goal--7 { background-color: rgb(var(--color-goal-7)); }
+.Goal--8 { background-color: rgb(var(--color-goal-8)); }
+.Goal--9 { background-color: rgb(var(--color-goal-9)); }
+.Goal--10 { background-color: rgb(var(--color-goal-10)); }
+.Goal--11 { background-color: rgb(var(--color-goal-11)); }
+.Goal--12 { background-color: rgb(var(--color-goal-12)); }
+.Goal--13 { background-color: rgb(var(--color-goal-13)); }
+.Goal--14 { background-color: rgb(var(--color-goal-14)); }
+.Goal--15 { background-color: rgb(var(--color-goal-15)); }
+.Goal--16 { background-color: rgb(var(--color-goal-16)); }
+.Goal--17 { background-color: rgb(var(--color-goal-17)); }

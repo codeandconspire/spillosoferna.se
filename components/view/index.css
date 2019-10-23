@@ -16,6 +16,10 @@
   flex-direction: column;
 }
 
+.View-space {
+  margin: 10vh 0;
+}
+
 .View-login {
   background: #fff;
   box-shadow: 0 0.125rem 2.75rem 0 rgba(0, 0, 0, 0.1);
