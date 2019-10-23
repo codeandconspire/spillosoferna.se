@@ -2,6 +2,7 @@ var html = require('choo/html')
 var asElement = require('prismic-element')
 var { Predicates } = require('prismic-javascript')
 var view = require('../components/view')
+var accordion = require('../components/accordion')
 var {
   img,
   text,
@@ -80,6 +81,14 @@ function start (state, emit) {
             </ul>
           </div>
         </div>
+            ${accordion({
+              title: text`Vanliga frågor`,
+              items: doc.data.faq.map(function (item) {
+                return {
+                  title: asText(item.faq_title),
+                  body: asElement(item.faq_body)
+                }
+              })
       </main>
     `
   })

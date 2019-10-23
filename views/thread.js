@@ -1,5 +1,6 @@
 var html = require('choo/html')
 var asElement = require('prismic-element')
+var accordion = require('../components/accordion')
 var view = require('../components/view')
 var serialize = require('../components/text/serialize')
 var {
@@ -72,6 +73,15 @@ function thread (state, emit) {
             </details>
           `
         }).filter(Boolean)}
+            ${accordion({
+              title: text`Vanliga frågor`,
+              items: doc.data.faq.map(function (item) {
+                return {
+                  title: asText(item.faq_title),
+                  body: asElement(item.faq_body)
+                }
+              })
+            })}
       </main>
     `
   })

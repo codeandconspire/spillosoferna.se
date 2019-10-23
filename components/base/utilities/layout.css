@@ -1,6 +1,10 @@
 @import "../global";
 
 /* @define utilities */
+.u-light {
+  background: #fff;
+}
+
 .u-hidden {
   display: none !important;
 }
