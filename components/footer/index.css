@@ -6,13 +6,13 @@
   font-weight: 600;
   flex-direction: row;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
-  padding: var(--document-margin) 0;
+  padding: 2rem 0;
   margin: var(--document-margin) 0 0;
 }
 
 .Footer-email {
   flex: 1 0 auto;
-} 
+}
 
 .Footer-copy {
   display: none;

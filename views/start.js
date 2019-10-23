@@ -3,6 +3,7 @@ var asElement = require('prismic-element')
 var { Predicates } = require('prismic-javascript')
 var view = require('../components/view')
 var accordion = require('../components/accordion')
+var gallery = require('../components/gallery')
 var callout = require('../components/callout')
 var {
   img,
@@ -34,7 +35,7 @@ function start (state, emit) {
         <main class="View-main">
           <div class="u-container">
             <div class="Text">
-              <h1>${state.partial ? asText(state.partial.data.title) : loader(16)}</h1>
+              <h2>${state.partial ? asText(state.partial.data.title) : loader(16)}</h2>
             </div>
           </div>
         </main>
@@ -47,7 +48,7 @@ function start (state, emit) {
       <main class="View-main">
         <div class="u-container">
           <div class="Text">
-            <h1>${asText(doc.data.title)}</h1>
+            <h2>${asText(doc.data.title)}</h2>
 
             ${featured ? html`
               <section>
@@ -62,7 +63,7 @@ function start (state, emit) {
               </section>
             ` : null}
 
-            <h1>${text`Utmaningar`}</h1>
+            <h2>${text`Utmaningar`}</h2>
             
             <ul>
               ${threads.map(function (thread) {
@@ -71,7 +72,7 @@ function start (state, emit) {
                     ${img(doc.data.image, { sizes: '35rem' }, {
                       sizes: [400, 800, [1200, 'q_50']]
                     })}
-                    <h2>${thread.data.title ? asText(thread.data.title) : text`Namnlös utmaning`}</h2>
+                    <h3>${thread.data.title ? asText(thread.data.title) : text`Namnlös utmaning`}</h3>
                     <p>${truncate(asText(thread.data.description), 180)}</p>
                     <em>Mål: ${thread.data.goal.data.number}</em>
                     ${thread.data.age}
@@ -82,6 +83,11 @@ function start (state, emit) {
             </ul>
           </div>
         </div>
+
+        <div class="u-light">
+          <div class="u-container u-nbfc"> 
+            ${gallery({ title: text`Inspiration`, items: doc.data.inspo })}
+
             ${accordion({
               title: text`Vanliga frågor`,
               items: doc.data.faq.map(function (item) {
@@ -90,6 +96,10 @@ function start (state, emit) {
                   body: asElement(item.faq_body)
                 }
               })
+            })}
+          </div>
+        </div>
+
         ${callout({
           title: asText(doc.data.outro_heading),
           body: asElement(doc.data.outro_body),
