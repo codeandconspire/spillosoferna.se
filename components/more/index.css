@@ -13,8 +13,18 @@
   display: none;
 }
 
-.More[open] .More-summary {
+.More-body {
   display: none;
+}
+
+.More[open] .More-summary,
+.More-checkbox:checked ~ .More-summary {
+  display: none;
+}
+
+.More[open] .More-body,
+.More-checkbox:checked ~ .More-body {
+  display: block;
 }
 
 .More-preamble {
