@@ -1,6 +1,7 @@
 var html = require('choo/html')
 var asElement = require('prismic-element')
 var accordion = require('../components/accordion')
+var callout = require('../components/callout')
 var view = require('../components/view')
 var serialize = require('../components/text/serialize')
 var {
@@ -82,6 +83,12 @@ function thread (state, emit) {
                 }
               })
             })}
+        ${callout({
+          title: asText(doc.data.outro_heading),
+          body: asElement(doc.data.outro_body),
+          link: resolve(doc.data.outro_link),
+          linkText: doc.data.outro_link_text
+        })}
       </main>
     `
   })

@@ -1,0 +1,28 @@
+@import "../base";
+
+/* @define Callout */
+.Callout {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  padding: calc(var(--document-margin) * 2) 0 0;
+}
+
+.Callout-button {
+  background: #fff;
+  border-radius: 2rem;
+  text-align: center;
+  padding: 0.8rem 2rem;
+  font-weight: 600;
+  font-size: 1.125rem;
+  min-width: 9.5rem;
+  margin: 2rem auto 0;
+  display: inline-block;
+}
+
+@media (min-width: 370px) {
+  .Callout-copy {
+    display: block;
+    margin-left: 0.8rem;
+  }
+}

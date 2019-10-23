@@ -3,6 +3,7 @@ var asElement = require('prismic-element')
 var { Predicates } = require('prismic-javascript')
 var view = require('../components/view')
 var accordion = require('../components/accordion')
+var callout = require('../components/callout')
 var {
   img,
   text,
@@ -89,6 +90,12 @@ function start (state, emit) {
                   body: asElement(item.faq_body)
                 }
               })
+        ${callout({
+          title: asText(doc.data.outro_heading),
+          body: asElement(doc.data.outro_body),
+          link: resolve(doc.data.outro_link),
+          linkText: doc.data.outro_link_text
+        })}
       </main>
     `
   })
