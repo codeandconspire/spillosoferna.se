@@ -14,11 +14,22 @@
 .View-landing {
   display: flex;
   flex-direction: column;
+  margin: 15vh 0;
 }
 
 .View-panel {
   padding: 10vh 0;
   background-color: #fff;
+}
+
+@media (min-width: 1000px) {
+  .View-panel {
+    padding: 15vh 0;
+  }
+}
+
+.View-panel + .View-panel {
+  padding-top: 0;
 }
 
 .View-login {

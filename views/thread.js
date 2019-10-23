@@ -10,6 +10,7 @@ var card = require('../components/card')
 var hero = require('../components/hero')
 var gallery = require('../components/gallery')
 var symbols = require('../components/symbols')
+var Tabs = require('../components/header/tabs')
 var serialize = require('../components/text/serialize')
 var {
   src,
@@ -60,7 +61,23 @@ function thread (state, emit) {
           title: asText(doc.data.title),
           body: asText(doc.data.description)
         })}
-        <div class="View-panel">
+        ${state.cache(Tabs, `tabs-${doc.id}`).render([{
+          id: 'introduction',
+          text: text`Inledning`
+        }, {
+          id: 'lessons',
+          text: text`Lektioner`
+        }, {
+          id: 'gallery',
+          text: text`Inspiration`
+        }, {
+          id: 'faq',
+          text: text`Vanliga frågor`
+        }, {
+          id: 'outro',
+          text: text`Feedback`
+        }])}
+        <div class="View-panel" id="introduction">
           <div class="u-container">
             ${grid([
               grid.cell({ size: { lg: '2of3' } }, html`
@@ -92,7 +109,7 @@ function thread (state, emit) {
             ])}
           </div>
         </div>
-        <div class="Text">
+        <div class="Text" id="lessons">
           <h2>${text`Lektioner`}</h2>
         </div>
         ${doc.data.lessons.map(function (slice) {
@@ -129,11 +146,13 @@ function thread (state, emit) {
             </details>
           `
         }).filter(Boolean)}
-
-        <div class="u-light">
+        <div class="View-panel" id="gallery">
           <div class="u-container u-nbfc">
             ${gallery({ title: text`Inspiration`, items: doc.data.inspo })}
-
+          </div>
+        </div>
+        <div class="View-panel" id="faq">
+          <div class="u-container u-nbfc">
             ${accordion({
               title: text`Vanliga frågor`,
               items: doc.data.faq.map(function (item) {
@@ -145,13 +164,14 @@ function thread (state, emit) {
             })}
           </div>
         </div>
-
-        ${callout({
-          title: asText(doc.data.outro_heading),
-          body: asElement(doc.data.outro_body),
-          link: resolve(doc.data.outro_link),
-          linkText: doc.data.outro_link_text
-        })}
+        <div id="outro">
+          ${callout({
+            title: asText(doc.data.outro_heading),
+            body: asElement(doc.data.outro_body),
+            link: resolve(doc.data.outro_link),
+            linkText: doc.data.outro_link_text
+          })}
+        </div>
       </main>
     `
   })

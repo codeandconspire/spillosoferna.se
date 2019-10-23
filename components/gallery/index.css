@@ -3,13 +3,7 @@
 /* @define Gallery */
 
 .Gallery {
-  margin: 4rem 0;
-}
-
-@media (min-width: 1000px) {
-  .Gallery {
-    margin: 6rem 0;
-  }
+  background: #fff;
 }
 
 .Gallery-items {

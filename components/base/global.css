@@ -9,6 +9,9 @@
   --loading-color: 17, 0, 70, 0.06;
   --loading-color-solid: 235, 235, 235;
 
+  --color-muted: 0, 0, 0, 0.6;
+  --color-turquise: 35, 160, 152;
+
   --document-width: 1600px;
   --document-margin: 1rem;
 

@@ -21,6 +21,13 @@
 .Header {
   flex: 0 0 auto;
   height: var(--Header-height);
+  position: relative;
+  z-index: 100;
+}
+
+.Header--tabs {
+  position: sticky;
+  top: 0;
 }
 
 .Header-bar {
@@ -30,8 +37,33 @@
   left: 0;
   width: 100%;
   height: var(--Header-height);
-  z-index: 100;
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.05);
+}
+
+.Header--tabs .Header-bar {
+  position: static;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  background-color: transparent;
+}
+
+.Header-tab {
+  display: flex;
+  align-items: center;
+  margin: 0 0.75em;
+  color: rgb(var(--color-muted));
+  border-bottom: 4px solid transparent
+}
+
+.Header-tab:hover {
+  color: currentColor;
+}
+
+.Header-tab.is-selected {
+  font-weight: bold;
+  color: currentColor;
+  border-bottom-color: rgb(var(--color-turquise));
 }
 
 .Header-logo {

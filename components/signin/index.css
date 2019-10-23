@@ -32,10 +32,11 @@
   text-align: center;
   border-radius: 0.25rem;
   font-weight: 600;
+  letter-spacing: 0.15em;
 }
 
 .Signin-input:focus {
-  stroke: #23A098;  
+  stroke: #23A098;
 }
 
 .Signin-input::placeholder {
