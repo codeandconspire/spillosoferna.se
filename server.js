@@ -7,6 +7,7 @@ var body = require('koa-body')
 var jalla = require('jalla')
 var Prismic = require('prismic-javascript')
 var api = require('./lib/prismic-api')
+var imageproxy = require('./lib/cloudinary-proxy')
 
 var REPOSITORY = 'https://spillosoferna.cdn.prismic.io/api/v2'
 
@@ -21,6 +22,38 @@ app.use(session({
   maxAge: 2592000000, // one month
   renew: true
 }, app))
+
+/**
+ * Proxy image transform requests to Cloudinary
+ * By running all transforms through our own server we can cache the response
+ * on our edge servers (Cloudinary) saving on costs. Seeing as Cloudflare has
+ * free unlimited cache and Cloudinary does not, we will only be charged for
+ * the actual image transforms, of which the first 25 000 are free
+ */
+app.use(get('/media/:type/:transform/:uri(.+)', async function (ctx, type, transform, uri) {
+  if (ctx.querystring) uri += `?${ctx.querystring}`
+  var stream = await imageproxy(type, transform, uri)
+  var headers = ['etag', 'last-modified', 'content-length', 'content-type']
+  headers.forEach((header) => ctx.set(header, stream.headers[header]))
+  ctx.set('Cache-Control', `public, max-age=${60 * 60 * 24 * 365}`)
+  ctx.body = stream
+}))
+
+/**
+ * Purge Cloudflare cache whenever content is published to Prismic
+ */
+app.use(post('/api/prismic-hook', compose([body(), function (ctx) {
+  var secret = ctx.request.body && ctx.request.body.secret
+  ctx.assert(secret === process.env.PRISMIC_SECRET, 403, 'Secret mismatch')
+  return new Promise(function (resolve, reject) {
+    purge(app.entry, function (err, response) {
+      if (err) return reject(err)
+      ctx.type = 'application/json'
+      ctx.body = {}
+      resolve()
+    })
+  })
+}])))
 
 app.use(get('/api/prismic-proxy', async function (ctx) {
   var { predicates, ...opts } = ctx.query

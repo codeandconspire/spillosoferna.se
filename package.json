@@ -46,6 +46,7 @@
     "choo-lazy-view": "^1.0.2",
     "choo-meta": "^2.0.0",
     "choo-service-worker": "^3.0.0",
+    "cloudinary": "^1.13.2",
     "dotenv": "^8.1.0",
     "hstream": "^1.2.0",
     "jalla": "^1.0.0-15",

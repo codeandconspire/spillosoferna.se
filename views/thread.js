@@ -3,6 +3,7 @@ var asElement = require('prismic-element')
 var accordion = require('../components/accordion')
 var callout = require('../components/callout')
 var view = require('../components/view')
+var gallery = require('../components/gallery')
 var serialize = require('../components/text/serialize')
 var {
   text,
@@ -74,6 +75,11 @@ function thread (state, emit) {
             </details>
           `
         }).filter(Boolean)}
+
+        <div class="u-light">
+          <div class="u-container u-nbfc"> 
+            ${gallery({ title: text`Inspiration`, items: doc.data.inspo })}
+
             ${accordion({
               title: text`Vanliga frågor`,
               items: doc.data.faq.map(function (item) {
@@ -83,6 +89,9 @@ function thread (state, emit) {
                 }
               })
             })}
+          </div>
+        </div>
+
         ${callout({
           title: asText(doc.data.outro_heading),
           body: asElement(doc.data.outro_body),
