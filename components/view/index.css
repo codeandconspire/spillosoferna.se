@@ -22,14 +22,18 @@
   background-color: #fff;
 }
 
+.View-panel + .View-panel {
+  margin-top: -10vh;
+}
+
 @media (min-width: 1000px) {
   .View-panel {
     padding: 15vh 0;
   }
-}
 
-.View-panel + .View-panel {
-  padding-top: 0;
+  .View-panel + .View-panel {
+    margin-top: -15vh;
+  }
 }
 
 .View-login {

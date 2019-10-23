@@ -21,7 +21,10 @@ module.exports = class Tabs extends Component {
     var onscroll = nanoraf(() => {
       var { scrollY, innerHeight } = window
       var i = 0
-      if (scrollY + innerHeight / 2 > anchors[i].offset + anchors[i].height) {
+      var last = anchors[anchors.length - 1]
+      if (scrollY + innerHeight >= last.offset + last.height) {
+        i = anchors.length - 1
+      } else if (scrollY + innerHeight / 2 > anchors[i].offset + anchors[i].height) {
         for (let len = anchors.length; i < len; i++) {
           if (scrollY + innerHeight / 2 < anchors[i].offset + anchors[i].height) {
             break
