@@ -60,35 +60,37 @@ function thread (state, emit) {
           title: asText(doc.data.title),
           body: asText(doc.data.description)
         })}
-        <div class="View-space u-container">
-          ${grid([
-            grid.cell({ size: { lg: '2of3' } }, html`
-              <div class="Text">
-                <h2>${text`Inledning`}</h2>
-                ${asElement(doc.data.body, resolve, serialize)}
-              </div>
-            `),
-            grid.cell({ size: { lg: '1of3' } }, html`
-              <div>
-                ${doc.data.goal.id && !doc.data.goal.isBroken ? card({
-                  panel: goal.heading({
-                    title: asText(doc.data.goal.data.title),
-                    number: doc.data.goal.data.number
-                  }),
-                  title: text`${asText(doc.data.title)} och mål ${doc.data.goal.data.number}`,
-                  body: more(html`
-                    <div class="Text Text--static">
-                      ${asElement(doc.data.goal_text.slice(0, 1), resolve, serialize)}
-                    </div>
-                  `, html`
-                    <div class="Text Text--static">
-                      ${asElement(doc.data.goal_text, resolve, serialize)}
-                    </div>
-                  `)
-                }) : null}
-              </div>
-            `)
-          ])}
+        <div class="View-panel">
+          <div class="u-container">
+            ${grid([
+              grid.cell({ size: { lg: '2of3' } }, html`
+                <div class="Text">
+                  <h2>${text`Inledning`}</h2>
+                  ${asElement(doc.data.body, resolve, serialize)}
+                </div>
+              `),
+              grid.cell({ size: { lg: '1of3' } }, html`
+                <div>
+                  ${doc.data.goal.id && !doc.data.goal.isBroken ? card({
+                    panel: goal.heading({
+                      title: asText(doc.data.goal.data.title),
+                      number: doc.data.goal.data.number
+                    }),
+                    title: text`${asText(doc.data.title)} och mål ${doc.data.goal.data.number}`,
+                    body: more(html`
+                      <div class="Text Text--static">
+                        ${asElement(doc.data.goal_text.slice(0, 1), resolve, serialize)}
+                      </div>
+                    `, html`
+                      <div class="Text Text--static">
+                        ${asElement(doc.data.goal_text, resolve, serialize)}
+                      </div>
+                    `)
+                  }) : null}
+                </div>
+              `)
+            ])}
+          </div>
         </div>
         <div class="Text">
           <h2>${text`Lektioner`}</h2>

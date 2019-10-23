@@ -16,8 +16,9 @@
   flex-direction: column;
 }
 
-.View-space {
-  margin: 10vh 0;
+.View-panel {
+  padding: 10vh 0;
+  background-color: #fff;
 }
 
 .View-login {
