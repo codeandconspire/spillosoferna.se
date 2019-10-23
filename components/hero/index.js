@@ -15,8 +15,10 @@ function hero (props) {
         ${props.label ? html`<div class="Hero-label">${props.label.symbol ? html`
             <span class="Hero-symbol">${props.label.symbol}</span>${props.label.text}
         ` : props.label}</div>` : null}
-        ${props.title ? html`<h1 class="Hero-title">${props.title}</h1>` : null}
-        ${props.body ? html`<p class="Hero-body">${props.body}</p>` : null}
+        <div class="Text">
+          ${props.title ? html`<h1>${props.title}</h1>` : null}
+          ${props.body ? html`<p>${props.body}</p>` : null}
+        </div>
       </div>
     </div>
   `
@@ -27,8 +29,10 @@ function loading () {
     <div class="Hero is-loading">
       <div class="u-container">
         <div class="Hero-label">${loader(6)}</div>
-        <div class="Hero-title">${loader(9)}</div>
-        <p class="Hero-body">${loader(48)}</p>
+        <div class="Text">
+          <h1>${loader(6)}</h1>
+          <p>${loader(9)}</p>
+        </div>
       </div>
     </div>
   `

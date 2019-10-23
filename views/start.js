@@ -34,7 +34,7 @@ function start (state, emit) {
       return html`
         <main class="View-main">
           <div class="u-container">
-            <div class="Text">
+            <div class="Text u-spaceSmall">
               <h2>${state.partial ? asText(state.partial.data.title) : loader(16)}</h2>
             </div>
           </div>
@@ -47,41 +47,42 @@ function start (state, emit) {
     return html`
       <main class="View-main">
         <div class="u-container">
-          <div class="Text">
-            <h2>${asText(doc.data.title)}</h2>
-
+          <div class="View-intro u-spaceSmall">
+            <div class="Text">
+              <h2>${asText(doc.data.title)}</h2>
+            </div>
             ${featured ? html`
-              <section>
-                ${img(doc.data.image, { sizes: '35rem' }, {
-                  sizes: [400, 800, [1200, 'q_50']]
-                })}
-                <h2>${featured.data.title ? asText(featured.data.title) : text`Namnlös utmaning`}</h2>
-                <p>${truncate(asText(featured.data.description), 180)}</p>
-                <em>Mål: ${featured.data.goal.data.number}</em>
-                ${featured.data.age}
-                <a href="${resolve(featured)}">${text`Se utmaning`}</a>
-              </section>
+              <a class="View-button" href="${resolve(featured)}">
+                <svg width="15" height="10" role="presentation">
+                  <g stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round"><path d="M9.257 8.536L12.793 5 9.257 1.464M12.793 5H1.056"/></g>
+                </svg>
+                ${text`Visa introduktion`}
+              </a>
             ` : null}
-
-            <h2>${text`Utmaningar`}</h2>
             
-            <ul>
-              ${threads.map(function (thread) {
-                return thread.data.include !== 'Nej' ? html`
-                  <li>
-                    ${img(doc.data.image, { sizes: '35rem' }, {
-                      sizes: [400, 800, [1200, 'q_50']]
-                    })}
-                    <h3>${thread.data.title ? asText(thread.data.title) : text`Namnlös utmaning`}</h3>
-                    <p>${truncate(asText(thread.data.description), 180)}</p>
-                    <em>Mål: ${thread.data.goal.data.number}</em>
-                    ${thread.data.age}
-                    <a href="${resolve(thread)}">${text`Se utmaning`}</a>
-                  </li>
-                ` : null
-              })}
-            </ul>
           </div>
+
+          <hr>
+
+          <div class="Text">
+            <h2>${text`Utmaningar`}</h2>
+          </div>
+          <ul>
+            ${threads.map(function (thread) {
+              return thread.data.include !== 'Nej' ? html`
+                <li>
+                  ${img(doc.data.image, { sizes: '35rem' }, {
+                    sizes: [400, 800, [1200, 'q_50']]
+                  })}
+                  <h3>${thread.data.title ? asText(thread.data.title) : text`Namnlös utmaning`}</h3>
+                  <p>${truncate(asText(thread.data.description), 180)}</p>
+                  <em>Mål: ${thread.data.goal.data.number}</em>
+                  ${thread.data.age}
+                  <a href="${resolve(thread)}">${text`Se utmaning`}</a>
+                </li>
+              ` : null
+            })}
+          </ul>
         </div>
 
         <div class="u-light">

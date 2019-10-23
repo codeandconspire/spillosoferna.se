@@ -3,7 +3,13 @@
 /* @define Accordion */
 
 .Accordion {
-  margin: var(--document-margin) 0;
+  margin: 4rem 0;
+}
+
+@media (min-width: 1000px) {
+  .Accordion {
+    margin: 6rem 0;
+  }
 }
 
 .Accordion-items {
