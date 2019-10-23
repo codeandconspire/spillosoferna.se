@@ -4,7 +4,6 @@ var { img } = require('../base')
 module.exports = gallery
 
 function gallery (props) {
-  console.log(props)
   if (!props.items) {
     return null
   }

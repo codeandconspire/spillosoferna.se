@@ -3,11 +3,15 @@ var asElement = require('prismic-element')
 var accordion = require('../components/accordion')
 var callout = require('../components/callout')
 var view = require('../components/view')
+var hero = require('../components/hero')
 var gallery = require('../components/gallery')
+var symbols = require('../components/symbols')
 var serialize = require('../components/text/serialize')
 var {
+  src,
   text,
   asText,
+  srcset,
   loader,
   resolve,
   HTTPError
@@ -21,20 +25,38 @@ function thread (state, emit) {
     if (!doc) {
       return html`
         <main class="View-main">
-          <div class="Text">
-            <h1>${state.partial ? asText(state.partial.data.title) : loader(16)}</h1>
-            ${state.partial ? asElement(state.partial.data.description, resolve) : html`<p>${loader(48)}</p>`}
-          </div>
+          ${state.partial ? hero({
+            image: {
+              alt: state.partial.data.image.alt || '',
+              sizes: '100vw',
+              src: src(state.partial.data.image.url, 900),
+              srcset: srcset(state.partial.data.image.url, [400, 600, 900, 1200, 1800, [2600, 'q_50']])
+            },
+            label: loader(6),
+            title: asText(state.partial.data.title),
+            body: asText(state.partial.data.description)
+          }) : hero.loading()}
         </main>
       `
     }
 
     return html`
       <main class="View-main">
+        ${hero({
+          image: {
+            alt: doc.data.image.alt || '',
+            sizes: '100vw',
+            src: src(doc.data.image.url, 900),
+            srcset: srcset(doc.data.image.url, [400, 600, 900, 1200, 1800, [2600, 'q_50']])
+          },
+          label: doc.data.age ? {
+            symbol: symbols.people(),
+            text: text`Årskurs ${doc.data.age}`
+          } : null,
+          title: asText(doc.data.title),
+          body: asText(doc.data.description)
+        })}
         <div class="Text">
-          <h1>${asText(doc.data.title)}</h1>
-          ${text`Årskurs ${doc.data.age}`}
-          ${asElement(doc.data.description, resolve)}
           ${doc.data.goal.id && !doc.data.goal.isBroken ? html`
             <h2>${text`Tråden ${asText(doc.data.title)} är framtagen primärt för mål ${doc.data.goal.data.number}`}</h2>
             ${asElement(doc.data.goal.data.description)}
@@ -77,7 +99,7 @@ function thread (state, emit) {
         }).filter(Boolean)}
 
         <div class="u-light">
-          <div class="u-container u-nbfc"> 
+          <div class="u-container u-nbfc">
             ${gallery({ title: text`Inspiration`, items: doc.data.inspo })}
 
             ${accordion({

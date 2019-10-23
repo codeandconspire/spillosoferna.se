@@ -6,6 +6,9 @@
   --document-color: 17, 6, 21;
   --document-background: 255, 229, 242;
 
+  --loading-color: 17, 0, 70, 0.06;
+  --loading-color-solid: 235, 235, 235;
+
   --document-width: 1600px;
   --document-margin: 1rem;
 

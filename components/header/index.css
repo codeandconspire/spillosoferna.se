@@ -19,8 +19,8 @@
 }
 
 .Header {
+  flex: 0 0 auto;
   height: var(--Header-height);
-  margin-bottom: var(--document-margin);
 }
 
 .Header-bar {

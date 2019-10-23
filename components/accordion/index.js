@@ -3,7 +3,6 @@ var html = require('choo/html')
 module.exports = accordion
 
 function accordion (props) {
-  console.log(props)
   if (!props.items) {
     return null
   }

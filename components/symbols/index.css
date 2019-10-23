@@ -1,0 +1,9 @@
+@import "../base";
+
+/* @define Symbols */
+.Symbols {
+  display: inline-block;
+  width: auto;
+  height: 0.9em;
+  vertical-align: baseline;
+}
