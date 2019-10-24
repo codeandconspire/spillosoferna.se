@@ -41,17 +41,24 @@
 }
 
 .Header--tabs .Header-bar {
-  position: static;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: stretch;
-  background-color: transparent;
+  position: static;
+}
+
+@media (min-width: 1000px) {
+  .Header--tabs .Header-bar {
+    background-color: transparent;
+  }
 }
 
 .Header-tab {
   display: flex;
   align-items: center;
   margin: 0 0.75em;
+  white-space: nowrap;
   color: rgb(var(--color-muted));
   border-bottom: 4px solid transparent
 }
