@@ -32,7 +32,7 @@ function serialize (type, node, content, children) {
       var opts = {}
       if (!/\.(svg|gif)$/.test(node.url)) {
         attrs.sizes = '42rem'
-        opts.sizes = [400, 800, [1200, 'q_50']]
+        opts.sizes = [400, 800, 1000, 1200]
       }
 
       return html`

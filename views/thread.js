@@ -65,7 +65,7 @@ function thread (state, emit) {
         ${state.cache(Tabs, `tabs-${doc.id}`).render([{
           id: 'introduction',
           text: text`Inledning`
-        }, doc.data.facts ? {
+        }, doc.data.facts.length ? {
           id: 'facts',
           text: text`Faktan`
         } : null, doc.data.lessons.length ? {
@@ -114,7 +114,7 @@ function thread (state, emit) {
           </div>
         </div>
 
-        ${doc.data.facts ? html`
+        ${doc.data.facts.length ? html`
           <div class="u-container View-panel" id="facts">
             <div class="Text" >
               <h2>${text`Faktan`}</h2>
@@ -149,44 +149,43 @@ function thread (state, emit) {
                     }
                   })
                 })}
-                <!-- ${slice.primary.resource.url ? html`
-                  <h3>${text`Material`}</h3>
-                  <a href="${slice.primary.resource.url}">${slice.primary.resource.name}</a>
-                ` : null} -->
               `
             }).filter(Boolean)}
           </div>
         ` : null}
-        
-        
 
-
-        <div class="View-panel View-panel--white" id="gallery">
-          <div class="u-container u-nbfc">
-            ${gallery({ title: text`Inspiration`, items: doc.data.inspo })}
+        ${doc.data.inspo.length ? html`
+          <div class="View-panel View-panel--white" id="gallery">
+            <div class="u-container u-nbfc">
+              ${gallery({ title: text`Inspiration`, items: doc.data.inspo })}
+            </div>
           </div>
-        </div>
-        <div class="View-panel View-panel--white" id="faq">
-          <div class="u-container u-nbfc">
-            ${accordion({
-              title: text`Vanliga frågor`,
-              items: doc.data.faq.map(function (item) {
-                return {
-                  title: asText(item.faq_title),
-                  body: asElement(item.faq_body, resolve, serialize)
-                }
-              })
+        ` : null}
+        ${doc.data.faq.length ? html`
+          <div class="View-panel View-panel--white" id="faq">
+            <div class="u-container u-nbfc">
+              ${accordion({
+                title: text`Vanliga frågor`,
+                items: doc.data.faq.map(function (item) {
+                  return {
+                    title: asText(item.faq_title),
+                    body: asElement(item.faq_body, resolve, serialize)
+                  }
+                })
+              })}
+            </div>
+          </div>
+        ` : null}
+        ${doc.data.outro_heading.length ? html`
+          <div id="outro">
+            ${callout({
+              title: asText(doc.data.outro_heading),
+              body: asElement(doc.data.outro_body, resolve, serialize),
+              link: resolve(doc.data.outro_link),
+              linkText: doc.data.outro_link_text
             })}
           </div>
-        </div>
-        <div id="outro">
-          ${callout({
-            title: asText(doc.data.outro_heading),
-            body: asElement(doc.data.outro_body, resolve, serialize),
-            link: resolve(doc.data.outro_link),
-            linkText: doc.data.outro_link_text
-          })}
-        </div>
+        ` : null}
       </main>
     `
   })

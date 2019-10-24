@@ -48,6 +48,11 @@
   }
 }
 
+.View-panel--divided {
+  padding-top: 0;
+  padding-top: 2rem;
+}
+
 .View-login {
   background: #fff;
   box-shadow: 0 0.125rem 2.75rem 0 rgba(0, 0, 0, 0.1);
@@ -89,4 +94,36 @@
   top: -0.1em;
   margin-right: 0.5rem;
   vertical-align: middle;
+}
+
+/**
+ * Thread grid
+ */
+
+.View-treads {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0.75rem -0.5rem -0.5rem;
+}
+
+.View-tread {
+  padding: 0.5rem;
+  flex: 0 0 100%;
+}
+
+@media (min-width: 500px) {
+  .View-treads {
+    margin: 0.75rem -0.75rem -0.75rem;
+  }
+
+  .View-tread {
+    flex: 0 0 50%;
+    padding: 0.75rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  .View-tread {
+    flex: 0 0 25%;
+  }
 }

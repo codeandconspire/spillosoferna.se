@@ -1,23 +1,20 @@
 var html = require('choo/html')
-var { loader } = require('../base')
+var { loader, text } = require('../base')
 
 module.exports = card
 module.exports.loading = loading
 
 function card (props) {
-  var attrs = { ...props.image }
-  delete attrs.src
-
   return html`
     <div class="Card">
       <div class="Card-panel ${props.image ? 'Card-panel--image' : ''}">
-        ${props.image ? html`<img class="Card-image" ${attrs} src="${props.image.src}">
-        ` : props.panel}
+        ${props.image ? props.image : props.panel}
       </div>
       <div class="Card-content">
         <div class="Card-title">${props.title}</div>
         <div class="Card-body">${props.body}</div>
         </div>
+        ${props.link ? html`<a class="Card-link" href="${props.link}">${text`Visa mer`}</a>` : null}
       </div>
     </div>
   `

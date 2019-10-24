@@ -82,7 +82,7 @@
 
 @media (min-width: 1000px) {
   .Lesson-summary::before {
-    content: "Visa lektion";
+    content: "Visa";
     text-transform: uppercase;
     font-weight: 600;
     position: absolute;
@@ -91,7 +91,7 @@
   }
 
   .Lesson[open] .Lesson-summary::before {
-    content: "Stäng lektion";
+    content: "Stäng";
   }
 
   .Lesson-summary {

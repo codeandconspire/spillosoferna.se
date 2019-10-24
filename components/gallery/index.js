@@ -19,7 +19,7 @@ function gallery (props) {
         ${props.items.map((item) => html`
           <figure class="Gallery-item">
             ${img(item.image, { class: 'Gallery-image', sizes: '20rem' }, {
-              sizes: [400, 800, [1200, 'q_50']]
+              sizes: [400, 800, 1000, 1200]
             })}
           </figure>
         `)}

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "standard",
+    "deploy": "npx now --scope codeandconspire && npx now alias --scope codeandconspire",
     "start": "node server.js"
   },
   "repository": {
@@ -15,7 +16,19 @@
     "./lib/prismic-api": "./lib/prismic-api/browser"
   },
   "now": {
-    "alias": "www.spillosoferna.se"
+    "alias": "spillosoferna.conspire.dev",
+    "env": {
+      "NODE_ENV": "production",
+      "CLOUDINARY_KEY": "@cloudinary-key",
+      "CLOUDINARY_SECRET": "@cloudinary-secret",
+      "PRISMIC_SECRET": "@prismic-spillosoferna-secret",
+      "PRISMIC_TOKEN": "@prismic-spillosoferna-token",
+      "SESSION_SECRET": "@session-spillosoferna-secret",
+      "CLOUDFLARE_ZONE": "@cloudflare-spillosoferna-zone",
+      "CLOUDFLARE_EMAIL": "@cloudflare-codeandconspire-email",
+      "CLOUDFLARE_KEY": "@cloudflare-codeandconspire-key",
+      "POLYFILL_FEATURES": "es2015,es2016,es2017"
+    }
   },
   "standard": {
     "parser": "babel-eslint"

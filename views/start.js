@@ -4,6 +4,7 @@ var { Predicates } = require('prismic-javascript')
 var view = require('../components/view')
 var accordion = require('../components/accordion')
 var gallery = require('../components/gallery')
+var card = require('../components/card')
 var callout = require('../components/callout')
 var serialize = require('../components/text/serialize')
 var {
@@ -60,36 +61,51 @@ function start (state, emit) {
                 ${text`Visa introduktion`}
               </a>
             ` : null}
-            
           </div>
-
-          <hr>
-
-          <div class="Text">
-            <h2>${text`Utmaningar`}</h2>
-          </div>
-          <ul>
-            ${threads.map(function (thread) {
-              return thread.data.include !== 'Nej' ? html`
-                <li>
-                  ${img(doc.data.image, { sizes: '35rem' }, {
-                    sizes: [400, 800, [1200, 'q_50']]
-                  })}
-                  <h3>${thread.data.title ? asText(thread.data.title) : text`Namnlös utmaning`}</h3>
-                  <p>${truncate(asText(thread.data.description), 180)}</p>
-                  <em>Mål: ${thread.data.goal.data.number}</em>
-                  ${thread.data.age}
-                  <a href="${resolve(thread)}">${text`Se utmaning`}</a>
-                </li>
-              ` : null
-            })}
-          </ul>
         </div>
 
-        <div class="u-light">
+        <div class="u-container">
+          <hr>
+        </div>
+
+        <div class="View-panel View-panel--divided">
+          <div class="u-container">
+            <div class="Text">
+              <h2>${text`Utmaningar`}</h2>
+            </div>
+            <ul class="View-treads">
+              ${threads.map(function (thread) {
+                return thread.data.include !== 'Nej' ? html`
+                  <li class="View-tread">
+                    ${card({
+                      image: img(thread.data.image, { sizes: '35rem' }, {
+                        sizes: [400, 800, 1000, 1200]
+                      }),
+                      title: thread.data.title ? asText(thread.data.title) : text`Namnlös utmaning`,
+                      goal: thread.data.goal.data.number,
+                      link: resolve(thread),
+                      body: html`
+                        ${truncate(asText(thread.data.description), 180)}
+                        <br>
+                        <br>
+                        <strong>Årskurs ${thread.data.age}</strong>
+                      `
+                    })}
+                  </li>
+                ` : null
+              })}
+            </ul>
+          </div>
+        </div>
+
+        <div class="View-panel View-panel--white">
           <div class="u-container u-nbfc"> 
             ${gallery({ title: text`Inspiration`, items: doc.data.inspo })}
-
+          </div>
+        </div>
+        
+        <div class="View-panel View-panel--white">
+          <div class="u-container u-nbfc"> 
             ${accordion({
               title: text`Vanliga frågor`,
               items: doc.data.faq.map(function (item) {

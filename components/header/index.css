@@ -23,12 +23,20 @@
   height: var(--Header-height);
   position: relative;
   z-index: 100;
+  user-select: none;
 }
 
 .Header--tabs {
   position: sticky;
   top: 0;
   pointer-events: none;
+  display: none;
+}
+
+@media (min-width: 1000px) {
+  .Header--tabs {
+    display: block;
+  }
 }
 
 .Header-bar {
