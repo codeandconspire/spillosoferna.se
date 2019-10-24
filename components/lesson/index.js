@@ -31,7 +31,6 @@ function lesson (props) {
               </div>
               <ol>
                 ${props.steps.map(function (step) {
-                  console.log(step.note)
                   return html`
                     <li class="Lesson-step">
                       <div class="Text">

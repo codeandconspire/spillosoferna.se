@@ -135,21 +135,19 @@ function thread (state, emit) {
 
             ${doc.data.lessons.map(function (slice) {
               if (slice.slice_type !== 'lesson') return null
-              return html`
-                ${lesson({
-                  title: asText(slice.primary.name) || text`Lektionen`,
-                  subtitle: slice.primary.label,
-                  time: slice.primary.duration,
-                  main: asElement(slice.primary.description, resolve, serialize),
-                  preparation: asElement(slice.primary.preparation, resolve, serialize),
-                  steps: slice.items.map(function (step) {
-                    return {
-                      body: asElement(step.text, resolve, serialize),
-                      note: asText(step.note) ? asElement(step.note, resolve, serialize) : null
-                    }
-                  })
-                })}
-              `
+              return lesson({
+                title: asText(slice.primary.name) || text`Lektionen`,
+                subtitle: slice.primary.label,
+                time: slice.primary.duration,
+                main: asElement(slice.primary.description, resolve, serialize),
+                preparation: asElement(slice.primary.preparation, resolve, serialize),
+                steps: slice.items.map(function (step) {
+                  return {
+                    body: asElement(step.text, resolve, serialize),
+                    note: asText(step.note) ? asElement(step.note, resolve, serialize) : null
+                  }
+                })
+              })
             }).filter(Boolean)}
           </div>
         ` : null}
