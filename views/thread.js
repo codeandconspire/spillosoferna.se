@@ -7,6 +7,7 @@ var goal = require('../components/goal')
 var more = require('../components/more')
 var grid = require('../components/grid')
 var card = require('../components/card')
+var lesson = require('../components/lesson')
 var hero = require('../components/hero')
 var gallery = require('../components/gallery')
 var symbols = require('../components/symbols')
@@ -64,20 +65,23 @@ function thread (state, emit) {
         ${state.cache(Tabs, `tabs-${doc.id}`).render([{
           id: 'introduction',
           text: text`Inledning`
-        }, {
+        }, doc.data.facts ? {
+          id: 'facts',
+          text: text`Faktan`
+        } : null, doc.data.lessons.length ? {
           id: 'lessons',
           text: text`Lektioner`
-        }, {
+        } : null, doc.data.inspo.length ? {
           id: 'gallery',
           text: text`Inspiration`
-        }, {
+        } : null, doc.data.faq.length ? {
           id: 'faq',
           text: text`Vanliga frågor`
-        }, {
+        } : null, doc.data.outro_heading.length ? {
           id: 'outro',
           text: text`Feedback`
-        }])}
-        <div class="View-panel" id="introduction">
+        } : null].filter(Boolean))}
+        <div class="View-panel View-panel--white" id="introduction">
           <div class="u-container">
             ${grid([
               grid.cell({ size: { lg: '2of3' } }, html`
@@ -109,56 +113,67 @@ function thread (state, emit) {
             ])}
           </div>
         </div>
-        <div class="Text" id="lessons">
-          <h2>${text`Lektioner`}</h2>
-        </div>
-        ${doc.data.lessons.map(function (slice) {
-          if (slice.slice_type !== 'lesson') return null
-          return html`
-            <details>
-              <summary class="Text">
-                ${slice.primary.label} • ${slice.primary.duration}
-                <h2>${asText(slice.primary.name)}</h2>
-              </summary>
-              <div class="Text">
-                ${asElement(slice.primary.description, resolve, serialize)}
-                ${slice.primary.preparation.length ? html`
-                  <h3>${text`Ha tillgängligt`}</h3>
-                  ${asElement(slice.primary.preparation)}
-                ` : null}
-                ${slice.primary.resource.url ? html`
+
+        ${doc.data.facts ? html`
+          <div class="u-container View-panel" id="facts">
+            <div class="Text" >
+              <h2>${text`Faktan`}</h2>
+            </div>
+            ${lesson({
+              title: asText(doc.data.facts_title) || text`Faktan`,
+              subtitle: text`Inför lektionerna`,
+              main: asElement(doc.data.facts, resolve, serialize)
+            })}
+          </div>
+        ` : null}
+      
+        ${doc.data.lessons.length ? html`
+          <div class="u-container View-panel" id="lessons">
+            <div class="Text">
+              <h2>${text`Lektioner`}</h2>
+            </div>
+
+            ${doc.data.lessons.map(function (slice) {
+              if (slice.slice_type !== 'lesson') return null
+              return html`
+                ${lesson({
+                  title: asText(slice.primary.name) || text`Lektionen`,
+                  subtitle: slice.primary.label,
+                  time: slice.primary.duration,
+                  main: asElement(slice.primary.description, resolve, serialize),
+                  preparation: asElement(slice.primary.preparation, resolve, serialize),
+                  steps: slice.items.map(function (step) {
+                    return {
+                      body: asElement(step.text, resolve, serialize),
+                      note: asText(step.note) ? asElement(step.note, resolve, serialize) : null
+                    }
+                  })
+                })}
+                <!-- ${slice.primary.resource.url ? html`
                   <h3>${text`Material`}</h3>
                   <a href="${slice.primary.resource.url}">${slice.primary.resource.name}</a>
-                ` : null}
-                <h3>${text`Gör så här`}</h3>
-                <ol>
-                ${slice.items.map((item, index) => html`
-                  <li>
-                    ${asElement(item.text, resolve, serialize)}
-                    ${item.note.length ? html`
-                      <h4>${text`Till dig som pedagog`}</h4>
-                      ${asElement(item.note, resolve)}
-                    ` : null}
-                  </li>
-                `)}
-                </ol>
-              </div>
-            </details>
-          `
-        }).filter(Boolean)}
-        <div class="View-panel" id="gallery">
+                ` : null} -->
+              `
+            }).filter(Boolean)}
+          </div>
+        ` : null}
+        
+        
+
+
+        <div class="View-panel View-panel--white" id="gallery">
           <div class="u-container u-nbfc">
             ${gallery({ title: text`Inspiration`, items: doc.data.inspo })}
           </div>
         </div>
-        <div class="View-panel" id="faq">
+        <div class="View-panel View-panel--white" id="faq">
           <div class="u-container u-nbfc">
             ${accordion({
               title: text`Vanliga frågor`,
               items: doc.data.faq.map(function (item) {
                 return {
                   title: asText(item.faq_title),
-                  body: asElement(item.faq_body)
+                  body: asElement(item.faq_body, resolve, serialize)
                 }
               })
             })}
@@ -167,7 +182,7 @@ function thread (state, emit) {
         <div id="outro">
           ${callout({
             title: asText(doc.data.outro_heading),
-            body: asElement(doc.data.outro_body),
+            body: asElement(doc.data.outro_body, resolve, serialize),
             link: resolve(doc.data.outro_link),
             linkText: doc.data.outro_link_text
           })}

@@ -28,16 +28,16 @@ function serialize (type, node, content, children) {
       })
     }
     case Elements.image: {
-      const attrs = {}
+      var attrs = {}
+      var opts = {}
       if (!/\.(svg|gif)$/.test(node.url)) {
         attrs.sizes = '42rem'
-        attrs.srcset = [400, 600, 800, 1200].map(function (size, index) {
-          return Math.min(size, node.dimensions.width * (index + 1))
-        })
+        opts.sizes = [400, 800, [1200, 'q_50']]
       }
+
       return html`
         <figure>
-          ${img(node, attrs)}
+          ${img(node, attrs, opts)}
           ${node.alt ? html`<figcaption class="Text-caption">${node.alt}</figcaption>` : null}
         </figure>
       `

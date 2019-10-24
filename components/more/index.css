@@ -45,6 +45,6 @@
 .More-toggle {
   display: block;
   margin-top: 0.8em;
-  font-weight: bold;
+  font-weight: 600;
   text-transform: uppercase;
 }

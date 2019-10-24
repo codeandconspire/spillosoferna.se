@@ -23,10 +23,6 @@ function embed (props) {
         <span class="u-hiddenVisually">${text`Spela ${props.title || ''}`}</span>
       </a>
       <img class="Embed-image" ${attrs} src="${src}">
-      <figcaption class="Embed-caption">
-        ${props.title ? html`<strong class="Embed-title">${props.title}</strong>` : null}
-        ${props.description ? html`<p class="u-spaceT1"><span class="Embed-description">${props.description}</span></p>` : null}
-      </figcaption>
     </figure>
   `
 

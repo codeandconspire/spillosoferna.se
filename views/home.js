@@ -2,9 +2,9 @@ var html = require('choo/html')
 var asElement = require('prismic-element')
 var view = require('../components/view')
 var Signin = require('../components/signin')
+var serialize = require('../components/text/serialize')
 var {
   src,
-  text,
   asText,
   loader,
   resolve,
@@ -21,7 +21,7 @@ function home (state, emit) {
         <main class="View-main">
           <div class="Text">
             <h1>${state.partial ? asText(state.partial.data.title) : loader(16)}</h1>
-            ${state.partial ? asElement(state.partial.data.description, resolve) : html`<p>${loader(48)}</p>`}
+            ${state.partial ? asElement(state.partial.data.description, resolve, serialize) : html`<p>${loader(48)}</p>`}
           </div>
         </main>
       `
@@ -34,7 +34,7 @@ function home (state, emit) {
             <div class="View-info">
               <div class="Text">
                 <h1>${asText(doc.data.title)}</h1>
-                ${asElement(doc.data.description, resolve)}
+                ${asElement(doc.data.description, resolve, serialize)}
                 ${!doc.data.cta.isBroken && doc.data.cta.id ? html`
                   <p>
                     <a href="${resolve(doc.data.cta)}">${doc.data.cta_text || asText(doc.data.cta.data.title)}</a>

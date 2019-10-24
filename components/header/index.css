@@ -28,6 +28,7 @@
 .Header--tabs {
   position: sticky;
   top: 0;
+  pointer-events: none;
 }
 
 .Header-bar {
@@ -60,7 +61,8 @@
   margin: 0 0.75em;
   white-space: nowrap;
   color: rgb(var(--color-muted));
-  border-bottom: 4px solid transparent
+  border-bottom: 4px solid transparent;
+  pointer-events: auto;
 }
 
 .Header-tab:hover {
@@ -68,7 +70,7 @@
 }
 
 .Header-tab.is-selected {
-  font-weight: bold;
+  font-weight: 600;
   color: currentColor;
   border-bottom-color: rgb(var(--color-turquise));
 }

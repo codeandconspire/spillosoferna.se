@@ -5,6 +5,7 @@ var view = require('../components/view')
 var accordion = require('../components/accordion')
 var gallery = require('../components/gallery')
 var callout = require('../components/callout')
+var serialize = require('../components/text/serialize')
 var {
   img,
   text,
@@ -94,7 +95,7 @@ function start (state, emit) {
               items: doc.data.faq.map(function (item) {
                 return {
                   title: asText(item.faq_title),
-                  body: asElement(item.faq_body)
+                  body: asElement(item.faq_body, resolve, serialize)
                 }
               })
             })}
@@ -103,7 +104,7 @@ function start (state, emit) {
 
         ${callout({
           title: asText(doc.data.outro_heading),
-          body: asElement(doc.data.outro_body),
+          body: asElement(doc.data.outro_body, resolve, serialize),
           link: resolve(doc.data.outro_link),
           linkText: doc.data.outro_link_text
         })}

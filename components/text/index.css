@@ -7,6 +7,10 @@
   max-width: var(--container-medium-width);
 }
 
+.Text + .Text {
+  margin-top: 1rem;
+}
+
 @media (min-width: 1000px) {
   .Text:not(.Text--static) {
     font-size: 1.25rem;
@@ -25,7 +29,6 @@
 
 .Text a {
   text-decoration: underline;
-  font-weight: 600;
   padding: 0.1em 0.3em;
   margin: -0.1em -0.3em;
   color: #23A098;
@@ -86,52 +89,18 @@
  * Lists
  */
 
-.Text ul,
 .Text ol {
-  margin: 0;
-}
-
-.Text ul:not(:first-child),
-.Text ol:not(:first-child) {
-  margin-top: calc(1.2em - 0.5em);
-}
-
-.Text ul:not(:last-child),
-.Text ol:not(:last-child) {
-  margin: 1.2em;
+  list-style-type: decimal;
+  padding-left: 1.5em;
 }
 
 .Text ul {
-  list-style-type: none;
+  list-style-type: disc;
+  padding-left: 1.5em;
 }
 
-.Text ol {
-  list-style-type: decimal;
-  padding-left: 1.7em;
-}
-
-.Text ul > li {
-  padding-left: 1.2em;
-  position: relative;
-}
-
-.Text ol > li {
-  padding-left: 0.5em;
-}
-
-.Text ul > li::before {
-  content: "";
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  position: absolute;
-  left: 0;
-  top: calc(0.5em + 0.6em);
-  background: currentColor;
-}
-
-.Text li {
-  padding-top: 0.5em;
+.Text li + li {
+  padding-top: 0.3em;
 }
 
 /**
@@ -163,7 +132,13 @@
 .Text h4 {
   font-size: inherit;
   line-height: inherit;
-  margin: 0;
+  margin: 0 0 0.3rem;
+}
+
+.Text h4 + p,
+.Text h4 + ul,
+.Text h4 + ol {
+  margin-top: 0;
 }
 
 @media (min-width: 1000px) {
@@ -174,5 +149,9 @@
 
   .Text:not(.Text--static) h2 {
     font-size: 2rem;
+  }
+
+  .Text:not(.Text--static) h3 {
+    font-size: 1.5rem;
   }
 }

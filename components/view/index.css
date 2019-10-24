@@ -19,10 +19,18 @@
 
 .View-panel {
   padding: 10vh 0;
+  background-color: rgb(var(--document-background));
+}
+
+.View-panel--white {
   background-color: #fff;
 }
 
-.View-panel + .View-panel {
+.View-panel:not(.View-panel--white) + .View-panel:not(.View-panel--white) {
+  margin-top: -10vh;
+}
+
+.View-panel--white + .View-panel--white {
   margin-top: -10vh;
 }
 
@@ -31,7 +39,11 @@
     padding: 15vh 0;
   }
 
-  .View-panel + .View-panel {
+  .View-panel:not(.View-panel--white) + .View-panel:not(.View-panel--white) {
+    margin-top: -15vh;
+  }
+  
+  .View-panel--white + .View-panel--white {
     margin-top: -15vh;
   }
 }
