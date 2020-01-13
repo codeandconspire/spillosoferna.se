@@ -77,10 +77,10 @@ function thread (state, emit) {
         } : null, doc.data.faq.length ? {
           id: 'faq',
           text: text`Vanliga frågor`
-        } : null, doc.data.outro_heading.length ? {
-          id: 'outro',
+        } : null, {
+          id: 'feedback',
           text: text`Feedback`
-        } : null].filter(Boolean))}
+        }].filter(Boolean))}
         <div class="View-panel View-panel--white" id="introduction">
           <div class="u-container">
             ${grid([
@@ -174,16 +174,22 @@ function thread (state, emit) {
             </div>
           </div>
         ` : null}
-        ${doc.data.outro_heading.length ? html`
-          <div id="outro">
-            ${callout({
-              title: asText(doc.data.outro_heading),
-              body: asElement(doc.data.outro_body, resolve, serialize),
-              link: resolve(doc.data.outro_link),
-              linkText: doc.data.outro_link_text
-            })}
-          </div>
-        ` : null}
+        
+        ${state.prismic.getSingle('website', function (err, website) {
+          if (err) throw HTTPError(404, err)
+          if (!website) return null
+
+          return html`
+            <div id="feedback">
+              ${callout({
+                title: asText(website.data.outro_heading),
+                body: asElement(website.data.outro_body, resolve, serialize),
+                link: '/start/om',
+                linkText: website.data.outro_link_text
+              })}
+            </div>
+          `
+        })}
       </main>
     `
   })

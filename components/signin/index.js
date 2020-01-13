@@ -60,7 +60,7 @@ module.exports = class Signin extends Component {
         </div>
         <label class="u-hiddenVisually" for="${this.local.id}-passcode">${text`Ange din kod`}</label>
         <div class="Signin-control">
-          <input class="Signin-input" placeholder="0000" type="text" name="code" maxlength="4" minlength="4" pattern="\\d{4}" required>
+          <input class="Signin-input" autocomplete="off" placeholder="0000" type="text" name="code" maxlength="4" minlength="4" pattern="\\d{4}" required>
         </div>
         <button class="Signin-button" type="Submit">${text`Logga in`}</button>
       </form>

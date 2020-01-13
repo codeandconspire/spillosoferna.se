@@ -22,6 +22,8 @@ app.use(require('choo-service-worker')('/sw.js'))
 
 app.route('/', lazy(() => import('./views/home')))
 app.route('/start', lazy(() => import('./views/start')))
+app.route('/om', lazy(() => import('./views/about')))
+app.route('/start/om', lazy(() => import('./views/about')))
 app.route('/start/:uid', lazy(() => import('./views/thread')))
 
 try {

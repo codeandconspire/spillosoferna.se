@@ -118,11 +118,16 @@ function start (state, emit) {
           </div>
         </div>
 
-        ${callout({
-          title: asText(doc.data.outro_heading),
-          body: asElement(doc.data.outro_body, resolve, serialize),
-          link: resolve(doc.data.outro_link),
-          linkText: doc.data.outro_link_text
+        ${state.prismic.getSingle('website', function (err, website) {
+          if (err) throw HTTPError(404, err)
+          if (!website) return null
+
+          return callout({
+            title: asText(website.data.start_outro_heading),
+            body: asElement(website.data.start_outro_body, resolve, serialize),
+            link: '/start/om',
+            linkText: website.data.start_outro_link_text
+          })
         })}
       </main>
     `

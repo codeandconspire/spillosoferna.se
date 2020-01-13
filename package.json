@@ -16,7 +16,7 @@
     "./lib/prismic-api": "./lib/prismic-api/browser"
   },
   "now": {
-    "alias": "spillosoferna.conspire.dev",
+    "alias": "www.spillosoferna.se",
     "env": {
       "NODE_ENV": "production",
       "CLOUDINARY_KEY": "@cloudinary-key",

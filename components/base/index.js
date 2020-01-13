@@ -22,7 +22,7 @@ function resolve (doc) {
     case 'user':
     case 'website':
     case 'landing': return '/'
-    case 'about': return `/${doc.uid}`
+    case 'about': return '/om'
     case 'start': return '/start'
     case 'thread': return `/start/${doc.uid}`
     case 'goals': return '/malen'

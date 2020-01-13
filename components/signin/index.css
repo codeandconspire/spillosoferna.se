@@ -16,6 +16,7 @@
   min-width: 9.5rem;
   margin: 0 auto;
   display: block;
+  cursor: pointer;
 }
 
 .Signin-control {

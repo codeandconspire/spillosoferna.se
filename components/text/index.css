@@ -11,16 +11,41 @@
   margin-top: 1rem;
 }
 
-@media (min-width: 1000px) {
-  .Text:not(.Text--static) {
-    font-size: 1.25rem;
-  }
-}
-
 .Text--center {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+}
+
+.Text--aligned {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Text--intro {
+  text-align: center;
+  font-size: 1.25rem;
+  margin: 0 auto 15vh;
+  max-width: calc(var(--container-medium-width) + 7rem);
+}
+
+.Text--margin {
+  margin-top: 3rem !important;
+  margin-bottom: 3rem !important;
+}
+
+.Text--wide {
+  max-width: var(--container-large-width);
+}
+
+@media (min-width: 1000px) {
+  .Text:not(.Text--static) {
+    font-size: 1.25rem;
+  }
+
+  .Text--intro:not(.Text--static) {
+    font-size: 1.5rem;
+  }
 }
 
 /**
@@ -28,10 +53,10 @@
  */
 
 .Text a {
-  text-decoration: underline;
   padding: 0.1em 0.3em;
   margin: -0.1em -0.3em;
   color: #23A098;
+  font-weight: bold;
 }
 
 .Text a:not(.Embed-link):active {
@@ -76,6 +101,12 @@
   margin: 2.2em 0;
 }
 
+.Text-caption {
+  font-size: 1rem;
+  margin: -1rem 0 -0.5rem;
+  text-align: center;
+}
+
 .Text pre {
   font-size: 0.8rem;
   overflow: auto;
@@ -84,6 +115,58 @@
   border-radius: 0.25rem;
   text-align: left;
 }
+
+/**
+ * Blockquote
+ */
+
+.Text-blockquote {
+  margin: 2rem 0 2.5rem;
+  color: #23A098;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  font-weight: normal;
+  text-align: center;
+}
+
+.Text-cite {
+  display: inline-block;
+  margin-top: 1rem;
+  font-weight: 600;
+  font-size: 1rem;
+  color: rgb(var(--document-color));
+}
+
+.Text-cite:empty {
+  display: none;
+}
+
+.Text-blockquote p:first-child {
+  margin-top: 0;
+}
+
+.Text-blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 600px) {
+  .Text-blockquote {
+    font-size: 1.7rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  .Text-blockquote {
+    font-size: 1.9rem;
+    max-width: 55rem;
+    margin: 3rem auto;
+  }
+
+  .Text:not(.Text--static) .Text-cite {
+    font-size: 1.25rem;
+  }
+}
+
 
 /**
  * Lists
@@ -144,7 +227,7 @@
 @media (min-width: 1000px) {
   .Text:not(.Text--static) h1 {
     font-size: 4.5rem;
-    line-height: 1.1;
+    line-height: 1;
   }
 
   .Text:not(.Text--static) h2 {

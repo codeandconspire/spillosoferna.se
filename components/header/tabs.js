@@ -40,15 +40,18 @@ module.exports = class Tabs extends Component {
         props.height = props.el.offsetHeight
         props.offset = offset(props.el)
       })
+      console.log('calculated')
     })
 
     onscroll()
     window.addEventListener('resize', onresize)
     window.addEventListener('scroll', onscroll)
+    document.documentElement.addEventListener('click', onresize)
 
     this.unload = function () {
       window.removeEventListener('scroll', onscroll)
       window.removeEventListener('resize', onresize)
+      document.documentElement.removeEventListener('click', onresize)
     }
   }
 

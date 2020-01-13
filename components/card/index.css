@@ -22,7 +22,42 @@
 
 .Card-content {
   padding: 1.25rem;
+  position: relative;
 }
+
+.Card-goal {
+  position: absolute;
+  top: -1.4rem;
+  right: 1rem;
+  width: 2.8rem;
+  height: 2.8rem;
+  background: red;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+
+.Card-goal--1 { background: rgb(var(--color-goal-1)); }
+.Card-goal--2 { background: rgb(var(--color-goal-2)); }
+.Card-goal--3 { background: rgb(var(--color-goal-3)); }
+.Card-goal--4 { background: rgb(var(--color-goal-4)); }
+.Card-goal--5 { background: rgb(var(--color-goal-5)); }
+.Card-goal--6 { background: rgb(var(--color-goal-6)); }
+.Card-goal--7 { background: rgb(var(--color-goal-7)); }
+.Card-goal--8 { background: rgb(var(--color-goal-8)); }
+.Card-goal--9 { background: rgb(var(--color-goal-9)); }
+.Card-goal--10 { background: rgb(var(--color-goal-10)); }
+.Card-goal--11 { background: rgb(var(--color-goal-11)); }
+.Card-goal--12 { background: rgb(var(--color-goal-12)); }
+.Card-goal--13 { background: rgb(var(--color-goal-13)); }
+.Card-goal--14 { background: rgb(var(--color-goal-14)); }
+.Card-goal--15 { background: rgb(var(--color-goal-15)); }
+.Card-goal--16 { background: rgb(var(--color-goal-16)); }
+.Card-goal--17 { background: rgb(var(--color-goal-17)); }
+
 
 .Card-panel--image img {
   position: absolute;
