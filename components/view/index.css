@@ -14,7 +14,12 @@
 .View-landing {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   margin: 15vh 0;
+}
+
+.View-info {
+  max-width: 35rem;
 }
 
 .View-page {
@@ -129,5 +134,31 @@
 @media (min-width: 1000px) {
   .View-tread {
     flex: 0 0 25%;
+  }
+}
+
+.View-abstract {
+  display: none;
+}
+
+@media (min-width: 1000px) {
+  .View-abstract {
+    display: block;
+    position: fixed;
+    top: 17vh;
+    left: -30vh;
+    pointer-events: none;
+    z-index: -1;
+    width: auto;
+    height: 30vh;
+  }
+  
+  .View-abstract--2 {
+    left: auto;
+    height: 110vh;
+    width: auto;
+    top: 0;
+    transform: rotate(-30deg);
+    right: -29vh;
   }
 }
