@@ -97,7 +97,7 @@ app.use(async function (ctx, next) {
 app.use(get('/konto', async function (ctx, next) {
   ctx.assert(ctx.session.user, 401, 'Not authorized')
   if (ctx.accepts('html', 'json') === 'json') {
-  try {
+    try {
       const query = Prismic.Predicates.at('my.user.uid', ctx.session.user)
       const { results: [user] } = await api(query, { req: ctx.req })
       ctx.assert(user, 401, 'User not found')
@@ -105,10 +105,10 @@ app.use(get('/konto', async function (ctx, next) {
         uid: user.uid,
         username: user.data.username
       }
-  } catch (err) {
+    } catch (err) {
       delete ctx.session.user
       ctx.throw(401, 'Not authorized')
-  }
+    }
   }
 }))
 
@@ -118,7 +118,7 @@ app.use(post('/logga-ut', signout))
 function signout (ctx, next) {
   delete ctx.session.user
   if (ctx.accepts('html')) {
-  ctx.redirect('/')
+    ctx.redirect('/')
   } else {
     ctx.body = {}
   }
@@ -133,6 +133,25 @@ app.use(get('/start/:thread?', async function (ctx, thread, next) {
   }
   return next()
 }))
+
+/**
+ * Set cache headers for HTML pages
+ * By caching HTML on our edge servers (Cloudflare) we keep response times and
+ * hosting costs down. The `s-maxage` property tells Cloudflare to cache the
+ * response for a month whereas we set the `max-age` to cero to prevent clients
+ * from caching the response
+ */
+app.use(function (ctx, next) {
+  if (!ctx.accepts('html')) return next()
+  var previewCookie = ctx.cookies.get(Prismic.previewCookie)
+  if (previewCookie || ctx.session.user) {
+    ctx.set('Cache-Control', 'no-cache, private, max-age=0')
+  } else if (!ctx.response.get('Cache-Control') && app.env !== 'development') {
+    ctx.set('Cache-Control', `s-maxage=${60 * 60 * 24 * 7}, max-age=0`)
+  }
+
+  return next()
+})
 
 /**
  * Purge Cloudflare cache when starting production server
