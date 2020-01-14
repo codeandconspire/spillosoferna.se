@@ -17,6 +17,7 @@ app.use(require('choo-meta')({
 app.use(require('./stores/prismic')({
   middleware: require('./lib/prismic-middleware')
 }))
+app.use(require('./stores/user'))
 app.use(require('./stores/navigation'))
 app.use(require('choo-service-worker')('/sw.js'))
 

@@ -26,6 +26,8 @@ var {
 module.exports = view(thread, meta, { back: true, green: true })
 
 function thread (state, emit) {
+  if (!state.user) throw HTTPError(401, 'Not authorized')
+
   return state.prismic.getByUID('thread', state.params.uid, function (err, doc) {
     if (err) throw HTTPError(404, err)
     if (!doc) {
@@ -126,7 +128,7 @@ function thread (state, emit) {
             })}
           </div>
         ` : null}
-      
+
         ${doc.data.lessons.length ? html`
           <div class="u-container View-panel" id="lessons">
             <div class="Text">
@@ -174,7 +176,7 @@ function thread (state, emit) {
             </div>
           </div>
         ` : null}
-        
+
         ${state.prismic.getSingle('website', function (err, website) {
           if (err) throw HTTPError(404, err)
           if (!website) return null

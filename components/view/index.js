@@ -16,8 +16,6 @@ function view (render, getMeta = Function.prototype, props) {
         children = render(state, emit)
         meta = getMeta(state)
 
-        console.log(doc)
-
         const title = doc ? asText(doc.data.title) : text`Loading`
 
         if (meta && meta.title && meta.title !== title) {
@@ -44,7 +42,7 @@ function view (render, getMeta = Function.prototype, props) {
         })
       }
 
-      
+
 
       return html`
         <body class="View">

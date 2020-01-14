@@ -64,7 +64,7 @@ app.use(post('/', compose([body({ multipart: true }), async function (ctx, next)
   try {
     const query = Prismic.Predicates.at('my.user.uid', body.code)
     const { results: [user] } = await api(query, { req: ctx.req })
-    ctx.assert(user, 401, 'user not found')
+    ctx.assert(user, 401, 'User not found')
     ctx.session.user = user.uid
     ctx.redirect('/start')
   } catch (err) {
@@ -78,18 +78,61 @@ app.use(post('/', compose([body({ multipart: true }), async function (ctx, next)
   }
 }])))
 
-app.use(get('/start/:thread?', async function (ctx, next) {
+app.use(async function (ctx, next) {
+  if (!ctx.accepts('html') || !ctx.session.user) return next()
   try {
-    ctx.assert(ctx.session.user, 401, 'user not found')
     const query = Prismic.Predicates.at('my.user.uid', ctx.session.user)
     const { results: [user] } = await api(query, { req: ctx.req })
-    if (!user) ctx.throw(401, 'user not found')
+    ctx.assert(user, 401, 'User not found')
+    ctx.state.user = {
+      uid: user.uid,
+      username: user.data.username
+    }
   } catch (err) {
-    if (ctx.accepts('html')) ctx.redirect('/')
-    else ctx.throw(err.status || 400, err.message)
+    delete ctx.session.user
+  }
+  return next()
+})
+
+app.use(get('/konto', async function (ctx, next) {
+  ctx.assert(ctx.session.user, 401, 'Not authorized')
+  if (ctx.accepts('html', 'json') === 'json') {
+  try {
+      const query = Prismic.Predicates.at('my.user.uid', ctx.session.user)
+      const { results: [user] } = await api(query, { req: ctx.req })
+      ctx.assert(user, 401, 'User not found')
+      ctx.body = {
+        uid: user.uid,
+        username: user.data.username
+      }
+  } catch (err) {
+      delete ctx.session.user
+      ctx.throw(401, 'Not authorized')
+  }
   }
 }))
 
+app.use(get('/logga-ut', signout))
+app.use(post('/logga-ut', signout))
+
+function signout (ctx, next) {
+  delete ctx.session.user
+  if (ctx.accepts('html')) {
+  ctx.redirect('/')
+  } else {
+    ctx.body = {}
+  }
+}
+
+app.use(get('/start/:thread?', async function (ctx, thread, next) {
+  try {
+    ctx.assert(ctx.session.user, 401, 'User not found')
+  } catch (err) {
+    if (ctx.accepts('html')) ctx.redirect('/')
+    else throw err
+  }
+  return next()
+}))
 
 /**
  * Purge Cloudflare cache when starting production server
@@ -100,5 +143,5 @@ if (process.env.NOW && app.env === 'production') {
     else app.listen(process.env.PORT || 8080)
   })
 } else {
-app.listen(process.env.PORT || 8080)
+  app.listen(process.env.PORT || 8080)
 }

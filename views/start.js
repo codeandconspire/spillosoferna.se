@@ -2,10 +2,11 @@ var html = require('choo/html')
 var asElement = require('prismic-element')
 var { Predicates } = require('prismic-javascript')
 var view = require('../components/view')
-var accordion = require('../components/accordion')
-var gallery = require('../components/gallery')
 var card = require('../components/card')
+var gallery = require('../components/gallery')
 var callout = require('../components/callout')
+var dropdown = require('../components/dropdown')
+var accordion = require('../components/accordion')
 var serialize = require('../components/text/serialize')
 var {
   img,
@@ -20,6 +21,8 @@ var {
 module.exports = view(start, meta)
 
 function start (state, emit) {
+  if (!state.user) throw HTTPError(401, 'Not authorized')
+
   return state.prismic.getSingle('start', function (err, doc) {
     if (err) throw HTTPError(404, err)
 
@@ -53,7 +56,11 @@ function start (state, emit) {
             <div class="Text">
               <h2>${asText(doc.data.title)}</h2>
             </div>
-            <div class="View-user">Inloggad som <strong>code and conspire</strong></div>
+            <div class="View-user">Inloggad som ${dropdown(state.user.username, html`
+              <div class="Text">
+                <a href="/logga-ut" onclick=${signout}>${text`Sign out`}</a>
+              </div>
+            `)}</div>
             ${featured ? html`
               <a class="View-button" href="${resolve(featured)}">
                 <svg width="15" height="10" role="presentation">
@@ -100,13 +107,13 @@ function start (state, emit) {
         </div>
 
         <div class="View-panel View-panel--white">
-          <div class="u-container u-nbfc"> 
+          <div class="u-container u-nbfc">
             ${gallery({ title: text`Inspiration`, items: doc.data.inspo })}
           </div>
         </div>
-        
+
         <div class="View-panel View-panel--white">
-          <div class="u-container u-nbfc"> 
+          <div class="u-container u-nbfc">
             ${accordion({
               title: text`Vanliga frågor`,
               items: doc.data.faq.map(function (item) {
@@ -133,6 +140,11 @@ function start (state, emit) {
       </main>
     `
   })
+
+  function signout (event) {
+    emit('user:signout')
+    event.preventDefault()
+  }
 }
 
 function meta (state) {
