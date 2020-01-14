@@ -33,18 +33,6 @@
   text-rendering: geometricPrecision; /* 6 */
 }
 
-@media (min-width: 1500px) {
-  :root {
-    font-size: 115%;
-  }
-}
-
-@media (min-width: 1800px) {
-  :root {
-    font-size: 130%;
-  }
-}
-
 *,
 *::before,
 *::after {

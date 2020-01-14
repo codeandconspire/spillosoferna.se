@@ -7,7 +7,7 @@ var { text, asText } = require('../base')
 
 module.exports = view
 
-function view (render, getMeta = Function.prototype, props) {
+function view (render, getMeta = Function.prototype, props = {}) {
   return function (state, emit) {
     return state.prismic.getSingle('website', function (err, doc) {
       var children, meta
@@ -42,11 +42,11 @@ function view (render, getMeta = Function.prototype, props) {
         })
       }
 
-
-
       return html`
-        <body class="View">
-          ${state.cache(Header, 'header').render(state.href)}
+        <body class="View ${props.floating ? 'View--floating' : ''}">
+          ${!props.floating ? state.cache(Header, 'header').render(state.href) : html`
+            <a href="/#">Back</a>
+          `}
           ${children}
           <div class="u-container">
             ${footer(props)}

@@ -26,6 +26,8 @@ app.route('/start', lazy(() => import('./views/start')))
 app.route('/om', lazy(() => import('./views/about')))
 app.route('/start/om', lazy(() => import('./views/about')))
 app.route('/start/:uid', lazy(() => import('./views/thread')))
+app.route('/malen', lazy(() => import('./views/goals')))
+app.route('/malen/:uid', lazy(() => import('./views/goal')))
 
 try {
   module.exports = app.mount('body')
