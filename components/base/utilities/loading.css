@@ -1,14 +1,10 @@
 @import "../global";
 
 /* @define utilities */
-.u-loading,
-.u-loadingLight {
-  background: rgba(var(--loading-color)) !important;
+.u-loading {
+  background: currentColor !important;
   color: transparent !important;
   user-select: none !important;
   line-height: 1.4 !important;
-}
-
-.u-loadingLight {
-  background: rgba(var(--loading-color-solid)) !important;
+  opacity: 0.1;
 }

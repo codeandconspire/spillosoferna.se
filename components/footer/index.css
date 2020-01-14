@@ -10,6 +10,10 @@
   margin: 2rem 0 0;
 }
 
+.Footer--center {
+  justify-content: center;
+}
+
 .Footer-email {
   flex: 1 0 auto;
 }

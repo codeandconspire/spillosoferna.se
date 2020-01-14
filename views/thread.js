@@ -23,7 +23,7 @@ var {
   HTTPError
 } = require('../components/base')
 
-module.exports = view(thread, meta)
+module.exports = view(thread, meta, { back: true, green: true })
 
 function thread (state, emit) {
   return state.prismic.getByUID('thread', state.params.uid, function (err, doc) {

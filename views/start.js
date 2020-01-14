@@ -53,6 +53,7 @@ function start (state, emit) {
             <div class="Text">
               <h2>${asText(doc.data.title)}</h2>
             </div>
+            <div class="View-user">Inloggad som <strong>code and conspire</strong></div>
             ${featured ? html`
               <a class="View-button" href="${resolve(featured)}">
                 <svg width="15" height="10" role="presentation">

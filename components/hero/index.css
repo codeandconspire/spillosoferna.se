@@ -25,11 +25,7 @@
 }
 
 .Hero.is-loading {
-  background-color: rgba(var(--loading-color-solid));
-}
-
-.Hero.is-loading::before {
-  display: none;
+  background: #23A098;
 }
 
 .Hero-image {

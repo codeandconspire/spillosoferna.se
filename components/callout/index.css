@@ -2,10 +2,11 @@
 
 /* @define Callout */
 .Callout {
+  position: relative;
   text-align: center;
   display: flex;
   flex-direction: row;
-  margin: 3.5rem 0 1.5rem;
+  padding: 3.5rem 0 1.5rem;
 }
 
 .Callout-button {
@@ -29,6 +30,34 @@
 
 @media (min-width: 1000px) {
   .Callout {
-    margin: 7rem 0 5rem;
+    padding: 7rem 0 5rem;
+  }
+}
+
+
+.Callout-abstract {
+  display: none;
+}
+
+@media (min-width: 1000px) {
+  .Callout-abstract {
+    display: block;
+    position: absolute;
+    top: 17%;
+    left: -17rem;
+    pointer-events: none;
+    z-index: -1;
+    width: auto;
+    height: 100%;
+    transform: rotate(-165deg);
+  }
+  
+  .Callout-abstract--2 {
+    left: auto;
+    height: 90%;
+    width: auto;
+    top: 5%;
+    transform: rotate(190deg);
+    right: -13rem;
   }
 }

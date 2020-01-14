@@ -15,7 +15,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 15vh 0;
+  margin: 15vh 0 5vh;
 }
 
 .View-info {
@@ -83,7 +83,22 @@
 }
 
 .View-intro {
+  position: relative;
   margin: 4.3rem 0;
+}
+
+.View-user {
+  margin: 0.5rem 0;
+}
+
+@media (min-width: 1000px) {
+  .View-user {
+    margin: 0;
+    position: absolute;
+    top: 0.9rem;
+    right: 0;
+    font-size: 0.875rem;
+  }
 }
 
 .View-button {

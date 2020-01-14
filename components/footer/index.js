@@ -3,12 +3,16 @@ var { text } = require('../base')
 
 module.exports = footer
 
-function footer () {
+function footer (props = {}) {
   return html`
-    <footer class="Footer" role="contentinfo">
-      <span class="Footer-email"><a href="mailto:hej@spillosoferna.se">hej@spillosoferna.se</a></span>
-      <a class="" href="/terms">${text`Användarvillkor`}</a>
-      <span class="Footer-copy">© ${(new Date()).getFullYear()}</span>
+    <footer class="Footer ${props.back ? 'Footer--center' : ''}" role="contentinfo">
+      ${props.back ? html`
+        <a href="/start">${text`Tillbaka till start`}</a>  
+      ` : html`
+        <span class="Footer-email"><a href="mailto:hej@spillosoferna.se">hej@spillosoferna.se</a></span>
+        <a class="" href="/terms">${text`Användarvillkor`}</a>
+        <span class="Footer-copy">© ${(new Date()).getFullYear()}</span>
+      `}
     </footer>
   `
 }

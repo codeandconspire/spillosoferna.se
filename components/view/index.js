@@ -7,7 +7,7 @@ var { text, asText } = require('../base')
 
 module.exports = view
 
-function view (render, getMeta = Function.prototype) {
+function view (render, getMeta = Function.prototype, props) {
   return function (state, emit) {
     return state.prismic.getSingle('website', function (err, doc) {
       var children, meta
@@ -15,6 +15,8 @@ function view (render, getMeta = Function.prototype) {
         if (err) throw err
         children = render(state, emit)
         meta = getMeta(state)
+
+        console.log(doc)
 
         const title = doc ? asText(doc.data.title) : text`Loading`
 
@@ -42,12 +44,14 @@ function view (render, getMeta = Function.prototype) {
         })
       }
 
+      
+
       return html`
         <body class="View">
           ${state.cache(Header, 'header').render(state.href)}
           ${children}
           <div class="u-container">
-            ${footer()}
+            ${footer(props)}
           </div>
           ${Player.render()}
         </body>

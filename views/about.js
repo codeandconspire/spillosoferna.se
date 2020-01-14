@@ -9,7 +9,6 @@ module.exports = view(about, meta)
 
 function about (state, emit) {
   var internal = state.href === '/start/om'
-  console.log(internal)
 
   return html`
     <main class="View-main">
@@ -17,11 +16,13 @@ function about (state, emit) {
         ${state.prismic.getSingle('about', function (err, doc) {
           if (err) throw HTTPError(404, err)
 
-          console.log(doc)
-
           if (!doc) {
             return html`
-              <div></div>
+              <div class="u-container">
+                <div class="Text Text--intro">
+                  <h1>…</h1>
+                </div>
+              </div>
             `
           }
 

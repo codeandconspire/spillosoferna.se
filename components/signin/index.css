@@ -3,8 +3,6 @@
 /* @define Signin */
 .Signin {}
 
-.Signin-input {}
-
 .Signin-button {
   background: #23A098;
   border-radius: 2rem;
@@ -33,7 +31,8 @@
   text-align: center;
   border-radius: 0.25rem;
   font-weight: 600;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.5em;
+  text-indent: 0.5em;
 }
 
 .Signin-input:focus {

@@ -40,7 +40,6 @@ module.exports = class Tabs extends Component {
         props.height = props.el.offsetHeight
         props.offset = offset(props.el)
       })
-      console.log('calculated')
     })
 
     onscroll()
