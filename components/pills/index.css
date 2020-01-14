@@ -1,0 +1,36 @@
+@import "../base";
+
+/* @define Pills */
+.Pills {
+  display: inline-block;
+  list-style: none;
+  margin-right: -0.5rem;
+}
+
+.Pills-pill {
+  display: inline-block;
+}
+
+.Pills-item {
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 1rem;
+  margin-right: 0.5rem;
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  z-index: 0;
+  overflow: hidden;
+  border-radius: 2rem;
+  font-weight: bold;
+  transform: background-color 200ms ease-out;
+}
+
+.Pills-item.is-selected {
+  color: #fff;
+  border-color: rgb(var(--color-turquise));
+  background: rgb(var(--color-turquise));
+}
+
+.Pills-item:not(.is-selected):hover {
+  background: #fff;
+}

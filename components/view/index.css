@@ -51,7 +51,7 @@
   .View-panel:not(.View-panel--white) + .View-panel:not(.View-panel--white) {
     margin-top: -15vh;
   }
-  
+
   .View-panel--white + .View-panel--white {
     margin-top: -15vh;
   }
@@ -87,18 +87,15 @@
   margin: 4.3rem 0;
 }
 
-.View-user {
-  margin: 0.5rem 0;
+.View-header {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
 }
 
-@media (min-width: 1000px) {
-  .View-user {
-    margin: 0;
-    position: absolute;
-    top: 0.9rem;
-    right: 0;
-    font-size: 0.875rem;
-  }
+.View-heading {
+  padding-right: 0.5rem;
+  margin-right: auto;
 }
 
 .View-button {
@@ -167,7 +164,7 @@
     width: auto;
     height: 30vh;
   }
-  
+
   .View-abstract--2 {
     left: auto;
     height: 110vh;

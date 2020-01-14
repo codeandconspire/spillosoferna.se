@@ -16,7 +16,6 @@ function card (props) {
         ` : null}
         <div class="Card-title">${props.title}</div>
         <div class="Card-body">${props.body}</div>
-        </div>
         ${props.link ? html`<a class="Card-link" href="${props.link}">${text`Visa mer`}</a>` : null}
       </div>
     </div>
