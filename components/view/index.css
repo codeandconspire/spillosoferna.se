@@ -98,25 +98,6 @@
   margin-right: auto;
 }
 
-.View-button {
-  background: #fff;
-  border-radius: 2rem;
-  text-align: center;
-  padding: 0.8rem 2rem;
-  font-weight: 600;
-  font-size: 1.125rem;
-  min-width: 9.5rem;
-  margin-top: 1.5rem;
-  display: inline-block;
-}
-
-.View-button svg {
-  position: relative;
-  top: -0.1em;
-  margin-right: 0.5rem;
-  vertical-align: middle;
-}
-
 /**
  * Thread grid
  */

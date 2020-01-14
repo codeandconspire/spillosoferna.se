@@ -7,6 +7,7 @@ var pills = require('../components/pills')
 var gallery = require('../components/gallery')
 var callout = require('../components/callout')
 var Dropdown = require('../components/dropdown')
+var Featured = require('../components/featured')
 var accordion = require('../components/accordion')
 var serialize = require('../components/text/serialize')
 var {
@@ -50,7 +51,9 @@ function start (state, emit) {
       `
     }
 
-    var featured = doc.data.featured_thread.id ? threads.find((thread) => thread.id === doc.data.featured_thread.id) : null
+    var featured = doc.data.featured_thread.id
+      ? threads.find((thread) => thread.id === doc.data.featured_thread.id)
+      : null
 
     return html`
       <main class="View-main">
@@ -70,14 +73,13 @@ function start (state, emit) {
                 `)}
               </span>
             </header>
-            ${featured ? html`
-              <a class="View-button" href="${resolve(featured)}">
-                <svg width="15" height="10" role="presentation">
-                  <g stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round"><path d="M9.257 8.536L12.793 5 9.257 1.464M12.793 5H1.056"/></g>
-                </svg>
-                ${text`Visa introduktion`}
-              </a>
-            ` : null}
+            ${featured ? state.cache(Featured, 'start-featured').render({
+              href: resolve(featured),
+              image: featured.data.image,
+              title: asText(featured.data.title),
+              body: asText(featured.data.description),
+              duration: featured.data.duration
+            }) : null}
           </section>
         </div>
 

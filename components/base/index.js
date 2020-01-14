@@ -142,17 +142,17 @@ function srcset (uri, sizes, opts = {}) {
   }
 
   return sizes.map(function (size) {
-    opts = Object.assign({}, opts)
+    var transforms = opts.transforms
     if (Array.isArray(size)) {
-      opts.transforms = opts.transforms ? size[1] + ',' + opts.transforms : size[1]
+      transforms = opts.transforms ? size[1] + ',' + opts.transforms : size[1]
       size = size[0]
     }
     if (opts.aspect) {
       const height = `h_${Math.floor(size * opts.aspect)}`
-      opts.transforms = opts.transforms ? `${opts.transforms},${height}` : height
+      transforms = opts.transforms ? `${opts.transforms},${height}` : height
     }
 
-    return `${src(uri, size, opts)} ${size}w`
+    return `${src(uri, size, Object.assign({}, opts, { transforms }))} ${size}w`
   }).join(',')
 }
 

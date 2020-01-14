@@ -78,6 +78,22 @@ app.use(post('/', compose([body({ multipart: true }), async function (ctx, next)
   }
 }])))
 
+app.use(function (ctx, next) {
+  ctx.state.skipintro = Boolean(ctx.cookies.get('spillo:skipintro'))
+  return next()
+})
+
+app.use(get('/start', function (ctx, next) {
+  if ('skipintro' in ctx.query) {
+    const value = Boolean(ctx.query.skipintro)
+    ctx.cookies.set('spillo:skipintro', value, {
+      maxAge: 1000 * 60 * 60 * 24 * 365
+    })
+    ctx.state.skipintro = value
+  }
+  ctx.redirect('/')
+}))
+
 app.use(async function (ctx, next) {
   if (!ctx.accepts('html') || !ctx.session.user) return next()
   try {

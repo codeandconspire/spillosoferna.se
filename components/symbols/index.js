@@ -9,3 +9,14 @@ exports.people = function people () {
     </svg>
   `
 }
+
+exports.clock = function clock () {
+  return html`
+    <svg class="Symbols Symbols--clock" width="16" height="16" viewBox="0 0 16 16">
+      <g fill="currentColor" fill-rule="nonzero">
+        <path d="M8 .5a7.5 7.5 0 100 15 7.5 7.5 0 000-15zM8 14A6 6 0 118 2a6 6 0 010 12z"/>
+        <path d="M11 7.3H8.7V5a.8.8 0 00-1.4 0v3c0 .4.3.8.7.8h3a.7.7 0 100-1.6z"/>
+      </g>
+    </svg>
+  `
+}
