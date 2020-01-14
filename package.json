@@ -17,6 +17,12 @@
   },
   "now": {
     "alias": "www.spillosoferna.se",
+    "build": {
+      "env": {
+        "NODE_ENV": "production",
+        "POLYFILL_FEATURES": "es2015,es2016,es2017"
+      }
+    },
     "env": {
       "NODE_ENV": "production",
       "CLOUDINARY_KEY": "@cloudinary-key",
@@ -54,6 +60,7 @@
     "standard": "^14.3.1"
   },
   "dependencies": {
+    "cccpurge": "^2.0.0",
     "choo": "^7.0.0",
     "choo-devtools": "^3.0.1",
     "choo-lazy-view": "^1.0.2",

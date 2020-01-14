@@ -11,39 +11,6 @@ module.exports = class Signin extends Component {
     }, state.components[id])
   }
 
-  load (element) {
-    // var control = element.querySelector('.js-control')
-    // var inputs = control.querySelectorAll('input')
-
-    // function handleFocus (event) {
-    //   console.log(event)
-    //   inputs.forEach((input) => {
-    //     console.log(event)
-    //     return false
-    //     if (input.value) {
-    //       return true
-    //     } else {
-    //       return input.focus()
-    //     }
-    //   })
-    // }
-
-    // inputs.forEach((input) => {
-    //   input.addEventListener('focus', handleFocus)
-    //   // input.addEventListener('keydown', handleKeyDown)
-
-    //   // (event) => {
-    //   //   var key = event.keyCode || event.which
-    //   //   console.log(key)
-    //   // })
-
-    //   // input.addEventListener('keyup', (event) => {
-    //   //   var key = event.keyCode || event.which
-    //   //   console.log(key)
-    //   // })
-    // })
-  }
-
   update () {
     return false
   }

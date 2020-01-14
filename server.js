@@ -1,15 +1,14 @@
 if (!process.env.NOW) require('dotenv/config')
 
+var Prismic = require('prismic-javascript')
 var { get, post } = require('koa-route')
 var compose = require('koa-compose')
 var session = require('koa-session')
 var body = require('koa-body')
 var jalla = require('jalla')
-var Prismic = require('prismic-javascript')
+var purge = require('./lib/purge.js')
 var api = require('./lib/prismic-api')
 var imageproxy = require('./lib/cloudinary-proxy')
-
-var REPOSITORY = 'https://spillosoferna.cdn.prismic.io/api/v2'
 
 var app = jalla('index.js', {
   sw: 'sw.js'
@@ -91,4 +90,15 @@ app.use(get('/start/:thread?', async function (ctx, next) {
   }
 }))
 
+
+/**
+ * Purge Cloudflare cache when starting production server
+ */
+if (process.env.NOW && app.env === 'production') {
+  purge(app.entry, ['/sw.js'], function (err) {
+    if (err) app.emit('error', err)
+    else app.listen(process.env.PORT || 8080)
+  })
+} else {
 app.listen(process.env.PORT || 8080)
+}
