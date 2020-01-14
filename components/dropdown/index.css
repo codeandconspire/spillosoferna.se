@@ -30,6 +30,7 @@
 }
 
 .Dropdown-content {
+  display: none;
   min-width: 100%;
   padding: 3.5rem 1rem 1rem;
   position: absolute;
@@ -38,4 +39,18 @@
   background: #fff;
   border-radius: 0.375rem;
   box-shadow: 0 2px 44px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(2.5rem);
+  animation: Dropdown-content--appearing 400ms forwards cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+@keyframes Dropdown-content--appearing {
+  to {
+    opacity: 1;
+    transform: translateY(0rem);
+  }
+}
+
+.Dropdown[open] .Dropdown-content {
+  display: block;
 }

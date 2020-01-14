@@ -6,7 +6,7 @@ var card = require('../components/card')
 var pills = require('../components/pills')
 var gallery = require('../components/gallery')
 var callout = require('../components/callout')
-var dropdown = require('../components/dropdown')
+var Dropdown = require('../components/dropdown')
 var accordion = require('../components/accordion')
 var serialize = require('../components/text/serialize')
 var {
@@ -63,7 +63,7 @@ function start (state, emit) {
                 </div>
               </div>
               <span class="Text-small">
-                Inloggad som ${dropdown(state.user.username, html`
+                Inloggad som ${state.cache(Dropdown, 'user-dropdown').render(state.user.username, html`
                   <div class="Text">
                     <a href="/logga-ut" onclick=${signout}>${text`Sign out`}</a>
                   </div>
