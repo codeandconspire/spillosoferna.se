@@ -107,7 +107,8 @@ app.use(get('/konto', async function (ctx, next) {
       }
     } catch (err) {
       delete ctx.session.user
-      ctx.throw(401, 'Not authorized')
+      ctx.status = 401
+      ctx.body = 'Not authorized'
     }
   }
 }))
@@ -145,7 +146,7 @@ app.use(function (ctx, next) {
   if (!ctx.accepts('html')) return next()
   var previewCookie = ctx.cookies.get(Prismic.previewCookie)
   if (previewCookie || ctx.session.user) {
-    ctx.set('Cache-Control', 'no-cache, private, max-age=0')
+    ctx.set('Cache-Control', 'no-cache, private, max-age=0, must-revalidate')
   } else if (!ctx.response.get('Cache-Control') && app.env !== 'development') {
     ctx.set('Cache-Control', `s-maxage=${60 * 60 * 24 * 7}, max-age=0`)
   }
