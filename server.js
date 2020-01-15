@@ -54,11 +54,71 @@ app.use(post('/api/prismic-hook', compose([body(), function (ctx) {
   })
 }])))
 
+/**
+ * Proxy requesrts to Prismic
+ */
 app.use(get('/api/prismic-proxy', async function (ctx) {
   var { predicates, ...opts } = ctx.query
   ctx.body = await api(predicates, { ...opts, req: ctx.req })
 }))
 
+/**
+ * Read choice to skip intro
+ */
+app.use(function (ctx, next) {
+  try {
+    ctx.state.skipintro = JSON.parse(ctx.cookies.get('spillo:skipintro'))
+  } catch (e) {
+    ctx.state.skipintro = false
+  }
+  return next()
+})
+
+/**
+ * Persist choice to skip intro
+ */
+app.use(post('/start', compose([body(), function (ctx, next) {
+  if ('skipintro' in ctx.body) {
+    ctx.cookies.set('spillo:skipintro', true, {
+      maxAge: 1000 * 60 * 60 * 24 * 365
+    })
+    ctx.state.skipintro = true
+  }
+  ctx.redirect('/')
+}])))
+
+/**
+ * Forward logged in user to start
+ */
+app.use(get('/', function (ctx, next) {
+  if (ctx.session.user) ctx.redirect('/start')
+  else return next()
+}))
+
+/**
+ * Get currently logged in user
+ */
+app.use(get('/konto', async function (ctx, next) {
+  ctx.assert(ctx.session.user, 401, 'Not authorized')
+  if (ctx.accepts('html', 'json') === 'json') {
+    try {
+      const query = Prismic.Predicates.at('my.user.uid', ctx.session.user)
+      const { results: [user] } = await api(query, { req: ctx.req })
+      ctx.assert(user, 401, 'User not found')
+      ctx.body = {
+        uid: user.uid,
+        username: user.data.username
+      }
+    } catch (err) {
+      delete ctx.session.user
+      ctx.throw(401, 'Not authorized')
+    }
+  }
+}))
+
+/**
+ * Sign in
+ */
 app.use(post('/', compose([body(), async function (ctx, next) {
   var body = ctx.request.body
   try {
@@ -78,25 +138,23 @@ app.use(post('/', compose([body(), async function (ctx, next) {
   }
 }])))
 
-app.use(function (ctx, next) {
-  try {
-    ctx.state.skipintro = JSON.parse(ctx.cookies.get('spillo:skipintro'))
-  } catch (e) {
-    ctx.state.skipintro = false
+/**
+ * Signout user
+ */
+app.use(get('/logga-ut', signout))
+app.use(post('/logga-ut', signout))
+function signout (ctx, next) {
+  delete ctx.session.user
+  if (ctx.accepts('html')) {
+    ctx.redirect('/')
+  } else {
+    ctx.body = {}
   }
-  return next()
-})
+}
 
-app.use(post('/start', compose([body(), function (ctx, next) {
-  if ('skipintro' in ctx.body) {
-    ctx.cookies.set('spillo:skipintro', true, {
-      maxAge: 1000 * 60 * 60 * 24 * 365
-    })
-    ctx.state.skipintro = true
-  }
-  ctx.redirect('/')
-}])))
-
+/**
+ * Populate user field
+ */
 app.use(async function (ctx, next) {
   if (!ctx.accepts('html') || !ctx.session.user) return next()
   try {
@@ -113,37 +171,9 @@ app.use(async function (ctx, next) {
   return next()
 })
 
-app.use(get('/konto', async function (ctx, next) {
-  ctx.assert(ctx.session.user, 401, 'Not authorized')
-  if (ctx.accepts('html', 'json') === 'json') {
-    try {
-      const query = Prismic.Predicates.at('my.user.uid', ctx.session.user)
-      const { results: [user] } = await api(query, { req: ctx.req })
-      ctx.assert(user, 401, 'User not found')
-      ctx.body = {
-        uid: user.uid,
-        username: user.data.username
-      }
-    } catch (err) {
-      delete ctx.session.user
-      ctx.status = 401
-      ctx.body = 'Not authorized'
-    }
-  }
-}))
-
-app.use(get('/logga-ut', signout))
-app.use(post('/logga-ut', signout))
-
-function signout (ctx, next) {
-  delete ctx.session.user
-  if (ctx.accepts('html')) {
-    ctx.redirect('/')
-  } else {
-    ctx.body = {}
-  }
-}
-
+/**
+ * Assert user is signed in to access private content
+ */
 app.use(get('/start/:thread?', async function (ctx, thread, next) {
   try {
     ctx.assert(ctx.session.user, 401, 'User not found')
