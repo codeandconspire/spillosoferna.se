@@ -166,4 +166,3 @@ exports.goals = [
     `
   }
 ]
->>>>>>> Add wip global goals
