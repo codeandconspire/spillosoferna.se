@@ -44,9 +44,11 @@ module.exports = class Featured extends Component {
             ` : null}
           </div>
           <a href="${props.href}" class="Featured-link">${text`Läs mer`}</a>
-          <a href="${this.href()}?skipintro=true" class="Featured-close" onclick=${onclick}>
-            ${text`Dölj info`}
-          </a>
+          <form action="${this.href}" method="POST" onsubmit=${(event) => event.preventDefault()}>
+            <button type="submit" name="skipintro" class="Featured-close" onclick=${onclick}>
+              ${text`Dölj info`}
+            </a>
+          </form>
         ` : html`
           <a class="Featured-button" href="${props.href}">
             <svg width="15" height="10" role="presentation">

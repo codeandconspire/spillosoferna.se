@@ -59,8 +59,8 @@ app.use(get('/api/prismic-proxy', async function (ctx) {
   ctx.body = await api(predicates, { ...opts, req: ctx.req })
 }))
 
-app.use(post('/', compose([body({ multipart: true }), async function (ctx, next) {
-  var body = ctx.request.body.fields || ctx.request.body
+app.use(post('/', compose([body(), async function (ctx, next) {
+  var body = ctx.request.body
   try {
     const query = Prismic.Predicates.at('my.user.uid', body.code)
     const { results: [user] } = await api(query, { req: ctx.req })
@@ -79,20 +79,23 @@ app.use(post('/', compose([body({ multipart: true }), async function (ctx, next)
 }])))
 
 app.use(function (ctx, next) {
-  ctx.state.skipintro = Boolean(ctx.cookies.get('spillo:skipintro'))
+  try {
+    ctx.state.skipintro = JSON.parse(ctx.cookies.get('spillo:skipintro'))
+  } catch (e) {
+    ctx.state.skipintro = false
+  }
   return next()
 })
 
-app.use(get('/start', function (ctx, next) {
-  if ('skipintro' in ctx.query) {
-    const value = Boolean(ctx.query.skipintro)
-    ctx.cookies.set('spillo:skipintro', value, {
+app.use(post('/start', compose([body(), function (ctx, next) {
+  if ('skipintro' in ctx.body) {
+    ctx.cookies.set('spillo:skipintro', true, {
       maxAge: 1000 * 60 * 60 * 24 * 365
     })
-    ctx.state.skipintro = value
+    ctx.state.skipintro = true
   }
   ctx.redirect('/')
-}))
+}])))
 
 app.use(async function (ctx, next) {
   if (!ctx.accepts('html') || !ctx.session.user) return next()

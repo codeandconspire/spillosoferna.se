@@ -68,7 +68,9 @@ function start (state, emit) {
               <span class="Text-small">
                 Inloggad som ${state.cache(Dropdown, 'user-dropdown').render(state.user.username, html`
                   <div class="Text">
-                    <a href="/logga-ut" onclick=${signout}>${text`Sign out`}</a>
+                    <form action="/logga-ut" method="POST">
+                      <button type="submit">${text`Sign out`}</a>
+                    </form>
                   </div>
                 `)}
               </span>
@@ -175,11 +177,6 @@ function start (state, emit) {
       </main>
     `
   })
-
-  function signout (event) {
-    emit('user:signout')
-    event.preventDefault()
-  }
 }
 
 function meta (state) {

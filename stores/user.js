@@ -20,19 +20,4 @@ function user (state, emitter) {
       window.location.assign('/')
     })
   })
-
-  emitter.on('user:signout', function () {
-    state.user = null
-    window.fetch('/logga-ut', {
-      cache: 'no-store',
-      method: 'POST',
-      headers: {
-        Accept: 'application/json'
-      }
-    }).then(function (res) {
-      window.location.assign('/')
-    }).catch(function () {
-      window.location.assign('/logga-ut')
-    })
-  })
 }
