@@ -45,7 +45,15 @@ function view (render, getMeta = Function.prototype, props = {}) {
       return html`
         <body class="View ${props.floating ? 'View--floating' : ''}">
           ${!props.floating ? state.cache(Header, 'header').render(state.href) : html`
-            <a href="/#">Back</a>
+            <a class="View-back" href="/start">
+              Stäng
+              <svg viewBox="0 0 32 32">
+                <g fill="none" fill-rule="evenodd">
+                  <circle cx="16" cy="16" r="16" fill="#000"/>
+                  <path stroke="#FFF" stroke-linecap="round" stroke-width="2" d="M11.09 11.05l9.9 9.9M20.99 11.05l-9.9 9.9"/>
+                </g>
+              </svg>
+            </a>
           `}
           ${children}
           <div class="u-container">

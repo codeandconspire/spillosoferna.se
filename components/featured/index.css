@@ -26,6 +26,7 @@
   left: 0;
   top: 0;
   z-index: -1;
+  background: #23A098;
 }
 
 @media (max-width: 899px) {

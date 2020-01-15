@@ -73,6 +73,9 @@ function thread (state, emit) {
         } : null, doc.data.lessons.length ? {
           id: 'lessons',
           text: text`Lektioner`
+        } : null, doc.data.rules ? {
+          id: 'rules',
+          text: text`Läroplan`
         } : null, doc.data.inspo.length ? {
           id: 'gallery',
           text: text`Inspiration`
@@ -151,6 +154,19 @@ function thread (state, emit) {
                 })
               })
             }).filter(Boolean)}
+          </div>
+        ` : null}
+
+        ${doc.data.rules ? html`
+          <div class="View-panel View-panel--white" id="rules">
+            <div class="u-container u-nbfc">
+              <div class="Text Text--small Text--wide">
+                <h2>${text`Koppling till läroplanen`}</h2>
+                <div class="Text--columns">
+                  ${asElement(doc.data.rules, resolve, serialize)}
+                </div>
+              </div>
+            </div>
           </div>
         ` : null}
 

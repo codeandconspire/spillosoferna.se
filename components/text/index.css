@@ -38,9 +38,18 @@
   max-width: var(--container-large-width);
 }
 
+.Text-small,
+.Text--small {
+  font-size: 0.875rem;
+}
+
 @media (min-width: 1000px) {
   .Text:not(.Text--static) {
     font-size: 1.25rem;
+  }
+
+  .Text--small:not(.Text--static) {
+    font-size: 1rem;
   }
 
   .Text--intro:not(.Text--static) {
@@ -48,9 +57,21 @@
   }
 }
 
-.Text-small,
-.Text--small {
-  font-size: 0.875rem;
+.Text--columns { 
+  columns: 2 200px;
+}
+
+@media (min-width: 800px) {
+  .Text--columns { 
+    column-gap: 3rem;
+  }
+}
+
+@media (min-width: 1100px) {
+  .Text--columns { 
+    column-gap: 2rem;
+    columns: 3 200px;
+  }
 }
 
 /**

@@ -24,14 +24,14 @@ function start (state, emit) {
   return state.prismic.getSingle('goals', function (err, doc) {
     if (err) throw HTTPError(404, err)
 
-    var goals = state.prismic.get(
-      Predicates.at('document.type', 'goal'),
-      { pageSize: 100 },
-      function (err, res) {
-        if (err || !res) return []
-        return res.results
-      }
-    )
+    // var goals = state.prismic.get(
+    //   Predicates.at('document.type', 'goal'),
+    //   { pageSize: 100 },
+    //   function (err, res) {
+    //     if (err || !res) return []
+    //     return res.results
+    //   }
+    // )
 
     if (!doc) {
       return html`
@@ -44,6 +44,9 @@ function start (state, emit) {
         </main>
       `
     }
+
+    var goals = doc.data.goals
+    console.log(doc.data)
 
     return html`
       <main class="View-main">
@@ -82,20 +85,21 @@ function start (state, emit) {
               </div>
             `
           })}
-        </div>
+        
 
-        <div class="u-container u-nbfc"> 
-          <div class="GoalGrid">
-            ${goals.map(function (goal) {
-              console.log(symbols.goals)
-              return html`
-                <li class="GoalGrid-item">
-                  <a href="/malen/${goal.data.number}">
-                    
-                  </a>
-                </li>
-              `
-            })}
+          <div class="u-container"> 
+            <ul class="View-goals">
+              ${goals.map(function (goal) {
+                var number = goal.link.data.number
+                return html`
+                  <li class="View-goalsItem">
+                    <a class="View-goalsGoal" href="/malen/${number}">
+                      ${symbols.goals[number - 1]()}
+                    </a>
+                  </li>
+                `
+              })}
+            </ul>
           </div>
         </div>
 

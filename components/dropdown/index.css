@@ -18,11 +18,13 @@
 .Dropdown-heading::after {
   content: "⌝";
   font-size: 1.2em;
-  transform: translateY(0.2em) rotate(45deg);
+  transform: rotate(135deg);
+  transform-origin: center;
+  margin-left: 0.3rem;
 }
 
 .Dropdown[open] .Dropdown-heading::after {
-  transform: translate(0.2em, -0.2em) rotate(135deg);
+  transform: translate(0, 0.2rem)rotate(-45deg);
 }
 
 .Dropdown-heading::-webkit-details-marker {
@@ -32,7 +34,7 @@
 .Dropdown-content {
   display: none;
   min-width: 100%;
-  padding: 3.5rem 1rem 1rem;
+  padding: 2.7rem 1rem 0.8rem;
   position: absolute;
   left: -1rem;
   top: -1rem;

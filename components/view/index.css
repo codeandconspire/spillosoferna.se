@@ -4,7 +4,7 @@
 .View {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  min-height: 100%;
 }
 
 .View--floating { 
@@ -158,4 +158,91 @@
     transform: rotate(-30deg);
     right: -29vh;
   }
+}
+
+.View-back {
+  border: 10rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.125rem;
+  background: #FFFFFF;
+  box-shadow: -2px 2px 10px 0 rgba(0,0,0,0.10);
+  border-radius: 30px;
+  position: fixed;
+  top: 1rem;
+  right: var(--Header-margin);
+  padding: 1.1rem 3.7rem 1.1rem 1.5rem;
+  user-select: none;
+  margin-right: -0.3rem;
+}
+
+.View-back svg {
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  top: 0.875rem;
+  right: 0.875rem;
+}
+
+.View-goals {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: -0.25rem;
+}
+
+.View-goalsItem {
+  flex-basis: 50%;
+  width: 50%;
+}
+
+.View-goalsGoal {
+  padding: 0.25rem;
+  transition: box-shadow 150ms var(--ease);
+}
+
+.View-goalsGoal:hover {
+  background: #fff;
+  box-shadow: 0 2px 44px 0 rgba(0,0,0,0.10);
+  border-radius: 6px;
+}
+
+@media (min-width: 480px) {
+  .View-goalsItem {
+    flex-basis: calc(100% / 3);
+    width: calc(100% / 3);
+  }
+}
+
+@media (min-width: 800px) {
+  .View-goals {
+    margin: -0.5rem;
+  }
+
+  .View-goalsItem {
+    flex-basis: calc(100% / 6);
+    width: calc(100% / 6);
+  }
+
+  .View-goalsGoal {
+    padding: 0.5rem;
+  }
+}
+
+@media (min-width: 1100px) {
+  .View-goals {
+    margin: -1rem;
+  }
+
+  .View-goalsGoal {
+    padding: 1rem;
+  }
+}
+
+.View-goalsGoal {
+  display: block;
+}
+
+.View-goals svg {
+  display: block;
 }
