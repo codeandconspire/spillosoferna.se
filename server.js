@@ -11,7 +11,8 @@ var api = require('./lib/prismic-api')
 var imageproxy = require('./lib/cloudinary-proxy')
 
 var app = jalla('index.js', {
-  sw: 'sw.js'
+  sw: 'sw.js',
+  serve: Boolean(process.env.NOW)
 })
 
 app.keys = [process.env.SESSION_SECRET]
