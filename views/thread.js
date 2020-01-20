@@ -72,8 +72,8 @@ function thread (state, emit) {
           text: text`Faktan`
         } : null, doc.data.lessons.length ? {
           id: 'lessons',
-          text: text`Lektioner`
-        } : null, doc.data.rules ? {
+          text: text`Arbetspass`
+        } : null, doc.data.rules && doc.data.rules.length ? {
           id: 'rules',
           text: text`Läroplan`
         } : null, doc.data.inspo.length ? {
@@ -126,7 +126,7 @@ function thread (state, emit) {
             </div>
             ${lesson({
               title: asText(doc.data.facts_title) || text`Faktan`,
-              subtitle: text`Inför lektionerna`,
+              subtitle: text`Inför arbetspassen`,
               main: asElement(doc.data.facts, resolve, serialize)
             })}
           </div>
@@ -135,13 +135,13 @@ function thread (state, emit) {
         ${doc.data.lessons.length ? html`
           <div class="u-container View-panel" id="lessons">
             <div class="Text">
-              <h2>${text`Lektioner`}</h2>
+              <h2>${text`Arbetspass`}</h2>
             </div>
 
             ${doc.data.lessons.map(function (slice) {
               if (slice.slice_type !== 'lesson') return null
               return lesson({
-                title: asText(slice.primary.name) || text`Lektionen`,
+                title: asText(slice.primary.name) || text`Arbetspass`,
                 subtitle: slice.primary.label,
                 time: slice.primary.duration,
                 main: asElement(slice.primary.description, resolve, serialize),
@@ -157,7 +157,7 @@ function thread (state, emit) {
           </div>
         ` : null}
 
-        ${doc.data.rules ? html`
+        ${doc.data.rules && doc.data.rules.length ? html`
           <div class="View-panel View-panel--white" id="rules">
             <div class="u-container u-nbfc">
               <div class="Text Text--small Text--wide">
