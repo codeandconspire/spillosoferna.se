@@ -1,5 +1,4 @@
 var html = require('choo/html')
-var asElement = require('prismic-element')
 var { Predicates } = require('prismic-javascript')
 var view = require('../components/view')
 var card = require('../components/card')
@@ -17,7 +16,8 @@ var {
   loader,
   resolve,
   truncate,
-  HTTPError
+  HTTPError,
+  asElement
 } = require('../components/base')
 
 var AGES = ['F-6', 'F-3', '2-3', '4-6']

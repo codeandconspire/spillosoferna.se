@@ -1,5 +1,4 @@
 var html = require('choo/html')
-var asElement = require('prismic-element')
 var view = require('../components/view')
 var Signin = require('../components/signin')
 var serialize = require('../components/text/serialize')
@@ -8,7 +7,8 @@ var {
   asText,
   loader,
   resolve,
-  HTTPError
+  HTTPError,
+  asElement
 } = require('../components/base')
 
 module.exports = view(home, meta)
@@ -35,7 +35,7 @@ function home (state, emit) {
         <svg class="View-abstract View-abstract--2" viewBox="0 0 772 806">
           <path fill="#23A098" fill-rule="evenodd" d="M312 151c6-80 34-125 83-137 75-18 153-28 153 32 0 59-35 127-11 145 25 17 127-10 148-10s63 9 63 71-31 86 0 173 42 128-26 173c-67 44-328 166-410 190-82 25-169 36-269-50-101-86 1-219 46-251 45-31 100-21 109 55s22 161 60 161c37 0 119-53 86-161-32-108-206-104-231-128-24-24 18-93 69-81 52 12 175 134 296 154 122 20 176 13 155-62-20-76-71-151-155-134-83 17-129 38-156-9-18-32-22-75-10-131z"/>
         </svg>
-        
+
         <div class="u-container">
           <div class="View-landing">
             <div class="View-info">

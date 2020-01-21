@@ -1,6 +1,8 @@
 var fs = require('fs')
 var path = require('path')
 var html = require('choo/html')
+var origAsElement = require('prismic-element')
+var { Elements } = require('prismic-richtext')
 var lang = require('./lang')
 
 exports.resolve = resolve
@@ -12,6 +14,7 @@ exports.srcset = srcset
 exports.HTTPError = HTTPError
 exports.loader = loader
 exports.truncate = truncate
+exports.asElement = asElement
 
 /**
  * Resolve prismic document href
@@ -211,4 +214,41 @@ function truncate (str, maxlen = Infinity) {
   var snipped = ''
   while (snipped.length < maxlen) snipped += ' ' + words.shift()
   return [snipped, ' ', html`<span class="u-textNowrap">${words[0]}…</span>`]
+}
+
+/**
+ * Render Prismic RichText as element, fixing collapsing spaces
+ * @param {Array} richText Prismic RichText instance
+ */
+function asElement (richText) {
+  if (!Array.isArray(richText)) return null
+  return origAsElement(richText.map(function (item) {
+    if (item.type !== Elements.paragraph) return item
+    if (!item.spans.length) return item
+    var added = 0
+    var text = item.text
+    var spans = item.spans.map(function (span) {
+      span = Object.assign({}, span, {
+        start: span.start + added,
+        end: span.end + added
+      })
+      if (span.type !== Elements.strong && span.type !== Elements.em) return span
+
+      if (text[span.start] === ' ') {
+        text = text.substring(0, span.start) + ' ' + text.substring(span.start)
+        span.start += 1
+        span.end += 1
+        added++
+      }
+
+      if (text[span.end - 1] === ' ') {
+        text = text.substring(0, span.end) + ' ' + text.substring(span.end)
+        added++
+      }
+
+      return span
+    })
+
+    return Object.assign({}, item, { spans, text })
+  }))
 }

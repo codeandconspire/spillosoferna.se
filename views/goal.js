@@ -1,5 +1,4 @@
 var html = require('choo/html')
-var asElement = require('prismic-element')
 var { Predicates } = require('prismic-javascript')
 var view = require('../components/view')
 var accordion = require('../components/accordion')
@@ -14,7 +13,8 @@ var {
   loader,
   resolve,
   truncate,
-  HTTPError
+  HTTPError,
+  asElement
 } = require('../components/base')
 
 module.exports = view(start, meta)
@@ -100,13 +100,13 @@ function start (state, emit) {
         </div>
 
         <div class="View-panel View-panel--white">
-          <div class="u-container u-nbfc"> 
+          <div class="u-container u-nbfc">
             ${gallery({ title: text`Inspiration`, items: doc.data.inspo })}
           </div>
         </div>
-        
+
         <div class="View-panel View-panel--white">
-          <div class="u-container u-nbfc"> 
+          <div class="u-container u-nbfc">
             ${accordion({
               title: text`Vanliga frågor`,
               items: doc.data.faq.map(function (item) {

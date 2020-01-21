@@ -1,5 +1,4 @@
 var choo = require('choo')
-var lazy = require('choo-lazy-view')
 
 var app = choo()
 
@@ -8,7 +7,6 @@ if (process.env.NODE_ENV === 'development') {
   app.use(require('choo-service-worker/clear')())
 }
 
-app.use(lazy)
 app.use(require('choo-meta')({
   origin: process.env.NODE_ENV === 'development'
     ? 'http://localhost:8080'
@@ -21,13 +19,13 @@ app.use(require('./stores/user'))
 app.use(require('./stores/navigation'))
 app.use(require('choo-service-worker')('/sw.js'))
 
-app.route('/', lazy(() => import('./views/home')))
-app.route('/start', lazy(() => import('./views/start')))
-app.route('/om', lazy(() => import('./views/about')))
-app.route('/start/om', lazy(() => import('./views/about')))
-app.route('/start/:uid', lazy(() => import('./views/thread')))
-app.route('/malen', lazy(() => import('./views/goals')))
-app.route('/malen/:uid', lazy(() => import('./views/goal')))
+app.route('/', require('./views/home'))
+app.route('/start', require('./views/start'))
+app.route('/om', require('./views/about'))
+app.route('/start/om', require('./views/about'))
+app.route('/start/:uid', require('./views/thread'))
+app.route('/malen', require('./views/goals'))
+app.route('/malen/:uid', require('./views/goal'))
 
 try {
   module.exports = app.mount('body')

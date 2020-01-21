@@ -1,21 +1,15 @@
 var html = require('choo/html')
-var asElement = require('prismic-element')
-var { Predicates } = require('prismic-javascript')
 var view = require('../components/view')
 var accordion = require('../components/accordion')
-var gallery = require('../components/gallery')
-var card = require('../components/card')
 var symbols = require('../components/symbols')
-var callout = require('../components/callout')
 var serialize = require('../components/text/serialize')
 var {
-  img,
   text,
   asText,
   loader,
   resolve,
-  truncate,
-  HTTPError
+  HTTPError,
+  asElement
 } = require('../components/base')
 
 module.exports = view(start, meta, { floating: true })
@@ -85,9 +79,9 @@ function start (state, emit) {
               </div>
             `
           })}
-        
 
-          <div class="u-container"> 
+
+          <div class="u-container">
             <ul class="View-goals">
               ${goals.map(function (goal) {
                 var number = goal.link.data.number
@@ -104,7 +98,7 @@ function start (state, emit) {
         </div>
 
         <div class="View-panel View-panel--white">
-          <div class="u-container u-nbfc"> 
+          <div class="u-container u-nbfc">
             ${accordion({
               title: text`Vanliga frågor`,
               items: doc.data.faq.map(function (item) {

@@ -1,5 +1,4 @@
 var html = require('choo/html')
-var asElement = require('prismic-element')
 var accordion = require('../components/accordion')
 var callout = require('../components/callout')
 var view = require('../components/view')
@@ -20,7 +19,8 @@ var {
   srcset,
   loader,
   resolve,
-  HTTPError
+  HTTPError,
+  asElement
 } = require('../components/base')
 
 module.exports = view(thread, meta, { back: true, green: true })

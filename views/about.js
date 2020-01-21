@@ -1,9 +1,14 @@
 var html = require('choo/html')
-var asElement = require('prismic-element')
 var view = require('../components/view')
 var embed = require('../components/embed')
-var { asText, srcset, resolve, HTTPError } = require('../components/base')
 var serialize = require('../components/text/serialize')
+var {
+  asText,
+  srcset,
+  resolve,
+  HTTPError,
+  asElement
+} = require('../components/base')
 
 module.exports = view(about, meta)
 
