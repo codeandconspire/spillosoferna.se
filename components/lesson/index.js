@@ -9,6 +9,7 @@ function lesson (props) {
       <summary class="Lesson-summary">
         <div class="Text">
           <h2>${props.title ? props.title : ''}</h2>
+          ${props.extra ? html`<p style="margin-top: -0.7em">${props.extra}</p>` : null}
         </div>
         <span class="Lesson-subtitle">
           ${props.subtitle ? props.subtitle : null}

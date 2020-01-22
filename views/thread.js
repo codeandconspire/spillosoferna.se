@@ -73,7 +73,7 @@ function thread (state, emit) {
         } : null, doc.data.lessons.length ? {
           id: 'lessons',
           text: text`Arbetspass`
-        } : null, doc.data.rules && doc.data.rules.length ? {
+        } : null, doc.data.rules_1 && doc.data.rules_1.length ? {
           id: 'rules',
           text: text`Läroplan`
         } : null, doc.data.inspo.length ? {
@@ -142,6 +142,7 @@ function thread (state, emit) {
               if (slice.slice_type !== 'lesson') return null
               return lesson({
                 title: asText(slice.primary.name) || text`Arbetspass`,
+                extra: slice.primary.extra,
                 subtitle: slice.primary.label,
                 time: slice.primary.duration,
                 main: asElement(slice.primary.description, resolve, serialize),
@@ -157,13 +158,22 @@ function thread (state, emit) {
           </div>
         ` : null}
 
-        ${doc.data.rules && doc.data.rules.length ? html`
+        ${doc.data.rules_1 && doc.data.rules_1.length ? html`
           <div class="View-panel View-panel--white" id="rules">
             <div class="u-container u-nbfc">
               <div class="Text Text--small Text--wide">
                 <h2>${text`Koppling till läroplanen`}</h2>
-                <div class="Text--columns">
-                  ${asElement(doc.data.rules, resolve, serialize)}
+                <div class="Text-columns">
+                  ${doc.data.rules_1 && doc.data.rules_1.length ? html`
+                    <div class="Text-column">
+                      ${asElement(doc.data.rules_1, resolve, serialize)}
+                    </div>
+                  ` : null}
+                  ${doc.data.rules_2 && doc.data.rules_2.length ? html`
+                    <div class="Text-column">
+                      ${asElement(doc.data.rules_2, resolve, serialize)}
+                    </div>
+                  ` : null}
                 </div>
               </div>
             </div>
