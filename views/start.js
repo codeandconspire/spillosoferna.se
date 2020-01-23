@@ -121,6 +121,10 @@ function start (state, emit) {
                   return false
                 }
                 return doc.data.include !== 'Nej'
+              }).sort(function (doc1, doc2) {
+                var doc1goal = doc1.data.goal.data ? doc1.data.goal.data.number : 0
+                var doc2goal = doc2.data.goal.data ? doc2.data.goal.data.number : 0
+                return doc1goal - doc2goal
               }).map((thread) => html`
                 <li class="View-tread">
                   ${card({
@@ -128,12 +132,10 @@ function start (state, emit) {
                       sizes: [400, 800, 1000, 1200]
                     }),
                     title: thread.data.title ? asText(thread.data.title) : text`Namnlös utmaning`,
-                    goal: thread.data.goal.data.number,
+                    goal: thread.data.goal.data ? thread.data.goal.data.number : null,
                     link: resolve(thread),
                     body: html`
-                      ${truncate(asText(thread.data.description), 180)}
-                      <br>
-                      <br>
+                      <div style="margin-bottom: 0.75rem">${truncate(asText(thread.data.description), 180)}</div>
                       <strong>${text`Grade ${thread.data.age}`}</strong>
                     `
                   })}

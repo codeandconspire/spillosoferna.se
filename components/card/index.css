@@ -2,6 +2,8 @@
 
 /* @define Card */
 .Card {
+  display: flex;
+  flex-direction: column;
   position: relative;
   overflow: hidden;
   background-color: #fff;
@@ -17,10 +19,13 @@
 .Card-panel--image::before {
   content: "";
   display: block;
-  padding-top: 52%;
+  padding-top: 61%;
 }
 
 .Card-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
   padding: 1.25rem;
   position: relative;
 }
@@ -91,6 +96,10 @@
 
 .Card-body {
   font-size: 1rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .Card-link {
