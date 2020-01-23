@@ -10,7 +10,7 @@ function footer (props = {}) {
         <a href="/start">${text`Tillbaka till start`}</a>  
       ` : html`
         <span class="Footer-email"><a href="mailto:kontakt@spilloteket.se">kontakt@spilloteket.se</a></span>
-        <a class="" href="/terms">${text`Användarvillkor`}</a>
+        <a class="" href="/villkor">${text`Användarvillkor`}</a>
         <span class="Footer-copy">© ${(new Date()).getFullYear()}</span>
       `}
     </footer>

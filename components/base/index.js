@@ -26,6 +26,7 @@ function resolve (doc) {
     case 'website':
     case 'landing': return '/'
     case 'about': return '/om'
+    case 'villkor': return '/villor'
     case 'start': return '/start'
     case 'thread': return `/start/${doc.uid}`
     case 'goals': return '/malen'
