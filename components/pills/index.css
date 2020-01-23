@@ -4,11 +4,12 @@
 .Pills {
   display: inline-block;
   list-style: none;
-  margin-right: -0.5rem;
+  margin: 0.4rem -0.2rem -0.2rem -0.2rem;
 }
 
 .Pills-pill {
   display: inline-block;
+  margin: 0.2rem;
 }
 
 .Pills-item {

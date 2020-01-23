@@ -110,6 +110,11 @@ function start (state, emit) {
                       ? state.href
                       : `${state.href}?age=${encodeURIComponent(age)}`,
                     selected: selected,
+                    onclick: function (event) {
+                      console.log(event.currentTarget.href)
+                      emit('pushState', event.currentTarget.href, { persistScroll: true })
+                      event.preventDefault()
+                    },
                     children: text`Grade ${age}`
                   }
                 })
