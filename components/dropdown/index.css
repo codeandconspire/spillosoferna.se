@@ -13,6 +13,7 @@
   z-index: 1;
   font-weight: bold;
   user-select: none;
+  padding-right: 1.2rem;
 }
 
 .Dropdown-heading::after {
@@ -21,10 +22,13 @@
   transform: rotate(135deg);
   transform-origin: center;
   margin-left: 0.3rem;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .Dropdown[open] .Dropdown-heading::after {
-  transform: translate(0, 0.2rem)rotate(-45deg);
+  transform: rotate(-45deg);
 }
 
 .Dropdown-heading::-webkit-details-marker {
