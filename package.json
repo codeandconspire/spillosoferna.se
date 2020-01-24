@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "standard",
+    "purge": "node -r dotenv/config -e 'require(\"./lib/purge.js\")(\"../index.js\", [\"/sw.js\"], console.log)'",
     "deploy": "npx now --scope codeandconspire && npx now alias --scope codeandconspire",
     "start": "node server.js",
     "build": "jalla build index.js --sw sw.js"
