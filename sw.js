@@ -51,6 +51,7 @@ self.addEventListener('fetch', function onfetch (event) {
         // handle network response
         // Response -> Response
         function onresponse (response) {
+          if (response.type === 'opaqueredirect') return response
           if (!response.ok) return cached || response
           if (req.method.toUpperCase() === 'GET') {
             return cache.put(req, response.clone()).then(() => response)
