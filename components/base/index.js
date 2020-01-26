@@ -221,7 +221,7 @@ function truncate (str, maxlen = Infinity) {
  * Render Prismic RichText as element, fixing collapsing spaces
  * @param {Array} richText Prismic RichText instance
  */
-function asElement (richText) {
+function asElement (richText, resolve, serialize) {
   if (!Array.isArray(richText)) return null
   return origAsElement(richText.map(function (item) {
     if (item.type !== Elements.paragraph) return item
@@ -251,5 +251,5 @@ function asElement (richText) {
     })
 
     return Object.assign({}, item, { spans, text })
-  }))
+  }), resolve, serialize)
 }

@@ -17,7 +17,6 @@ function terms (state, emit) {
     <main class="View-main">
       <div class="View-page">
         ${state.prismic.getSingle('villkor', function (err, doc) {
-          console.log(doc)
           if (err) throw HTTPError(404, err)
 
           if (!doc) {

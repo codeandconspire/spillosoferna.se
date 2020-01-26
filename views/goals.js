@@ -40,7 +40,6 @@ function start (state, emit) {
     }
 
     var goals = doc.data.goals
-    console.log(doc.data)
 
     return html`
       <main class="View-main">

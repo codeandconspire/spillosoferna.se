@@ -4,6 +4,7 @@ var { text } = require('../base')
 module.exports = lesson
 
 function lesson (props) {
+  console.log(props.main)
   return html`
     <details class="Lesson">
       <summary class="Lesson-summary">
@@ -21,10 +22,13 @@ function lesson (props) {
       </summary>
       <div class="Lesson-content">
         <div class="Lesson-main">
-          <div class="Text">
-            <h3>${text`Introduktion`}</h3>
-            ${props.main ? props.main : null}
-          </div>
+          ${props.main && props.main.length ? html`
+            <div class="Text">
+              <h3>${text`Introduktion`}</h3>
+              ${props.main} 
+            </div>
+          ` : null}
+          
           ${props.steps ? html`
             <div class="Lesson-steps">
               <div class="Text">
@@ -53,18 +57,19 @@ function lesson (props) {
             </div>
           ` : null}
         </div>
-        <div class="Lesson-aside">
-          <div class="Text Text--static">
-            ${props.preparation ? html`
-              <div class="Text">
-                <h3>${text`Förberedelser`}</h3>
-              </div>
-              <div class="Text Text--static">
-                ${props.preparation}
-              </div>
-            ` : null}
+        ${props.preparation && props.preparation.length ? html`
+          <div class="Lesson-aside">
+            <div class="Text Text--static">
+                <div class="Text">
+                  <h3>${text`Förberedelser`}</h3>
+                </div>
+                <div class="Text Text--static">
+                  ${props.preparation}
+                </div>
+              
+            </div>
           </div>
-        </div>
+        ` : null}
       </div>
     </details>
   `

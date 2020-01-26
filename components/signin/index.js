@@ -22,7 +22,6 @@ module.exports = class Signin extends Component {
           <h2>${text`Logga in med din kod`}</h2>
           ${this.local.error ? html`
             <strong>⚠️ ${text`Det funkade inte. Skrev du rätt kod?`}</strong>
-            <pre>${this.local.error}</pre>
           ` : null}
         </div>
         <label class="u-hiddenVisually" for="${this.local.id}-passcode">${text`Ange din kod`}</label>

@@ -48,6 +48,8 @@ function thread (state, emit) {
       `
     }
 
+    var special = doc.data.intro === 'Ja'
+
     return html`
       <main class="View-main">
         ${hero({
@@ -57,7 +59,7 @@ function thread (state, emit) {
             src: src(doc.data.image.url, 900),
             srcset: srcset(doc.data.image.url, [400, 600, 900, 1200, 1800, [2600, 'q_50']])
           },
-          label: doc.data.age ? {
+          label: doc.data.age && !special ? {
             symbol: symbols.people(),
             text: text`Årskurs ${doc.data.age}`
           } : null,
@@ -72,7 +74,7 @@ function thread (state, emit) {
           text: text`Faktan`
         } : null, doc.data.lessons.length ? {
           id: 'lessons',
-          text: text`Arbetspass`
+          text: special ? text`Moment` : text`Arbetspass`
         } : null, doc.data.rules_1 && doc.data.rules_1.length ? {
           id: 'rules',
           text: text`Läroplan`
@@ -135,13 +137,13 @@ function thread (state, emit) {
         ${doc.data.lessons.length ? html`
           <div class="u-container View-panel" id="lessons">
             <div class="Text">
-              <h2>${text`Arbetspass`}</h2>
+              <h2>${special ? text`Moment` : text`Arbetspass`}</h2>
             </div>
 
             ${doc.data.lessons.map(function (slice) {
               if (slice.slice_type !== 'lesson') return null
               return lesson({
-                title: asText(slice.primary.name) || text`Arbetspass`,
+                title: asText(slice.primary.name) || (special ? text`Moment` : text`Arbetspass`),
                 extra: slice.primary.extra,
                 subtitle: slice.primary.label,
                 time: slice.primary.duration,
