@@ -229,6 +229,11 @@
   width: 50%;
 }
 
+.View-goalsItem--static {
+  opacity: 0.2;
+  pointer-events: none
+}
+
 .View-goalsGoal {
   padding: 0.25rem;
   transition: box-shadow 150ms var(--ease);
