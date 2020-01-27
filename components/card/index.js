@@ -6,7 +6,7 @@ module.exports.loading = loading
 
 function card (props) {
   return html`
-    <div class="Card">
+    <div class="Card ${props.file ? 'Card--file' : ''}">
       <div class="Card-panel ${props.image ? 'Card-panel--image' : ''}">
         ${props.image ? props.image : props.panel}
       </div>

@@ -13,6 +13,7 @@ var symbols = require('../components/symbols')
 var Tabs = require('../components/header/tabs')
 var serialize = require('../components/text/serialize')
 var {
+  img,
   src,
   text,
   asText,
@@ -149,8 +150,8 @@ function thread (state, emit) {
                 extra: slice.primary.extra,
                 subtitle: slice.primary.label,
                 time: slice.primary.duration,
-                main: asElement(slice.primary.description, resolve, serialize),
-                preparation: asElement(slice.primary.preparation, resolve, serialize),
+                main: slice.primary.description.length > 8 ? asElement(slice.primary.description, resolve, serialize) : null,
+                preparation: slice.primary.preparation.length ? asElement(slice.primary.preparation, resolve, serialize) : null,
                 file: doc.data.resources.length ? doc.data.resources[0] : null,
                 steps: slice.items.map(function (step) {
                   return {
@@ -166,19 +167,33 @@ function thread (state, emit) {
         ${doc.data.resources.length ? html`
           <div class="View-panel View-panel--white" id="material">
             <div class="u-container u-nbfc">
-              <div class="View-download">
-                <div class="Text Text--wide">
-                  <h2>${asText(doc.data.resources[0].file_tile)}</h2>
-                  <div>${asElement(doc.data.resources[0].file_desc)}</div>
-                </div>
-                <div class="Text">
-                  <a class="Text-download" style="max-width: 18rem; padding: 0.5rem 1rem !important; border-radius: 5px;" href="${doc.data.resources[0].file.url}" download>
-                    <div>
-                      <strong>Ladda ner zip</strong>
-                      <span>${bytesToSize(doc.data.resources[0].file.size)}</span>
+              <div class="Text Text--small Text--wide">
+                <h2>${text`Material för nedladdning`}</h2>
+              </div>
+              <div class="View-treads View-treads--wide">
+                ${doc.data.resources.map(function (download) {
+                  var hasImage = (download.file_image && download.file_image.url)
+
+                  return html`
+                    <div class="View-tread">
+                      ${card({
+                        image: hasImage ? img(download.file_image, { sizes: '35rem' }, {
+                          sizes: [400, 800, 1000, 1200]
+                        }) : img(doc.data.image, { sizes: '35rem' }, {
+                          sizes: [400, 800, 1000, 1200]
+                        }),
+                        file: true,
+                        title: download.file_tile ? asText(download.file_tile) : download.file.name,
+                        link: doc.data.resources[0].file.url,
+                        body: html`
+                          <div>${download.file_desc ? asText(download.file_desc) : ''}</div>
+                          <div><strong>Ladda ner</strong> (${bytesToSize(download.file.size)})</div>
+                        `
+                      })}
                     </div>
-                  </a>
-                </div>
+                  `
+                 })}
+              </div>
             </div>
           </div>
         ` : null}

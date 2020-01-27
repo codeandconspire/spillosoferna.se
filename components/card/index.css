@@ -9,12 +9,23 @@
   background-color: #fff;
   border-radius: 6px;
   box-shadow: 0 2px 44px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.Card--file { 
+  box-shadow: none;
+  border: 1px solid #DADADA;
 }
 
 .Card-panel {
   position: relative;
   background-color: rgba(var(--loading-color-solid));
 }
+
+.Card--file .Card-panel {
+  background: none;
+}
+
 
 .Card-panel--image::before {
   content: "";

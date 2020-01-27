@@ -133,6 +133,10 @@
   .View-tread {
     flex: 0 0 25%;
   }
+
+  .View-treads--wide .View-tread {
+    flex: 0 0 calc(100% / 3);
+  }
 }
 
 .View-abstract {

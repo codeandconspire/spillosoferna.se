@@ -21,7 +21,7 @@ function lesson (props) {
       </summary>
       <div class="Lesson-content">
         <div class="Lesson-main">
-          ${props.main && props.main.length ? html`
+          ${props.main ? html`
             <div class="Text">
               <h3>${text`Introduktion`}</h3>
               ${props.main} 
@@ -29,7 +29,7 @@ function lesson (props) {
           ` : null}
           
           ${props.steps ? html`
-            <div class="Lesson-steps">
+            <div class="Lesson-steps" style=${props.main ? '' : 'margin-top: 0'}>
               <div class="Text">
                 <h3>${text`Gör så här`}</h3>
               </div>
