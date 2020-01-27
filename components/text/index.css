@@ -206,7 +206,7 @@
 
 .Text ul {
   list-style-type: disc;
-  padding-left: 1.5em;
+  padding-left: 1.2em;
 }
 
 .Text li + li {
@@ -264,4 +264,35 @@
   .Text:not(.Text--static) h3 {
     font-size: 1.5rem;
   }
+}
+
+.Text-download {
+  border-radius: 3px;
+  border: 1px solid #DADADA;
+  display: flex;
+  padding: 0 !important;
+  margin: 0 !important;
+  align-items: center;
+  cursor: pointer;
+  line-height: 1.25;
+}
+
+.Text-download svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  padding: 1.2rem 1.1rem;
+  border-right: 1px solid #DADADA;
+  margin-right: 1rem;
+  display: block;
+}
+
+.Text-download strong {
+  display: block;
+  color: black;
+}
+
+.Text-download span {
+  font-weight: normal;
+  color: black;
+  opacity: 0.5;
 }

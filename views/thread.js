@@ -50,6 +50,8 @@ function thread (state, emit) {
 
     var special = doc.data.intro === 'Ja'
 
+    console.log(doc.data.resources[0])
+
     return html`
       <main class="View-main">
         ${hero({
@@ -75,19 +77,19 @@ function thread (state, emit) {
         } : null, doc.data.lessons.length ? {
           id: 'lessons',
           text: special ? text`Moment` : text`Arbetspass`
-        } : null, doc.data.rules_1 && doc.data.rules_1.length ? {
-          id: 'rules',
-          text: text`Läroplan`
+        } : null, doc.data.resources.length ? {
+          id: 'material',
+          text: text`Material`
         } : null, doc.data.inspo.length ? {
           id: 'gallery',
           text: text`Inspiration`
+        } : null, doc.data.rules_1 && doc.data.rules_1.length ? {
+          id: 'rules',
+          text: text`Läroplan`
         } : null, doc.data.faq.length ? {
           id: 'faq',
           text: text`Vanliga frågor`
-        } : null, {
-          id: 'feedback',
-          text: text`Feedback`
-        }].filter(Boolean))}
+        } : null].filter(Boolean))}
         <div class="View-panel View-panel--white" id="introduction">
           <div class="u-container">
             ${grid([
@@ -149,6 +151,7 @@ function thread (state, emit) {
                 time: slice.primary.duration,
                 main: asElement(slice.primary.description, resolve, serialize),
                 preparation: asElement(slice.primary.preparation, resolve, serialize),
+                file: doc.data.resources.length ? doc.data.resources[0] : null,
                 steps: slice.items.map(function (step) {
                   return {
                     body: asElement(step.text, resolve, serialize),
@@ -157,6 +160,34 @@ function thread (state, emit) {
                 })
               })
             }).filter(Boolean)}
+          </div>
+        ` : null}
+
+        ${doc.data.resources.length ? html`
+          <div class="View-panel View-panel--white" id="material">
+            <div class="u-container u-nbfc">
+              <div class="View-download">
+                <div class="Text Text--wide">
+                  <h2>${asText(doc.data.resources[0].file_tile)}</h2>
+                  <div>${asElement(doc.data.resources[0].file_desc)}</div>
+                </div>
+                <div class="Text">
+                  <a class="Text-download" style="max-width: 18rem; padding: 0.5rem 1rem !important; border-radius: 5px;" href="${doc.data.resources[0].file.url}" download>
+                    <div>
+                      <strong>Ladda ner zip</strong>
+                      <span>${bytesToSize(doc.data.resources[0].file.size)}</span>
+                    </div>
+                  </a>
+                </div>
+            </div>
+          </div>
+        ` : null}
+
+        ${doc.data.inspo.length ? html`
+          <div class="View-panel View-panel--white" id="gallery">
+            <div class="u-container u-nbfc">
+              ${gallery({ title: text`Inspiration`, items: doc.data.inspo })}
+            </div>
           </div>
         ` : null}
 
@@ -182,13 +213,6 @@ function thread (state, emit) {
           </div>
         ` : null}
 
-        ${doc.data.inspo.length ? html`
-          <div class="View-panel View-panel--white" id="gallery">
-            <div class="u-container u-nbfc">
-              ${gallery({ title: text`Inspiration`, items: doc.data.inspo })}
-            </div>
-          </div>
-        ` : null}
         ${doc.data.faq.length ? html`
           <div class="View-panel View-panel--white" id="faq">
             <div class="u-container u-nbfc">
@@ -204,6 +228,7 @@ function thread (state, emit) {
             </div>
           </div>
         ` : null}
+        
 
         ${state.prismic.getSingle('website', function (err, website) {
           if (err) throw HTTPError(404, err)
@@ -236,4 +261,11 @@ function meta (state) {
 
     return props
   })
+}
+
+function bytesToSize (bytes) {
+  var sizes = ['bytes', 'KB', 'MB', 'GB', 'TB']
+  if (bytes === 0) return '0 Byte'
+  var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)))
+  return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i]
 }
