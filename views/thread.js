@@ -71,7 +71,7 @@ function thread (state, emit) {
           text: text`Inledning`
         }, doc.data.facts.length ? {
           id: 'facts',
-          text: text`Faktan`
+          text: text`Fakta`
         } : null, doc.data.lessons.length ? {
           id: 'lessons',
           text: special ? text`Moment` : text`Arbetspass`
@@ -124,10 +124,10 @@ function thread (state, emit) {
         ${doc.data.facts.length ? html`
           <div class="u-container View-panel" id="facts">
             <div class="Text" >
-              <h2>${text`Faktan`}</h2>
+              <h2>${text`Fakta`}</h2>
             </div>
             ${lesson({
-              title: asText(doc.data.facts_title) || text`Faktan`,
+              title: asText(doc.data.facts_title) || text`Fakta`,
               subtitle: text`Inför arbetspassen`,
               main: asElement(doc.data.facts, resolve, serialize)
             })}
@@ -214,7 +214,7 @@ function thread (state, emit) {
               ${callout({
                 title: asText(website.data.outro_heading),
                 body: asElement(website.data.outro_body, resolve, serialize),
-                link: '/start/om',
+                link: website.data.outro_link.url,
                 linkText: website.data.outro_link_text
               })}
             </div>

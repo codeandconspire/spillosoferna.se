@@ -9,7 +9,7 @@ function serialize (type, node, content, children) {
   switch (type) {
     case Elements.paragraph: {
       if (node.text === '' || node.text.match(/^\s+$/)) {
-        return html`<!-- Empty paragraph node removed -->`
+        return null
       }
       return null
     }

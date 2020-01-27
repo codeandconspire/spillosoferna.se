@@ -4,7 +4,6 @@ var { text } = require('../base')
 module.exports = lesson
 
 function lesson (props) {
-  console.log(props.main)
   return html`
     <details class="Lesson">
       <summary class="Lesson-summary">
