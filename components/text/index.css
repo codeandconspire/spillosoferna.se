@@ -52,7 +52,8 @@
     font-size: 1rem;
   }
 
-  .Text--intro:not(.Text--static) {
+  .Text--intro:not(.Text--static),
+  .Text--large:not(.Text--static)  {
     font-size: 1.5rem;
   }
 }

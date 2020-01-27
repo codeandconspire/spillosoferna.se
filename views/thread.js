@@ -51,8 +51,6 @@ function thread (state, emit) {
 
     var special = doc.data.intro === 'Ja'
 
-    console.log(doc.data.resources[0])
-
     return html`
       <main class="View-main">
         ${hero({
@@ -184,7 +182,7 @@ function thread (state, emit) {
                         }),
                         file: true,
                         title: download.file_tile ? asText(download.file_tile) : download.file.name,
-                        link: doc.data.resources[0].file.url,
+                        link: download.file.url,
                         body: html`
                           <div>${download.file_desc ? asText(download.file_desc) : ''}</div>
                           <div><strong>Ladda ner</strong> (${bytesToSize(download.file.size)})</div>

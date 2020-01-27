@@ -35,8 +35,19 @@
   background-color: rgb(var(--document-background));
 }
 
+.View-panelAside {
+  max-width: 20rem;
+  margin-top: 2.5rem;
+  width: 100%;
+}
+
 .View-panel--white {
   background-color: #fff;
+}
+
+.View-panel--tight {
+  position: relative;
+  padding: 5vh 0;
 }
 
 .View-panel:not(.View-panel--white) + .View-panel:not(.View-panel--white) {
@@ -52,12 +63,29 @@
     padding: 15vh 0;
   }
 
+  .View-panel--tight {
+    position: relative;
+    padding: 8vh 0;
+  }
+
   .View-panel:not(.View-panel--white) + .View-panel:not(.View-panel--white) {
     margin-top: -15vh;
   }
 
   .View-panel--white + .View-panel--white {
     margin-top: -15vh;
+  }
+}
+
+@media (min-width: 1150px) {
+  .View-panel--tight {
+    min-height: 20rem
+  }
+
+  .View-panelAside {
+    position: absolute;
+    top: -3rem;
+    right: 0;
   }
 }
 
@@ -251,3 +279,33 @@
 .View-goals svg {
   display: block;
 }
+
+.View-hero {
+  background: #000;
+  color: #fff;
+  padding: 8rem 0 2rem;
+}
+
+@media (min-width: 1000px) {
+  .View-hero {
+    padding: 10rem 0 5rem;
+  }
+}
+
+.View-hero--1 { background: rgb(var(--color-goal-1)); }
+.View-hero--2 { background: rgb(var(--color-goal-2)); }
+.View-hero--3 { background: rgb(var(--color-goal-3)); }
+.View-hero--4 { background: rgb(var(--color-goal-4)); }
+.View-hero--5 { background: rgb(var(--color-goal-5)); }
+.View-hero--6 { background: rgb(var(--color-goal-6)); }
+.View-hero--7 { background: rgb(var(--color-goal-7)); }
+.View-hero--8 { background: rgb(var(--color-goal-8)); }
+.View-hero--9 { background: rgb(var(--color-goal-9)); }
+.View-hero--10 { background: rgb(var(--color-goal-10)); }
+.View-hero--11 { background: rgb(var(--color-goal-11)); }
+.View-hero--12 { background: rgb(var(--color-goal-12)); }
+.View-hero--13 { background: rgb(var(--color-goal-13)); }
+.View-hero--14 { background: rgb(var(--color-goal-14)); }
+.View-hero--15 { background: rgb(var(--color-goal-15)); }
+.View-hero--16 { background: rgb(var(--color-goal-16)); }
+.View-hero--17 { background: rgb(var(--color-goal-17)); }

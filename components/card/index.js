@@ -5,6 +5,11 @@ module.exports = card
 module.exports.loading = loading
 
 function card (props) {
+  var args = {}
+  if (props.file) {
+    args.download = true
+  }
+
   return html`
     <div class="Card ${props.file ? 'Card--file' : ''}">
       <div class="Card-panel ${props.image ? 'Card-panel--image' : ''}">
@@ -17,7 +22,7 @@ function card (props) {
         <div class="Card-title">${props.title}</div>
         <div class="Card-body">${props.body}</div>
       </div>
-      ${props.link ? html`<a class="Card-link" href="${props.link}">${text`Visa mer`}</a>` : null}
+      ${props.link ? html`<a ${args} class="Card-link" href="${props.link}">${text`Visa mer`}</a>` : null}
     </div>
   `
 }
