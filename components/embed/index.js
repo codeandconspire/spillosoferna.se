@@ -37,8 +37,11 @@ function embed (props) {
 // obj -> str
 function id (props) {
   switch (props.provider_name) {
-    case 'YouTube': return props.embed_url.match(YOUTUBE_RE) ? props.embed_url.match(YOUTUBE_RE)[1] : null
-    case 'Vimeo': return props.embed_url.match(/vimeo\.com\/(.+)?\??/)[1]
+    case 'YouTube': {
+      const match = props.embed_url.trim().match(YOUTUBE_RE)
+      return match ? match[1] : null
+    }
+    case 'Vimeo': return props.embed_url.trim().match(/vimeo\.com\/(.+)?\??/)[1]
     default: return null
   }
 }
