@@ -13,6 +13,19 @@ function serialize (type, node, content, children) {
       }
       return null
     }
+
+    case Elements.hyperlink: {
+      if (node.data && node.data.link_type === 'Media') {
+        if (/\.(wav|mp3)$/.test(node.data.url)) {
+          return html`
+            <audio controls src="${node.data.url}">Din webbläsare stödjer inte ljud, tyvärr!</audio>
+          `
+        }
+        return null
+      }
+      return null
+    }
+
     case Elements.embed: {
       const provider = node.oembed.provider_name.toLowerCase()
       const id = embed.id(node.oembed)

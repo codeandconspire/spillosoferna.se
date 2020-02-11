@@ -150,6 +150,11 @@
   text-align: left;
 }
 
+.Text audio {
+  display: block;
+  max-width: 100%;
+}
+
 /**
  * Blockquote
  */
