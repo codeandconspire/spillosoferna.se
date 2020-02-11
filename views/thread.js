@@ -198,7 +198,7 @@ function thread (state, emit) {
 
         ${doc.data.inspo.length ? html`
           <div class="View-panel View-panel--white" id="gallery">
-            <div class="u-container u-nbfc">
+            <div class="u-container u-nbfc" id="thread-gallery">
               ${gallery({ title: text`Inspiration`, items: doc.data.inspo })}
             </div>
           </div>

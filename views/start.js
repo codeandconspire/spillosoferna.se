@@ -156,7 +156,7 @@ function start (state, emit) {
         </section>
 
         <div class="View-panel View-panel--white">
-          <div class="u-container u-nbfc">
+          <div class="u-container u-nbfc" id="start-gallery">
             ${gallery({ title: text`Inspiration`, items: doc.data.inspo })}
           </div>
         </div>
