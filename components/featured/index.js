@@ -56,7 +56,7 @@ module.exports = class Featured extends Component {
                 <path d="M9.257 8.536L12.793 5 9.257 1.464M12.793 5H1.056"/>
               </g>
             </svg>
-            ${text`Visa introduktion`}
+            ${text`Lärarintroduktion`}
           </a>
         `}
       </article>

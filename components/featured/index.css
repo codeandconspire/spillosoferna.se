@@ -68,8 +68,15 @@
   display: flex;
   flex-direction: column;
   max-width: 30rem;
-  padding: 3rem;
+  padding: 1.25rem;
   color: #fff;
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .Featured-body {
+    padding: 3rem;
+  }
 }
 
 .Featured-header {
@@ -104,13 +111,21 @@
   align-items: center;
   padding: 0.5rem 1rem;
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
+  bottom: 1.25rem;
+  right: 1.25rem;
   z-index: 1;
   font-weight: bold;
   border-radius: 2rem;
   background-color: rgba(255, 255, 255, 0.6);
   transition: background-color 200ms ease-out;
+}
+
+@media (min-width: 600px) {
+  .Featured-close {
+    bottom: auto;
+    top: 1.5rem;
+    right: 1.5rem;
+  }
 }
 
 .Featured-close:hover {

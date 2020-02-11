@@ -193,7 +193,7 @@
   }
 }
 
-.View-back {
+.View-close {
   border: 10rem;
   font-weight: bold;
   text-transform: uppercase;
@@ -207,9 +207,10 @@
   padding: 1.1rem 3.7rem 1.1rem 1.5rem;
   user-select: none;
   margin-right: -0.3rem;
+  z-index: 10;
 }
 
-.View-back svg {
+.View-close svg {
   width: 2rem;
   height: 2rem;
   position: absolute;
@@ -314,3 +315,19 @@
 .View-hero--15 { background: rgb(var(--color-goal-15)); }
 .View-hero--16 { background: rgb(var(--color-goal-16)); }
 .View-hero--17 { background: rgb(var(--color-goal-17)); }
+
+.View-back {
+  display: inline-flex;
+  padding: 0 var(--View-margin);
+  align-items: center;
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  height: var(--Header-height);
+}
+
+.View-back svg {
+  width: 0.4375rem;
+  height: auto;
+  margin-right: 0.5rem;
+}

@@ -1,21 +1,14 @@
 var html = require('choo/html')
 var { Predicates } = require('prismic-javascript')
 var view = require('../components/view')
-var accordion = require('../components/accordion')
-var gallery = require('../components/gallery')
 var card = require('../components/card')
-var callout = require('../components/callout')
-var serialize = require('../components/text/serialize')
 var {
   img,
-  text,
   asText,
-  resolve,
-  HTTPError,
   asElement
 } = require('../components/base')
 
-module.exports = view(goal, meta, { floating: true })
+module.exports = view(goal, meta, { floating: true, close: true })
 
 function goal (state, emit) {
   var goal = state.params.uid
@@ -31,7 +24,17 @@ function goal (state, emit) {
   if (!goals) {
     return html`
       <main class="View-main">
-        <div class="View-hero View-hero--${goal}"></div>
+        <div class="View-hero View-hero--${goal}">
+          <div class="u-container u-nbfc"></div>
+        </div>
+        <div class="u-container u-nbfc" style="position: absolute; top: 0; left: 0;">
+          <div style="position: relative;">
+            <a class="View-back" href="/malen">
+              <svg role="presentation" viewBox="0 0 7 12"><path fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M6 1.75736L1.75736 6 6 10.24264" /></svg>
+              Tillbaka
+            </a>
+          </div>
+        </div>
       </main>
     `
   }
@@ -53,6 +56,14 @@ function goal (state, emit) {
           <div class="Text Text--large">
             <p>${asText(doc.data.description)}</p>
           </div>
+        </div>
+      </div>
+      <div class="u-container u-nbfc" style="position: absolute; top: 0; left: 0;">
+        <div style="position: relative;">
+          <a class="View-back" href="/malen">
+            <svg role="presentation" viewBox="0 0 7 12"><path fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M6 1.75736L1.75736 6 6 10.24264" /></svg>
+            Tillbaka
+          </a>
         </div>
       </div>
 

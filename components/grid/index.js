@@ -31,7 +31,7 @@ function grid (opts, children) {
       appear = opts.appear
     }
     if (appear || typeof appear === 'number') {
-      let order = typeof appear === 'number' ? appear : index
+      const order = typeof appear === 'number' ? appear : index
       attrs.class += ' Grid-cell--appear'
       attrs.style = `animation-delay: ${order * 100}ms`
     }

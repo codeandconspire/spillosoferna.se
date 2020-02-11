@@ -1,5 +1,4 @@
 var html = require('choo/html')
-var { loader } = require('../base')
 
 module.exports = hero
 module.exports.loading = loading

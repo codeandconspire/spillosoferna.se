@@ -6,6 +6,7 @@ module.exports = class Header extends Component {
   constructor (id, state, emit) {
     super(id)
     this.emit = emit
+    this.state = state
     this.local = state.components[id] = {
       id: id
     }
@@ -17,14 +18,23 @@ module.exports = class Header extends Component {
 
   createElement (href) {
     this.local.href = href.replace(/\/$/, '')
+    var that = this
     var { id } = this.local
     var home = this.local.href === '/start' || this.local.href === ''
-    var login = this.local.href === ''
+    var hideGoals = this.local.href === '' || this.local.href === '/om' || this.local.href === '/villkor'
+
+    function onclick (event) {
+      console.log('click')
+      console.log(that.state.prev)
+      that.emit('pushState', that.state.prev, { persistScroll: false })
+      event.preventDefault()
+    }
+
     return html`
       <div class="Header">
         <header class="Header-bar" id="${id}">
           ${home ? html`
-            <a class="Header-logo" href="/start">
+            <a class="Header-logo" href="/">
               <span class="u-hiddenVisually">${text`Till startsidan`}</span>
               <svg role="presentation" viewBox="0 0 1410 152">
                 <g fill="none" fill-rule="evenodd">
@@ -50,7 +60,7 @@ module.exports = class Header extends Component {
               </svg>
             </a>
           ` : html`
-            <a class="Header-back" href="/start">
+            <a class="Header-back" href="/" onclick=${onclick}>
               <svg role="presentation" viewBox="0 0 7 12">
                 <path fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M6 1.75736L1.75736 6 6 10.24264"/>
               </svg>
@@ -58,7 +68,7 @@ module.exports = class Header extends Component {
             </a>
           `}
 
-          ${!login ? html`
+          ${!hideGoals ? html`
             <a class="Header-gg" href="/malen">
               <span>${text`Globala målen`}</span>
               <svg role="presentation" viewBox="0 0 80 80">
