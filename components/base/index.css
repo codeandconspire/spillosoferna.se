@@ -163,7 +163,15 @@ button {
  * this platform, or polyfilled with https://github.com/WICG/focus-visible
  */
 
-:focus:not(:focus-visible) {
+:root[scripting-enabled] :focus:not(:focus-visible) {
+  outline: 0 !important;
+}
+
+/**
+ * Let's leave input focus styles blank, for later declarations
+ */
+
+input:focus-visible {
   outline: 0 !important;
 }
 
@@ -172,5 +180,6 @@ button {
  */
 
 :focus-visible {
-  outline: rgb(var(--focus-ring-color)) solid var(--focus-ring-width) !important;
+  outline: solid var(--focus-ring-width) !important;
+  outline-color: rgb(var(--focus-ring-color)) !important;
 }

@@ -69,6 +69,7 @@
     "choo-service-worker": "^3.0.0",
     "cloudinary": "^1.13.2",
     "dotenv": "^8.1.0",
+    "focus-visible": "^5.0.2",
     "hstream": "^1.2.0",
     "jalla": "1.0.0-25",
     "koa-body": "^4.1.1",

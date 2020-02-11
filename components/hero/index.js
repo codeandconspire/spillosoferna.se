@@ -25,6 +25,12 @@ function hero (props) {
 
 function loading () {
   return html`
-    <div class="Hero is-loading"></div>
+    <div class="Hero is-loading">
+      <div class="u-container">
+        <div class="Text">
+          <h1>…</h1>
+        </div>
+      </div>
+    </div>
   `
 }

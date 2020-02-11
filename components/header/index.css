@@ -73,6 +73,16 @@
   color: rgb(var(--color-muted));
   border-bottom: 4px solid transparent;
   pointer-events: auto;
+  transition: color 125ms var(--ease);
+}
+
+.Header-tab:hover {
+  color: currentColor;
+  transition: color 125ms var(--ease-out);
+}
+
+.Header-tab:active {
+  opacity: 0.6;
 }
 
 .Header-tab:hover {
@@ -88,8 +98,15 @@
 .Header-logo {
   display: block;
   width: auto;
-  height: 1.2rem;
-  margin: 1.5rem var(--Header-margin) 0;
+  height: 3.2rem;
+  margin: 0.5rem calc(var(--Header-margin) - 1rem) -1rem;
+  padding: 1rem;
+  transition: opacity 150ms var(--ease-out);
+}
+
+.Header-logo:active {
+  opacity: 0.5;
+  transition: none;
 }
 
 .Header-logo svg {
@@ -108,6 +125,13 @@
   font-weight: 600;
   text-transform: uppercase;
   height: var(--Header-height);
+  transition: opacity 150ms var(--ease-out);
+}
+
+.Header-back:active,
+.Header-gg:active {
+  opacity: 0.5;
+  transition: none;
 }
 
 .Header-back svg {

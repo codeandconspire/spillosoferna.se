@@ -30,10 +30,17 @@
   outline: 0;
   font-size: 1.25rem;
   font-weight: 600;
+  transition: color 125ms var(--ease);
+}
+
+.Accordion-summary:hover {
+  color: #23a098;
+  cursor: pointer;
+  transition: color 125ms var(--ease-out);
 }
 
 .Accordion-summary:active {
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 .Accordion-summary::-webkit-details-marker {

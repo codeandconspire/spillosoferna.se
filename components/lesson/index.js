@@ -82,12 +82,7 @@ function lesson (props) {
                       <rect id="b" width="1280" height="1508" x="83" y="2605" rx="10"/>
                     </defs>
                     <g fill="none" fill-rule="evenodd">
-                      <path fill="#FFE5F2" d="M-1243-880H197v2296h-1440z"/>
-                      <g transform="translate(-1243 -2943)">
-                        <use fill="#000" filter="url(#a)" xlink:href="#b"/>
-                        <use fill="#FFF" xlink:href="#b"/>
-                      </g>
-                      <path fill="#FFF" stroke="#DADADA" d="M-251-22H29a5 5 0 015 5v50a5 5 0 01-5 5h-280a5 5 0 01-5-5v-50a5 5 0 015-5z"/>
+                      <path fill="transparent" stroke="transparent" d="M-251-22H29a5 5 0 015 5v50a5 5 0 01-5 5h-280a5 5 0 01-5-5v-50a5 5 0 015-5z"/>
                       <g fill="#000" fill-rule="nonzero" transform="translate(-3 -2)">
                         <rect width="13.33" height="1.67" x="3.33" y="15" rx=".83"/>
                         <path d="M3.33 15.83v-1.66a.83.83 0 111.67 0v1.66a.83.83 0 11-1.67 0zM15 15.83v-1.66a.83.83 0 111.67 0v1.66a.83.83 0 11-1.67 0zM10 12.5a.83.83 0 01-.48-.15L6.18 10a.83.83 0 11.97-1.36l2.85 2 2.83-2.14a.83.83 0 011 1.33l-3.33 2.5a.83.83 0 01-.5.17z"/>

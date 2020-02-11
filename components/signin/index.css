@@ -15,6 +15,18 @@
   margin: 0 auto;
   display: block;
   cursor: pointer;
+  transition: background 125ms var(--ease-out), color 125ms var(--ease-out);
+  user-select: none;
+}
+
+.Signin-button:hover {
+  color: #fff;
+  background: #1a7973;
+}
+
+.Signin-button:active {
+  background: #156964;
+  transition: none;
 }
 
 .Signin-control {
@@ -24,7 +36,7 @@
 }
 
 .Signin-input {
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(0, 0, 0, 0.1);
   padding: 1.3rem 0.6rem;
   width: 100%;
   font-size: 2rem;
@@ -36,7 +48,7 @@
 }
 
 .Signin-input:focus {
-  stroke: #23A098;
+  border: 2px solid #23a098;
 }
 
 .Signin-input::placeholder {

@@ -25,7 +25,7 @@
 }
 
 .Hero.is-loading {
-  background: #23A098;
+  background: #000;
 }
 
 .Hero-image {
@@ -38,6 +38,7 @@
   width: auto;
   transform: translate(-50%, -50%);
   z-index: -2;
+  user-select: none;
 }
 
 @supports (object-fit: cover) {

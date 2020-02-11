@@ -5,6 +5,10 @@ var origAsElement = require('prismic-element')
 var { Elements } = require('prismic-richtext')
 var lang = require('./lang')
 
+if (typeof window !== 'undefined') {
+  require('focus-visible')
+}
+
 exports.resolve = resolve
 exports.text = text
 exports.asText = asText

@@ -19,6 +19,18 @@
   min-width: 9.5rem;
   margin: 2rem auto 0;
   display: inline-block;
+  transition: background 125ms var(--ease-out), color 125ms var(--ease-out);
+  user-select: none;
+}
+
+.Callout-button:hover {
+  color: #fff;
+  background: #23a098;
+}
+
+.Callout-button:active {
+  background: #1a7973;
+  transition: none;
 }
 
 @media (min-width: 370px) {

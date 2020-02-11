@@ -52,7 +52,7 @@ module.exports = class Featured extends Component {
         ` : html`
           <a class="Featured-button" href="${props.href}">
             <svg width="15" height="10" role="presentation">
-              <g stroke="#000" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round">
+              <g stroke="currentColor" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round">
                 <path d="M9.257 8.536L12.793 5 9.257 1.464M12.793 5H1.056"/>
               </g>
             </svg>

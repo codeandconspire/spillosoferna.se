@@ -4,6 +4,7 @@
 .Dropdown {
   display: inline-block;
   position: relative;
+  z-index: 1;
 }
 
 .Dropdown-heading {
@@ -13,7 +14,15 @@
   z-index: 1;
   font-weight: bold;
   user-select: none;
-  padding-right: 1.2rem;
+  padding-right: 1rem;
+  cursor: pointer;
+  transition: color 125ms var(--ease);
+}
+
+.Dropdown-heading:hover {
+  color: #23a098;
+  cursor: pointer;
+  transition: color 125ms var(--ease-out);
 }
 
 .Dropdown-heading::after {
@@ -23,12 +32,13 @@
   transform-origin: center;
   margin-left: 0.3rem;
   position: absolute;
-  top: 0;
+  top: -2px;
   right: 0;
 }
 
 .Dropdown[open] .Dropdown-heading::after {
   transform: rotate(-45deg);
+  top: 0;
 }
 
 .Dropdown-heading::-webkit-details-marker {
@@ -48,6 +58,19 @@
   opacity: 0;
   transform: translateY(2.5rem);
   animation: Dropdown-content--appearing 400ms forwards cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.Dropdown-content button {
+  width: 100%;
+  display: block;
+  transition: color 125ms var(--ease);
+  text-align: left;
+}
+
+.Dropdown-content button:hover {
+  color: #23a098;
+  cursor: pointer;
+  transition: color 125ms var(--ease-out);
 }
 
 @keyframes Dropdown-content--appearing {

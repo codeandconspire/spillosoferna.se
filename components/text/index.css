@@ -85,10 +85,16 @@
   margin: -0.1em -0.3em;
   color: #23A098;
   font-weight: bold;
+  transition: color 125ms var(--ease);
+}
+
+.Text a:not(.Embed-link):hover {
+  color: #18716b;
+  transition: color 125ms var(--ease-out);
 }
 
 .Text a:not(.Embed-link):active {
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 /**
@@ -276,6 +282,12 @@
   align-items: center;
   cursor: pointer;
   line-height: 1.25;
+  transition: background 125ms var(--ease-out) !important;
+}
+
+.Text-download:hover {
+  background: #f1f1f1;
+  transition: background 125ms var(--ease) !important;
 }
 
 .Text-download svg {

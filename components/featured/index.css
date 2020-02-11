@@ -7,6 +7,23 @@
   position: relative;
   overflow: hidden;
   border-radius: 0.625rem;
+  box-shadow: 0 2px 44px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 150ms var(--ease-out);
+  user-select: none;
+}
+
+.Featured:hover {
+  transition: box-shadow 150ms var(--ease);
+  box-shadow: 0 12px 44px rgba(0, 0, 0, 0.2);
+}
+
+.Featured-title {
+  display: inline-block;
+  border-bottom: 2px solid transparent;
+}
+
+.Featured:hover .Featured-title {
+  border-bottom: 2px solid currentColor;
 }
 
 .Featured.is-expanded {
@@ -26,7 +43,7 @@
   left: 0;
   top: 0;
   z-index: -1;
-  background: #23A098;
+  background: #000;
 }
 
 @media (max-width: 899px) {
@@ -106,6 +123,10 @@
   text-indent: -9999rem;
 }
 
+.Featured-link:focus-visible {
+  border: var(--focus-ring-width) solid rgb(var(--focus-ring-color));
+}
+
 .Featured-close {
   display: flex;
   align-items: center;
@@ -117,7 +138,7 @@
   font-weight: bold;
   border-radius: 2rem;
   background-color: rgba(255, 255, 255, 0.6);
-  transition: background-color 200ms ease-out;
+  transition: background-color 125ms var(--ease);
 }
 
 @media (min-width: 600px) {
@@ -129,7 +150,8 @@
 }
 
 .Featured-close:hover {
-  background-color: rgba(255, 255, 255, 0.8)
+  background-color: rgba(255, 255, 255, 0.8);
+  transition: background-color 125ms var(--ease-out);
 }
 
 @media (max-width: 899px) {
@@ -157,13 +179,30 @@
 .Featured-button {
   background: #fff;
   border-radius: 2rem;
+  border: var(--focus-ring-width) solid transparent;
   text-align: center;
-  padding: 0.8rem 2rem;
+  padding: calc(0.8rem - var(--focus-ring-width)) calc(2rem - var(--focus-ring-width));
   font-weight: 600;
   font-size: 1.125rem;
   min-width: 9.5rem;
   margin-top: 1.5rem;
   display: inline-block;
+  transition: background 125ms var(--ease-out), color 125ms var(--ease-out);
+}
+
+.Featured-button:hover {
+  color: #fff;
+  background: #23a098;
+}
+
+.Featured-button:active {
+  background: #1a7973;
+  transition: none;
+}
+
+.Featured-button:focus-visible {
+  outline: 0 !important;
+  border-color: rgb(var(--focus-ring-color));
 }
 
 .Featured-button svg {

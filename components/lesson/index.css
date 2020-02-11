@@ -7,10 +7,12 @@
   padding: 1.5rem 2rem;
   border-radius: 0.375rem;
   position: relative;
+  transition: box-shadow 150ms var(--ease);
 }
 
 .Lesson-summary {
-  padding-right: 2.5rem;
+  margin: -1.5rem -2rem;
+  padding: 1.5rem 4.5rem 1.5rem 2rem;
 }
 
 .Lesson:first-of-type {
@@ -18,15 +20,11 @@
 }
 
 .Lesson[open] {
-  box-shadow: 0 0 0.87rem 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 44px rgba(0, 0, 0, 0.1);
 }
 
 .Lesson + .Lesson {
   margin-top: 0.75rem;
-}
-
-.Lesson-summary:active {
-  opacity: 0.7;
 }
 
 .Lesson-subtitle {
@@ -45,6 +43,20 @@
 
 .Lesson-summary::-webkit-details-marker {
   display: none;
+}
+
+.Lesson-summary:hover h2 {
+  transition: color 125ms var(--ease);
+}
+
+.Lesson-summary:hover h2 {
+  color: #23a098;
+  transition: color 125ms var(--ease-out);
+}
+
+.Lesson-summary:active h2 {
+  opacity: 0.6;
+  transition: none;
 }
 
 .Lesson[open] .Lesson-summary {

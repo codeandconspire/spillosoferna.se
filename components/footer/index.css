@@ -10,6 +10,19 @@
   margin: 2rem 0 0;
 }
 
+.Footer a {
+  transition: color 125ms var(--ease);
+}
+
+.Footer a:hover {
+  color: #23a098;
+  transition: color 125ms var(--ease-out);
+}
+
+.Footer a:active {
+  opacity: 0.6;
+}
+
 .Footer--center {
   justify-content: center;
 }
