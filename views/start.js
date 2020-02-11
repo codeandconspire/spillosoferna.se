@@ -98,6 +98,10 @@ function start (state, emit) {
                 </div>
               </div>
               ${pills(AGES.map(function (age) {
+                if (age === 'F-6') {
+                  return null
+                }
+                
                 var predicates = [
                   Predicates.at('my.thread.age', age),
                   Predicates.at('my.thread.include', 'Ja')

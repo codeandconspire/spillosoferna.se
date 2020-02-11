@@ -181,8 +181,6 @@
 .Embed-wrapper {
   height: 0;
   width: 88%;
-  /* max-width: var(--container-large-width); */
-
   position: absolute;
   left: 50%;
   top: 50%;
