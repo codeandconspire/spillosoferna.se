@@ -5,7 +5,8 @@ var card = require('../components/card')
 var {
   img,
   asText,
-  asElement
+  asElement,
+  bytesToSize
 } = require('../components/base')
 
 module.exports = view(goal, meta, { floating: true, close: true })
@@ -27,7 +28,7 @@ function goal (state, emit) {
         <div class="View-hero View-hero--${goal}">
           <div class="u-container u-nbfc"></div>
         </div>
-        <div class="u-container u-nbfc" style="position: absolute; top: 0; left: 0;">
+        <div class="u-container" style="position: absolute; top: 0; left: 0;">
           <div style="position: relative;">
             <a class="View-back" href="/malen">
               <svg role="presentation" viewBox="0 0 7 12"><path fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M6 1.75736L1.75736 6 6 10.24264" /></svg>
@@ -45,7 +46,7 @@ function goal (state, emit) {
   return html`
     <main class="View-main">
       <div class="View-hero View-hero--${goal}">
-        <div class="u-container u-nbfc">
+        <div class="u-container">
           <div class="Text Text--wide">
             <h1>
               <strong>Mål ${goal}</strong>
@@ -116,11 +117,4 @@ function meta (state) {
   }
 
   return props
-}
-
-function bytesToSize (bytes) {
-  var sizes = ['bytes', 'KB', 'MB', 'GB', 'TB']
-  if (bytes === 0) return '0 Byte'
-  var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)))
-  return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i]
 }

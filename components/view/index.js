@@ -3,6 +3,7 @@ var error = require('./error')
 var Header = require('../header')
 var footer = require('../footer')
 var Player = require('../embed/player')
+var { Predicates } = require('prismic-javascript')
 var { text, asText } = require('../base')
 
 module.exports = view
@@ -10,6 +11,20 @@ module.exports = view
 function view (render, getMeta = Function.prototype, props = {}) {
   return function (state, emit) {
     return state.prismic.getSingle('website', function (err, doc) {
+      state.prismic.getSingle('goals', function (err, doc) {
+        if (err) throw err
+        if (!doc) return null
+      })
+
+      state.prismic.get(
+        Predicates.at('document.type', 'goal'),
+        { pageSize: 100, orderings: '[my.goal.number]' },
+        function (err, res) {
+          if (err || !res) return []
+          return res.results
+        }
+      )
+
       var children, meta
       try {
         if (err) throw err

@@ -1,8 +1,6 @@
 @import "../base";
 
 /* @define Signin */
-.Signin {}
-
 .Signin-button {
   background: #23A098;
   border-radius: 2rem;

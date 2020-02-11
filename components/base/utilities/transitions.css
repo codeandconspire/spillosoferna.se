@@ -16,3 +16,20 @@
     transform: none;
   }
 }
+
+.u-slideUp {
+  opacity: 0;
+  animation: slide-up 400ms cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+}
+
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}

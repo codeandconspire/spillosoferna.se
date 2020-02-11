@@ -11,7 +11,8 @@ var {
   loader,
   resolve,
   HTTPError,
-  asElement
+  asElement,
+  bytesToSize
 } = require('../components/base')
 
 module.exports = view(goals, meta, { floating: true })
@@ -22,7 +23,7 @@ function goals (state, emit) {
 
     if (!doc) {
       return html`
-        <main class="View-main">
+        <main class="View-main u-slideDown">
           <div class="u-container">
             <div class="Text u-spaceSmall">
               <h2>${state.partial ? asText(state.partial.data.title) : loader(16)}</h2>
@@ -55,7 +56,7 @@ function goals (state, emit) {
 
     return html`
       <main class="View-main">
-        <div class="View-page">
+        <div class="View-page u-slideUp">
           <div class="u-container">
             <div class="Text Text--intro">
               <svg role="presentation" width="80" height="80" viewBox="0 0 80 80">
@@ -126,7 +127,7 @@ function goals (state, emit) {
         </div>
 
         ${doc.data.resources.length ? html`
-          <div class="View-panel View-panel--white">
+          <div class="View-panel">
             <div class="u-container u-nbfc">
               <div class="Text Text--small Text--wide">
                 <h2>${text`Material för nedladdning`}</h2>
@@ -175,11 +176,4 @@ function meta (state) {
 
     return props
   })
-}
-
-function bytesToSize (bytes) {
-  var sizes = ['bytes', 'KB', 'MB', 'GB', 'TB']
-  if (bytes === 0) return '0 Byte'
-  var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)))
-  return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i]
 }
