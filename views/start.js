@@ -101,7 +101,7 @@ function start (state, emit) {
                 if (age === 'F-6') {
                   return null
                 }
-                
+
                 var predicates = [
                   Predicates.at('my.thread.age', age),
                   Predicates.at('my.thread.include', 'Ja')
@@ -125,8 +125,10 @@ function start (state, emit) {
             </header>
             <ul class="View-treads">
               ${threads.filter(function (doc) {
-                if (state.query.age && doc.data.age !== state.query.age) {
-                  return false
+                if (doc.data.age !== 'F-6') {
+                  if (state.query.age && doc.data.age !== state.query.age) {
+                    return false
+                  }
                 }
                 return doc.data.include !== 'Nej'
               }).sort(function (doc1, doc2) {
