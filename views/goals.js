@@ -90,23 +90,13 @@ function goals (state, emit) {
             <ul class="View-goals">
               ${goals.map(function (goal) {
                 var number = goal.data.number
-                if (number === 12) {
-                  return html`
-                    <li class="View-goalsItem">
-                      <a class="View-goalsGoal" href="/malen/${number}">
-                        <img src="${goal.data.icon.url}">
-                      </a>
-                    </li>
-                  `
-                } else {
-                  return html`
-                    <li class="View-goalsItem View-goalsItem--static">
-                      <div class="View-goalsGoal">
-                        <img src="${goal.data.icon.url}">
-                      </div>
-                    </li>
-                  `
-                }
+                return html`
+                  <li class="View-goalsItem">
+                    <a class="View-goalsGoal" href="/malen/${number}">
+                      <img src="${goal.data.icon.url}">
+                    </a>
+                  </li>
+                `
               })}
             </ul>
           </div>

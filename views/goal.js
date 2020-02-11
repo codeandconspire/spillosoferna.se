@@ -76,11 +76,7 @@ function goal (state, emit) {
             </div>
             <div class="View-panelAside">
               ${download ? card({
-                image: download.file_image && download.file_image.url ? img(download.file_image, { sizes: '35rem' }, {
-                  sizes: [400, 800, 1000, 1200]
-                }) : img(doc.data.image, { sizes: '35rem' }, {
-                  sizes: [400, 800, 1000, 1200]
-                }),
+                goal: goal,
                 file: true,
                 title: download.file_title ? asText(download.file_title) : download.file.name,
                 link: download.file.url,

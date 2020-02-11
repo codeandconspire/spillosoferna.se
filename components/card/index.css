@@ -36,6 +36,25 @@
   transition: background 125ms var(--ease);
 }
 
+.Card--file.Card--goal1 .Card-panel { border-top: 0.5rem solid rgba(var(--color-goal-1), 0.8); }
+.Card--file.Card--goal2 .Card-panel { border-top: 0.5rem solid rgba(var(--color-goal-2), 0.8); }
+.Card--file.Card--goal3 .Card-panel { border-top: 0.5rem solid rgba(var(--color-goal-3), 0.8); }
+.Card--file.Card--goal4 .Card-panel { border-top: 0.5rem solid rgba(var(--color-goal-4), 0.8); }
+.Card--file.Card--goal5 .Card-panel { border-top: 0.5rem solid rgba(var(--color-goal-5), 0.8); }
+.Card--file.Card--goal6 .Card-panel { border-top: 0.5rem solid rgba(var(--color-goal-6), 0.8); }
+.Card--file.Card--goal7 .Card-panel { border-top: 0.5rem solid rgba(var(--color-goal-7), 0.8); }
+.Card--file.Card--goal8 .Card-panel { border-top: 0.5rem solid rgba(var(--color-goal-8), 0.8); }
+.Card--file.Card--goal9 .Card-panel { border-top: 0.5rem solid rgba(var(--color-goal-9), 0.8); }
+.Card--file.Card--goal10 .Card-panel { border-top: 0.5rem solid rgba(var(--color-goal-10), 0.8); }
+.Card--file.Card--goal11 .Card-panel { border-top: 0.5rem solid rgba(var(--color-goal-11), 0.8); }
+.Card--file.Card--goal12 .Card-panel { border-top: 0.5rem solid rgba(var(--color-goal-12), 0.8); }
+.Card--file.Card--goal13 .Card-panel { border-top: 0.5rem solid rgba(var(--color-goal-13), 0.8); }
+.Card--file.Card--goal14 .Card-panel { border-top: 0.5rem solid rgba(var(--color-goal-14), 0.8); }
+.Card--file.Card--goal15 .Card-panel { border-top: 0.5rem solid rgba(var(--color-goal-15), 0.8); }
+.Card--file.Card--goal16 .Card-panel { border-top: 0.5rem solid rgba(var(--color-goal-16), 0.8); }
+.Card--file.Card--goal17 .Card-panel { border-top: 0.5rem solid rgba(var(--color-goal-17), 0.8); }
+
+
 .Card-panel {
   position: relative;
   background-color: rgba(var(--loading-color-solid));
@@ -62,7 +81,6 @@
 .Card--file .Card-panel {
   background: none;
 }
-
 
 .Card-panel--image::before {
   content: "";
