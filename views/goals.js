@@ -132,12 +132,12 @@ function goals (state, emit) {
               <div class="Text Text--small Text--wide">
                 <h2>${text`Material för nedladdning`}</h2>
               </div>
-              <div class="View-treads View-treads--wide">
+              <div class="View-threads View-threads--wide">
                 ${doc.data.resources.map(function (download) {
                   var hasImage = (download.file_image && download.file_image.url)
 
                   return html`
-                    <div class="View-tread">
+                    <div class="View-thread">
                       ${card({
                         image: hasImage ? img(download.file_image, { sizes: '35rem' }, {
                           sizes: [400, 800, 1000, 1200]

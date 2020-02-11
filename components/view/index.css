@@ -145,23 +145,23 @@
  * Thread grid
  */
 
-.View-treads {
+.View-threads {
   display: flex;
   flex-wrap: wrap;
   margin: 0.75rem -0.5rem -0.5rem;
 }
 
-.View-tread {
+.View-thread {
   padding: 0.5rem;
   flex: 0 0 100%;
 }
 
 @media (min-width: 500px) {
-  .View-treads {
+  .View-threads {
     margin: 0.75rem -0.75rem -0.75rem;
   }
 
-  .View-tread {
+  .View-thread {
     flex: 0 0 50%;
     padding: 0.75rem;
     display: flex;
@@ -169,11 +169,19 @@
 }
 
 @media (min-width: 1000px) {
-  .View-tread {
+  .View-thread {
     flex: 0 0 25%;
   }
 
-  .View-treads--wide .View-tread {
+  .View-thread--large {
+    flex: 0 0 50%;
+  }
+
+  .View-thread--large .Card-panel::before { 
+    padding-top: 29.2%;
+  }
+
+  .View-threads--wide .View-thread {
     flex: 0 0 calc(100% / 3);
   }
 }

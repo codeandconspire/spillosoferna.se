@@ -123,7 +123,7 @@ function start (state, emit) {
                 })
               }).filter(Boolean))}
             </header>
-            <ul class="View-treads">
+            <ul class="View-threads">
               ${threads.filter(function (doc) {
                 if (doc.data.age !== 'F-6') {
                   if (state.query.age && doc.data.age !== state.query.age) {
@@ -131,18 +131,19 @@ function start (state, emit) {
                   }
                 }
                 return doc.data.include !== 'Nej'
-              }).sort(function (doc1, doc2) {
-                var doc1goal = doc1.data.goal.data ? doc1.data.goal.data.number : 0
-                var doc2goal = doc2.data.goal.data ? doc2.data.goal.data.number : 0
-                return doc1goal - doc2goal
-              }).map((thread) => html`
-                <li class="View-tread">
+              }).sort(function (docPrev, docNext) {
+                var docPrevGoal = docPrev.data.goal.data ? docPrev.data.goal.data.number : 0
+                var docNextGoal = docNext.data.goal.data ? docNext.data.goal.data.number : 0
+                return docPrevGoal - docNextGoal
+              }).map((thread, index) => html`
+                <li class="View-thread ${index === 0 ? 'View-thread--large' : ''}">
                   ${card({
                     image: img(thread.data.image, { sizes: '35rem' }, {
                       sizes: [400, 800, 1000, 1200]
                     }),
                     disabled: !thread.data.published,
                     title: thread.data.title ? asText(thread.data.title) : text`Namnlös utmaning`,
+                    prefix: index === 0 ? text`Börja här` : false,
                     goal: thread.data.goal.data ? thread.data.goal.data.number : null,
                     link: resolve(thread),
                     body: html`

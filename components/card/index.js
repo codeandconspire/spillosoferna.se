@@ -19,7 +19,7 @@ function card (props) {
         ${props.goal ? html`
           <div class="Card-goal">${props.goal}</div>
         ` : null}
-        <div class="Card-title">${props.title}</div>
+        <div class="Card-title">${props.prefix ? html`<span class="Card-prefix">${props.prefix}</span>` : null}${props.title}</div>
         <div class="Card-body">${props.body}</div>
       </div>
       ${props.link && !props.disabled ? html`<a ${args} class="Card-link" href="${props.link}">${text`Visa mer`}</a>` : null}
