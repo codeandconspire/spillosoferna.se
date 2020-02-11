@@ -13,6 +13,12 @@
   transition: box-shadow 150ms var(--ease-out);
 }
 
+.Card.is-disabled {
+  opacity: 0.3;
+  pointer-events: none;
+  box-shadow: none !important;
+}
+
 .Card:hover {
   transition: box-shadow 150ms var(--ease);
   box-shadow: 0 12px 44px rgba(0, 0, 0, 0.2);
@@ -34,6 +40,24 @@
   position: relative;
   background-color: rgba(var(--loading-color-solid));
 }
+
+.Card--goal1 .Card-panel { background: rgba(var(--color-goal-1), 0.8); }
+.Card--goal2 .Card-panel { background: rgba(var(--color-goal-2), 0.8); }
+.Card--goal3 .Card-panel { background: rgba(var(--color-goal-3), 0.8); }
+.Card--goal4 .Card-panel { background: rgba(var(--color-goal-4), 0.8); }
+.Card--goal5 .Card-panel { background: rgba(var(--color-goal-5), 0.8); }
+.Card--goal6 .Card-panel { background: rgba(var(--color-goal-6), 0.8); }
+.Card--goal7 .Card-panel { background: rgba(var(--color-goal-7), 0.8); }
+.Card--goal8 .Card-panel { background: rgba(var(--color-goal-8), 0.8); }
+.Card--goal9 .Card-panel { background: rgba(var(--color-goal-9), 0.8); }
+.Card--goal10 .Card-panel { background: rgba(var(--color-goal-10), 0.8); }
+.Card--goal11 .Card-panel { background: rgba(var(--color-goal-11), 0.8); }
+.Card--goal12 .Card-panel { background: rgba(var(--color-goal-12), 0.8); }
+.Card--goal13 .Card-panel { background: rgba(var(--color-goal-13), 0.8); }
+.Card--goal14 .Card-panel { background: rgba(var(--color-goal-14), 0.8); }
+.Card--goal15 .Card-panel { background: rgba(var(--color-goal-15), 0.8); }
+.Card--goal16 .Card-panel { background: rgba(var(--color-goal-16), 0.8); }
+.Card--goal17 .Card-panel { background: rgba(var(--color-goal-17), 0.8); }
 
 .Card--file .Card-panel {
   background: none;
@@ -60,7 +84,7 @@
   right: 1rem;
   width: 2.8rem;
   height: 2.8rem;
-  background: red;
+  background: #000;
   color: #fff;
   display: flex;
   align-items: center;
@@ -70,23 +94,23 @@
   user-select: none;
 }
 
-.Card-goal--1 { background: rgb(var(--color-goal-1)); }
-.Card-goal--2 { background: rgb(var(--color-goal-2)); }
-.Card-goal--3 { background: rgb(var(--color-goal-3)); }
-.Card-goal--4 { background: rgb(var(--color-goal-4)); }
-.Card-goal--5 { background: rgb(var(--color-goal-5)); }
-.Card-goal--6 { background: rgb(var(--color-goal-6)); }
-.Card-goal--7 { background: rgb(var(--color-goal-7)); }
-.Card-goal--8 { background: rgb(var(--color-goal-8)); }
-.Card-goal--9 { background: rgb(var(--color-goal-9)); }
-.Card-goal--10 { background: rgb(var(--color-goal-10)); }
-.Card-goal--11 { background: rgb(var(--color-goal-11)); }
-.Card-goal--12 { background: rgb(var(--color-goal-12)); }
-.Card-goal--13 { background: rgb(var(--color-goal-13)); }
-.Card-goal--14 { background: rgb(var(--color-goal-14)); }
-.Card-goal--15 { background: rgb(var(--color-goal-15)); }
-.Card-goal--16 { background: rgb(var(--color-goal-16)); }
-.Card-goal--17 { background: rgb(var(--color-goal-17)); }
+.Card--goal1 .Card-goal { background: rgb(var(--color-goal-1)); }
+.Card--goal2 .Card-goal { background: rgb(var(--color-goal-2)); }
+.Card--goal3 .Card-goal { background: rgb(var(--color-goal-3)); }
+.Card--goal4 .Card-goal { background: rgb(var(--color-goal-4)); }
+.Card--goal5 .Card-goal { background: rgb(var(--color-goal-5)); }
+.Card--goal6 .Card-goal { background: rgb(var(--color-goal-6)); }
+.Card--goal7 .Card-goal { background: rgb(var(--color-goal-7)); }
+.Card--goal8 .Card-goal { background: rgb(var(--color-goal-8)); }
+.Card--goal9 .Card-goal { background: rgb(var(--color-goal-9)); }
+.Card--goal10 .Card-goal { background: rgb(var(--color-goal-10)); }
+.Card--goal11 .Card-goal { background: rgb(var(--color-goal-11)); }
+.Card--goal12 .Card-goal { background: rgb(var(--color-goal-12)); }
+.Card--goal13 .Card-goal { background: rgb(var(--color-goal-13)); }
+.Card--goal14 .Card-goal { background: rgb(var(--color-goal-14)); }
+.Card--goal15 .Card-goal { background: rgb(var(--color-goal-15)); }
+.Card--goal16 .Card-goal { background: rgb(var(--color-goal-16)); }
+.Card--goal17 .Card-goal { background: rgb(var(--color-goal-17)); }
 
 
 .Card-panel--image img {

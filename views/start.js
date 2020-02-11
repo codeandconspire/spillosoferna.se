@@ -141,6 +141,7 @@ function start (state, emit) {
                     image: img(thread.data.image, { sizes: '35rem' }, {
                       sizes: [400, 800, 1000, 1200]
                     }),
+                    disabled: !thread.data.published,
                     title: thread.data.title ? asText(thread.data.title) : text`Namnlös utmaning`,
                     goal: thread.data.goal.data ? thread.data.goal.data.number : null,
                     link: resolve(thread),

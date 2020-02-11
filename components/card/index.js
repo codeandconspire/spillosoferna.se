@@ -11,18 +11,18 @@ function card (props) {
   }
 
   return html`
-    <div class="Card ${props.file ? 'Card--file' : ''}">
+    <div class="Card Card--goal${props.goal} ${props.file ? 'Card--file' : ''} ${props.disabled ? 'is-disabled' : ''}">
       <div class="Card-panel ${props.image ? 'Card-panel--image' : ''}">
         ${props.image ? props.image : props.panel}
       </div>
       <div class="Card-content">
         ${props.goal ? html`
-          <div class="Card-goal Card-goal--${props.goal}">${props.goal}</div>
+          <div class="Card-goal">${props.goal}</div>
         ` : null}
         <div class="Card-title">${props.title}</div>
         <div class="Card-body">${props.body}</div>
       </div>
-      ${props.link ? html`<a ${args} class="Card-link" href="${props.link}">${text`Visa mer`}</a>` : null}
+      ${props.link && !props.disabled ? html`<a ${args} class="Card-link" href="${props.link}">${text`Visa mer`}</a>` : null}
     </div>
   `
 }

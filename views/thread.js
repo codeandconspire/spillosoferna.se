@@ -51,6 +51,10 @@ function thread (state, emit) {
     }
 
     var special = doc.data.intro === 'Ja'
+    var hasFAQ = doc.data.faq.length && doc.data.faq[0].faq_title.length
+    var hasPlan = doc.data.rules_1 && doc.data.rules_1.length
+    var hasGallery = doc.data.inspo.length && doc.data.inspo[0].image && doc.data.inspo[0].image.url
+    var hasResources = doc.data.resources.length && doc.data.resources[0].file && doc.data.resources[0].file.url
 
     return html`
       <main class="View-main">
@@ -77,16 +81,16 @@ function thread (state, emit) {
         } : null, doc.data.lessons.length ? {
           id: 'lessons',
           text: special ? text`Moment` : text`Arbetspass`
-        } : null, doc.data.resources.length ? {
+        } : null, hasResources ? {
           id: 'material',
           text: text`Material`
-        } : null, doc.data.inspo.length ? {
+        } : null, hasGallery ? {
           id: 'gallery',
           text: text`Inspiration`
-        } : null, doc.data.rules_1 && doc.data.rules_1.length ? {
+        } : null, hasPlan ? {
           id: 'rules',
           text: text`Läroplan`
-        } : null, doc.data.faq.length ? {
+        } : null, hasFAQ ? {
           id: 'faq',
           text: text`Vanliga frågor`
         } : null].filter(Boolean))}
@@ -149,9 +153,9 @@ function thread (state, emit) {
                 extra: slice.primary.extra,
                 subtitle: slice.primary.label,
                 time: slice.primary.duration,
-                main: slice.primary.description.length > 8 ? asElement(slice.primary.description, resolve, serialize) : null,
+                main: slice.primary.description && asText(slice.primary.description) && asText(slice.primary.description).length > 8 ? asElement(slice.primary.description, resolve, serialize) : null,
                 preparation: slice.primary.preparation.length ? asElement(slice.primary.preparation, resolve, serialize) : null,
-                file: doc.data.resources.length ? doc.data.resources[0] : null,
+                file: hasResources ? doc.data.resources[0] : null,
                 steps: slice.items.map(function (step) {
                   return {
                     body: asElement(step.text, resolve, serialize),
@@ -163,7 +167,7 @@ function thread (state, emit) {
           </div>
         ` : null}
 
-        ${doc.data.resources.length ? html`
+        ${hasResources ? html`
           <div class="View-panel View-panel--white" id="material">
             <div class="u-container u-nbfc">
               <div class="Text Text--small Text--wide">
@@ -197,7 +201,7 @@ function thread (state, emit) {
           </div>
         ` : null}
 
-        ${doc.data.inspo.length ? html`
+        ${hasGallery ? html`
           <div class="View-panel View-panel--white" id="gallery">
             <div class="u-container u-nbfc" id="thread-gallery">
               ${gallery({ title: text`Inspiration`, items: doc.data.inspo })}
@@ -205,7 +209,7 @@ function thread (state, emit) {
           </div>
         ` : null}
 
-        ${doc.data.rules_1 && doc.data.rules_1.length ? html`
+        ${hasPlan ? html`
           <div class="View-panel View-panel--white" id="rules">
             <div class="u-container u-nbfc">
               <div class="Text Text--small Text--wide">
@@ -227,7 +231,7 @@ function thread (state, emit) {
           </div>
         ` : null}
 
-        ${doc.data.faq.length ? html`
+        ${hasFAQ ? html`
           <div class="View-panel View-panel--white" id="faq">
             <div class="u-container u-nbfc">
               ${accordion({
