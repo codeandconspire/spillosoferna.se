@@ -138,9 +138,10 @@ function start (state, emit) {
               }).map((thread, index) => html`
                 <li class="View-thread ${index === 0 ? 'View-thread--large' : ''}">
                   ${card({
-                    image: img(thread.data.image, { sizes: '35rem' }, {
+                    image: thread.data.image.url ? img(thread.data.image, { sizes: '35rem' }, {
                       sizes: [400, 800, 1000, 1200]
-                    }),
+                    }) : false,
+                    plate: !thread.data.published,
                     disabled: !thread.data.published,
                     title: thread.data.title ? asText(thread.data.title) : text`Namnlös utmaning`,
                     prefix: index === 0 ? text`Börja här` : false,

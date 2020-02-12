@@ -15,6 +15,9 @@ function card (props) {
       <div class="Card-panel ${props.image ? 'Card-panel--image' : ''}">
         ${props.image ? props.image : props.panel}
       </div>
+      ${props.plate ? html`
+        <div class="Card-panel Card-panel--image"></div>
+      ` : null}
       <div class="Card-content">
         ${props.goal && !props.file ? html`
           <div class="Card-goal">${props.goal}</div>

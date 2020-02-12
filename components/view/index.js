@@ -8,6 +8,10 @@ var { text, asText } = require('../base')
 
 module.exports = view
 
+if (typeof window !== 'undefined') {
+  require('focus-visible')
+}
+
 function view (render, getMeta = Function.prototype, props = {}) {
   return function (state, emit) {
     return state.prismic.getSingle('website', function (err, doc) {
