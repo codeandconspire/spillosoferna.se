@@ -7,12 +7,15 @@
   position: relative;
   overflow: hidden;
   border-radius: 0.625rem;
-  box-shadow: 0 2px 44px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 150ms var(--ease-out);
   user-select: none;
 }
 
-.Featured:hover {
+.Featured.is-expanded {
+  box-shadow: 0 2px 44px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 150ms var(--ease-out);
+}
+
+.Featured.is-expanded:hover {
   transition: box-shadow 150ms var(--ease);
   box-shadow: 0 12px 44px rgba(0, 0, 0, 0.2);
 }

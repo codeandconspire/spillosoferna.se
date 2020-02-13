@@ -12,11 +12,14 @@ function card (props) {
 
   return html`
     <div class="Card Card--goal${props.goal} ${props.file ? 'Card--file' : ''} ${props.disabled ? 'is-disabled' : ''}">
-      <div class="Card-panel ${props.image ? 'Card-panel--image' : ''}">
-        ${props.image ? props.image : props.panel}
-      </div>
-      ${props.plate ? html`
-        <div class="Card-panel Card-panel--image"></div>
+      ${props.image ? html`
+        <div class="Card-panel ${props.image ? 'Card-panel--image' : ''}">
+          ${props.image ? props.image : props.panel}
+          ${props.disabled ? html`<span class="Card-warning">Kommer snart</span>` : null}
+        </div>
+      ` : null}  
+      ${props.plate && !props.image ? html`
+        <div class="Card-panel Card-panel--image"><span class="Card-warning">Kommer snart</span></div>
       ` : null}
       <div class="Card-content">
         ${props.goal && !props.file ? html`

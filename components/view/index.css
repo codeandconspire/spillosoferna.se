@@ -187,13 +187,13 @@
 }
 
 .View-abstract {
-  display: none;
+  display: none !important;
 }
 
 @media (min-width: 1000px) {
   .View-abstract {
     display: block;
-    position: fixed;
+    position: absolute;
     top: 17vh;
     left: -30vh;
     pointer-events: none;
@@ -209,6 +209,34 @@
     top: 0;
     transform: rotate(-30deg);
     right: -29vh;
+  }
+}
+
+.View-art {
+  position: fixed;
+  bottom: 0;
+  right: -3vw;
+  transform: translate(0, 25.5%);
+  width: auto;
+  height: 180vh;
+  z-index: -1;
+  pointer-events: none;
+  user-select: none;
+  display: none;
+}
+
+@media (min-width: 1000px) {
+  .View-art {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    right: -3vw;
+    transform: translate(0, 25.5%);
+    width: auto;
+    height: 180vh;
+    z-index: -1;
+    pointer-events: none;
+    user-select: none;
   }
 }
 
