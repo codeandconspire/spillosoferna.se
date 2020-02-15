@@ -37,6 +37,13 @@
       "POLYFILL_FEATURES": "es2015,es2016,es2017"
     }
   },
+  "postcss": {
+    "plugins": {
+      "postcss-focus-visible": {
+        "preserve": false
+      }
+    }
+  },
   "standard": {
     "parser": "babel-eslint"
   },

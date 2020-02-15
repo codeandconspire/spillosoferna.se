@@ -2,6 +2,10 @@
 
 /* @define Lesson */
 
+.Lesson {
+  margin-top: 2rem;
+}
+
 .Lesson-wrap {
   background: #fff;
   padding: 1.5rem 2rem;
@@ -111,8 +115,10 @@
   display: none;
 }
 
+.Lesson-wrap[open] .Lesson-content,
 .Lesson-checkbox:checked ~ .Lesson-wrap .Lesson-content {
-  display: block;
+  display: flex;
+  flex-wrap: wrap-reverse;
 }
 
 @media (min-width: 1000px) {
@@ -191,11 +197,13 @@
  */
 
 .Lesson-aside {
-  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
 }
 
 @media (min-width: 1000px) {
+  .Lesson-wrap[open] .Lesson-content,
   .Lesson-checkbox:checked ~ .Lesson-wrap .Lesson-content {
+    flex-wrap: nowrap;
     display: flex;
   }
 
@@ -203,5 +211,6 @@
     margin-left: 5rem;
     flex: 2 0 25%;
     margin-top: 0;
+    margin-bottom: 0;
   }
 }

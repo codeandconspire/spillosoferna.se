@@ -128,6 +128,7 @@ function start (state, emit) {
                     selected: selected,
                     onclick: function (event) {
                       emit('pushState', event.currentTarget.href, { persistScroll: true })
+                      document.cookie = `spillo:age=${encodeURIComponent(age)}; max-age=${60 * 60 * 24 * 365}`
                       event.preventDefault()
                     },
                     children: text`Grade ${age}`

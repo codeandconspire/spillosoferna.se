@@ -156,7 +156,7 @@ function thread (state, emit) {
                 time: slice.primary.duration,
                 main: slice.primary.description && asText(slice.primary.description) && asText(slice.primary.description).length > 8 ? asElement(slice.primary.description, resolve, serialize) : null,
                 preparation: slice.primary.preparation.length ? asElement(slice.primary.preparation, resolve, serialize) : null,
-                file: hasResources ? doc.data.resources[0] : null,
+                file: slice.primary.resource && slice.primary.resource.url ? slice.primary.resource : false,
                 id: 'lesson-' + index,
                 steps: slice.items.map(function (step) {
                   return {

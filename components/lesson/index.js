@@ -74,7 +74,7 @@ function lesson (props) {
                   <h3>${text`Material`}</h3>
                 </div>
                 <div class="Text Text--static">
-                  <a class="Text-download" href="${props.file.file.url}" download>
+                  <a class="Text-download" href="${props.file.url}" download>
                     <div class="Text-downloadIcon">
                       <svg viewBox="0 0 14 15">
                         <defs>
@@ -96,8 +96,8 @@ function lesson (props) {
                       </svg>
                     </div>
                     <div>
-                      <strong>Ladda ner zip</strong>
-                      <span>${bytesToSize(props.file.file.size)}</span>
+                      <strong>Det ni behöver för passet</strong>
+                      <span>${bytesToSize(props.file.size)}</span>
                     </div>
                   </a>
                 </div>

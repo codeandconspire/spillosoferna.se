@@ -12,7 +12,7 @@ function card (props) {
 
   return html`
     <div class="Card Card--goal${props.goal} ${props.file ? 'Card--file' : ''} ${props.disabled ? 'is-disabled' : ''}">
-      ${props.image ? html`
+      ${props.image || props.panel ? html`
         <div class="Card-panel ${props.image ? 'Card-panel--image' : ''}">
           ${props.image ? props.image : props.panel}
           ${props.disabled ? html`<span class="Card-warning">Kommer snart</span>` : null}
