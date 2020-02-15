@@ -32,7 +32,7 @@ module.exports = class Header extends Component {
       <div class="Header">
         <header class="Header-bar" id="${id}">
           ${home ? html`
-            <a class="Header-logo" href="/">
+            <span class="Header-logo">
               <span class="u-hiddenVisually">${text`Till startsidan`}</span>
               <svg role="presentation" viewBox="0 0 1410 152">
                 <g fill="none" fill-rule="evenodd">
@@ -56,7 +56,7 @@ module.exports = class Header extends Component {
                   <path fill="#00689D" d="M439.0798 44.9708c2.659-1.994 5.484-3.822 8.476-5.152l-10.969-28.418c-6.647 2.825-12.63 6.481-17.948 10.968l20.441 22.602z"/>
                 </g>
               </svg>
-            </a>
+            </span>
           ` : html`
             <a class="Header-back" href="/" onclick=${onclick}>
               <svg role="presentation" viewBox="0 0 7 12">

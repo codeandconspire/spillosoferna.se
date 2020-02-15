@@ -16,8 +16,10 @@ function user (state, emitter) {
     }).then(function (user) {
       state.user = user
       emitter.emit('render')
-    }).catch(function () {
-      window.location.assign('/')
+    }).catch(function (err) {
+      console.log(err)
+      // Wont work in IE
+      // window.location.assign('/start')
     })
   })
 }

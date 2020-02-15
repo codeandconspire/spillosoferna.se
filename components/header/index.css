@@ -101,14 +101,7 @@
   height: 3.2rem;
   margin: 0.5rem calc(var(--Header-margin) - 1rem) -1rem;
   padding: 1rem;
-  transition: opacity 150ms var(--ease-out);
 }
-
-.Header-logo:active {
-  opacity: 0.5;
-  transition: none;
-}
-
 .Header-logo svg {
   display: block;
   width: auto;
