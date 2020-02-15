@@ -19,12 +19,12 @@ module.exports = class Dropdown extends Component {
     var self = this
 
     return html`
-      <details class="Dropdown" id="${this.local.id}" open=${this.local.expanded}>
-        <summary class="Dropdown-heading" onclick=${onclick}>${heading}</summary>
+      <div class="Dropdown" id="${this.local.id}" open=${this.local.expanded}>
+        <div class="Dropdown-heading" onclick=${onclick}>${heading}</div>
         <div class="Dropdown-content">
           ${chidren}
         </div>
-      </details>
+      </div>
     `
 
     function onclick (event) {

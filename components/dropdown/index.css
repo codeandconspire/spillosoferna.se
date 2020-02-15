@@ -36,7 +36,8 @@
   right: 0;
 }
 
-.Dropdown[open] .Dropdown-heading::after {
+.Dropdown[open] .Dropdown-heading::after,
+.Dropdown.is-open .Dropdown-heading::after {
   transform: rotate(-45deg);
   top: 0;
 }
@@ -47,7 +48,7 @@
 
 .Dropdown-content {
   display: none;
-  min-width: 100%;
+  min-width: calc(100% + 1.9rem);
   padding: 2.7rem 1rem 0.8rem;
   position: absolute;
   left: -1rem;
@@ -80,6 +81,7 @@
   }
 }
 
-.Dropdown[open] .Dropdown-content {
+.Dropdown[open] .Dropdown-content,
+.Dropdown.is-open .Dropdown-content {
   display: block;
 }

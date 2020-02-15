@@ -135,7 +135,8 @@ function thread (state, emit) {
             ${lesson({
               title: asText(doc.data.facts_title) || text`Fakta`,
               subtitle: text`Inför arbetspassen`,
-              main: asElement(doc.data.facts, resolve, serialize)
+              main: asElement(doc.data.facts, resolve, serialize),
+              id: 'facts-box'
             })}
           </div>
         ` : null}
@@ -146,7 +147,7 @@ function thread (state, emit) {
               <h2>${special ? text`Moment` : text`Arbetspass`}</h2>
             </div>
 
-            ${doc.data.lessons.map(function (slice) {
+            ${doc.data.lessons.map(function (slice, index) {
               if (slice.slice_type !== 'lesson') return null
               return lesson({
                 title: asText(slice.primary.name) || (special ? text`Moment` : text`Arbetspass`),
@@ -156,6 +157,7 @@ function thread (state, emit) {
                 main: slice.primary.description && asText(slice.primary.description) && asText(slice.primary.description).length > 8 ? asElement(slice.primary.description, resolve, serialize) : null,
                 preparation: slice.primary.preparation.length ? asElement(slice.primary.preparation, resolve, serialize) : null,
                 file: hasResources ? doc.data.resources[0] : null,
+                id: 'lesson-' + index,
                 steps: slice.items.map(function (step) {
                   return {
                     body: asElement(step.text, resolve, serialize),
@@ -236,6 +238,7 @@ function thread (state, emit) {
             <div class="u-container u-nbfc">
               ${accordion({
                 title: text`Vanliga frågor`,
+                id: 'thread-faq',
                 items: doc.data.faq.map(function (item) {
                   return {
                     title: asText(item.faq_title),

@@ -183,6 +183,7 @@ function start (state, emit) {
           <div class="u-container u-nbfc">
             ${accordion({
               title: text`Vanliga frågor`,
+              id: 'start-faq',
               items: doc.data.faq.map(function (item) {
                 return {
                   title: asText(item.faq_title),

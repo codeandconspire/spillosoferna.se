@@ -106,6 +106,7 @@ function goals (state, emit) {
           <div class="u-container u-nbfc">
             ${accordion({
               title: text`Vanliga frågor`,
+              id: 'goal-faq',
               items: doc.data.faq.map(function (item) {
                 return {
                   title: asText(item.faq_title),

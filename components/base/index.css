@@ -23,7 +23,7 @@
   overflow-x: hidden; /* 2 */
   cursor: default; /* 4 */
   font-family: var(--document-font-family);
-  background: rgb(var(--document-background));
+  background: rgb(255, 229, 242);
   color: rgb(var(--document-color));
   font-size: 100%;
   line-height: var(--document-line-height);

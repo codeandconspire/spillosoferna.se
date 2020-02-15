@@ -15,13 +15,19 @@ function accordion (props) {
         </div>
       ` : null}
       <div class="Accordion-items">
-        ${props.items.map((item) => (item.title && item.body) ? html`
-          <details class="Accordion-details">
-            <summary class="Accordion-summary">${item.title}</summary>
-            <div class="Text">
-              ${item.body}
-            </div>
-          </details>
+        ${props.items.map((item, index) => (item.title && item.body) ? html`
+          <div>
+            <input type="checkbox" id="${props.id}-${index}" class="Accordion-checkbox" hidden>
+            <details class="Accordion-details">
+              <summary class="Accordion-summary">
+                ${item.title}
+                <label for="${props.id}-${index}" class="Accordian-toggle"></label>
+              </summary>
+              <div class="Accordion-body Text">
+                ${item.body}
+              </div>
+            </details>
+          </div>
         ` : null)}
       </div>
     </section>

@@ -24,8 +24,6 @@ module.exports = class Header extends Component {
     var hideGoals = this.local.href === '' || this.local.href === '/om' || this.local.href === '/villkor'
 
     function onclick (event) {
-      console.log('click')
-      console.log(that.state.prev)
       that.emit('pushState', that.state.prev, { persistScroll: false })
       event.preventDefault()
     }

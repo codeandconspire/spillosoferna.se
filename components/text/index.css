@@ -299,12 +299,15 @@
   transition: background 125ms var(--ease) !important;
 }
 
+.Text-downloadIcon {
+  border-right: 1px solid #DADADA;
+  margin-right: 1rem;
+}
+
 .Text-download svg {
   width: 1.2rem;
   height: 1.2rem;
-  padding: 1.2rem 1.1rem;
-  border-right: 1px solid #DADADA;
-  margin-right: 1rem;
+  margin: 1.2rem 1.1rem;
   display: block;
 }
 
