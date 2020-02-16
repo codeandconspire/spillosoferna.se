@@ -54,7 +54,7 @@ function thread (state, emit) {
     var hasFAQ = doc.data.faq.length && doc.data.faq[0].faq_title.length
     var hasPlan = doc.data.rules_1 && doc.data.rules_1.length
     var hasGallery = doc.data.inspo.length && doc.data.inspo[0].image && doc.data.inspo[0].image.url
-    var hasResources = doc.data.resources.length && doc.data.resources[0].file && doc.data.resources[0].file.url
+    var hasResources = (doc.data.resources.length && doc.data.resources[0].file && doc.data.resources[0].file.url) || doc.data.movies || doc.data.music
 
     return html`
       <main class="View-main">
@@ -83,7 +83,7 @@ function thread (state, emit) {
           text: special ? text`Moment` : text`Arbetspass`
         } : null, hasResources ? {
           id: 'material',
-          text: text`Material`
+          text: text`Material & media`
         } : null, hasGallery ? {
           id: 'gallery',
           text: text`Inspiration`
@@ -173,7 +173,7 @@ function thread (state, emit) {
           <div class="View-panel View-panel--white" id="material">
             <div class="u-container u-nbfc">
               <div class="Text Text--small Text--wide">
-                <h2>${text`Material för nedladdning`}</h2>
+                <h2>${text`Material & media`}</h2>
               </div>
               <div class="View-threads View-threads--wide">
                 ${doc.data.resources.map(function (download) {
@@ -198,6 +198,24 @@ function thread (state, emit) {
                     </div>
                   `
                  })}
+                 ${doc.data.music ? html`
+                  <div class="View-thread">
+                    ${card({
+                      title: 'musik',
+                      plain: true,
+                      body: html`<div class="Text">${asElement(doc.data.music, resolve, serialize)}</div>`
+                    })}
+                  </div>
+                ` : null}
+                ${doc.data.movies ? html`
+                  <div class="View-thread">
+                    ${card({
+                      title: 'filmer',
+                      plain: true,
+                      body: html`<div class="Text">${asElement(doc.data.movies, resolve, serialize)}</div>`
+                    })}
+                  </div>
+                ` : null}
               </div>
             </div>
           </div>

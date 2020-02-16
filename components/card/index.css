@@ -169,6 +169,8 @@
   margin-right: 0.7rem;
   border-radius: 0.2em;
   font-size: 0.9em;
+  white-space: nowrap;
+  display: inline-block;
 }
 
 .Card-body {

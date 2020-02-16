@@ -96,7 +96,7 @@ function lesson (props) {
                       </svg>
                     </div>
                     <div>
-                      <strong>Det ni behöver för passet</strong>
+                      <strong>Materialet ni behöver</strong>
                       <span>${bytesToSize(props.file.size)}</span>
                     </div>
                   </a>

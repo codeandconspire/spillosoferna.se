@@ -2,10 +2,10 @@ var html = require('choo/html')
 
 module.exports = pills
 
-function pills (items) {
+function pills (props) {
   return html`
-    <ol class="Pills">
-      ${items.map(function (item) {
+    <ol class="Pills ${props.large ? 'Pills--large' : ''}">
+      ${props.items.map(function (item) {
         var attrs = Object.assign({
           class: `Pills-item ${item.selected ? 'is-selected' : ''}`
         }, item)
