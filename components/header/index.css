@@ -146,7 +146,7 @@
   margin: 0 -0.25rem 0 0.75em;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   .Header-gg {
     font-size: 0;
   }

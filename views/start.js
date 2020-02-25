@@ -61,6 +61,8 @@ function start (state, emit) {
       ? threads.find((thread) => thread.id === doc.data.featured_thread.id)
       : null
 
+    var selectedAge = state.selectedage ? state.selectedage : state.query.age
+
     var options = AGES.map(function (age) {
       if (age === 'F-6') {
         return null
@@ -72,7 +74,7 @@ function start (state, emit) {
       ]
       return state.prismic.get(predicates, { pageSize: 1 }, function (err, res) {
         if (err || !res || !res.results_size) return null
-        var selected = age === state.query.age
+        var selected = age === selectedAge
         return {
           href: selected
             ? state.href
@@ -80,7 +82,7 @@ function start (state, emit) {
           selected: selected,
           onclick: function (event) {
             emit('pushState', event.currentTarget.href, { persistScroll: true })
-            document.cookie = `spillo:age=${encodeURIComponent(age)}; max-age=${60 * 60 * 24 * 365}`
+            state.selectedage = encodeURIComponent(age)
             event.preventDefault()
           },
           children: text`Grade ${age}`
@@ -129,9 +131,9 @@ function start (state, emit) {
         </div>
 
         <section class="View-panel View-panel--divided">
-          <div class="u-container">
+          <div class="u-container" style="overflow: hidden; padding-bottom: 2rem;">
             <div class="View-threadsWrap">
-              ${!state.query.age ? html`
+              ${!selectedAge ? html`
                 <div class="View-alpha"></div>
                 <div class="View-overlay">
                   <div class="Text">
@@ -171,7 +173,7 @@ function start (state, emit) {
                   </svg>
                 </div>
               ` : null}
-              <div class="View-threadsContent ${!state.query.age ? 'is-overlayed' : ''}">
+              <div class="View-threadsContent ${!selectedAge ? 'is-overlayed' : ''}">
                 <header class="View-header">
                   <div class="View-heading">
                     <div class="Text">
@@ -190,8 +192,8 @@ function start (state, emit) {
                       return true
                     }
 
-                    if (state.query.age) {
-                      if (state.query.age !== doc.data.age) {
+                    if (selectedAge) {
+                      if (selectedAge !== doc.data.age) {
                         return false
                       }
                     } else {

@@ -54,7 +54,7 @@ function thread (state, emit) {
     var hasFAQ = doc.data.faq.length && doc.data.faq[0].faq_title.length
     var hasPlan = doc.data.rules_1 && doc.data.rules_1.length
     var hasGallery = doc.data.inspo.length && doc.data.inspo[0].image && doc.data.inspo[0].image.url
-    var hasResources = (doc.data.resources.length && doc.data.resources[0].file && doc.data.resources[0].file.url) || doc.data.movies || doc.data.music
+    var hasResources = (doc.data.resources.length && doc.data.resources[0].file && doc.data.resources[0].file.url) || doc.data.external_resources
 
     return html`
       <main class="View-main">
@@ -198,21 +198,11 @@ function thread (state, emit) {
                     </div>
                   `
                  })}
-                 ${doc.data.music ? html`
+                ${doc.data.external_resources ? html`
                   <div class="View-thread">
                     ${card({
-                      title: 'musik',
                       plain: true,
-                      body: html`<div class="Text">${asElement(doc.data.music, resolve, serialize)}</div>`
-                    })}
-                  </div>
-                ` : null}
-                ${doc.data.movies ? html`
-                  <div class="View-thread">
-                    ${card({
-                      title: 'filmer',
-                      plain: true,
-                      body: html`<div class="Text">${asElement(doc.data.movies, resolve, serialize)}</div>`
+                      body: html`<div class="Text">${asElement(doc.data.external_resources, resolve, serialize)}</div>`
                     })}
                   </div>
                 ` : null}

@@ -24,10 +24,15 @@
   box-shadow: 0 12px 44px rgba(0, 0, 0, 0.2);
 }
 
-.Card--file { 
+.Card--file,
+.Card--plain { 
   border: 1px solid #DADADA;
   box-shadow: none;
   transition: background 125ms var(--ease-out);
+}
+
+.Card--plain:hover {
+  box-shadow: none;
 }
 
 .Card--file:hover {

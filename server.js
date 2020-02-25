@@ -89,19 +89,6 @@ app.use(post('/start', compose([body(), function (ctx, next) {
 }])))
 
 /**
- * Persist choice of ages
- */
-app.use(post('/start', compose([body(), function (ctx, next) {
-  if ('age' in ctx.body) {
-    ctx.cookies.set('spillo:age', ctx.body.age, {
-      maxAge: 1000 * 60 * 60 * 24 * 365
-    })
-    ctx.state.age = ctx.body.age
-  }
-  ctx.redirect('/')
-}])))
-
-/**
  * Forward logged in user to start
  */
 app.use(get('/', function (ctx, next) {

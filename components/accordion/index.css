@@ -27,7 +27,7 @@
 }
 
 .Accordion-summary {
-  position: relative;
+  /* position: relative; */
   list-style: none;
   user-select: none;
   padding: 1.4rem 0 1.4rem 0;
@@ -67,6 +67,7 @@
   transition: transform 200ms var(--ease);
   transform-origin: center center;
   will-change: transform;
+  box-sizing: content-box;
 }
 
 .Accordion-body {
