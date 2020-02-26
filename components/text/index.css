@@ -255,6 +255,13 @@
   line-height: 1.3;
 }
 
+@media (max-width: 400px) {
+  .Text--smaller h3 {
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+}
+
 .Text h4 {
   font-size: inherit;
   line-height: inherit;
@@ -265,6 +272,12 @@
 .Text h4 + ul,
 .Text h4 + ol {
   margin-top: 0;
+}
+
+.Text h1 a,
+.Text h2 a,
+.Text h3 a {
+  font-weight: normal;
 }
 
 @media (min-width: 1000px) {

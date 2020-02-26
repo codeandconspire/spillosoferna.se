@@ -22,6 +22,7 @@ module.exports = class Header extends Component {
     var { id } = this.local
     var home = this.local.href === '/start' || this.local.href === ''
     var hideGoals = this.local.href === '' || this.local.href === '/om' || this.local.href === '/villkor'
+    var backlink = this.local.href.indexOf('/start') !== -1 ? '/start' : '/'
 
     function onclick (event) {
       that.emit('pushState', that.state.prev, { persistScroll: false })
@@ -58,7 +59,7 @@ module.exports = class Header extends Component {
               </svg>
             </span>
           ` : html`
-            <a class="Header-back" href="/" onclick=${onclick}>
+            <a class="Header-back" href="${backlink}" onclick=${onclick}>
               <svg role="presentation" viewBox="0 0 7 12">
                 <path fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M6 1.75736L1.75736 6 6 10.24264"/>
               </svg>

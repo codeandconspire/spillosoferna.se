@@ -61,17 +61,17 @@ function start (state, emit) {
       ? threads.find((thread) => thread.id === doc.data.featured_thread.id)
       : null
 
-    var selectedAge = state.selectedage ? state.selectedage : state.query.age
+    var selectedAge = state.query.age ? state.query.age : (state.selectedage ? state.selectedage : false)
 
     var options = AGES.map(function (age) {
       if (age === 'F-6') {
         return null
       }
-
       var predicates = [
         Predicates.at('my.thread.age', age),
         Predicates.at('my.thread.include', 'Ja')
       ]
+
       return state.prismic.get(predicates, { pageSize: 1 }, function (err, res) {
         if (err || !res || !res.results_size) return null
         var selected = age === selectedAge
@@ -82,7 +82,7 @@ function start (state, emit) {
           selected: selected,
           onclick: function (event) {
             emit('pushState', event.currentTarget.href, { persistScroll: true })
-            state.selectedage = encodeURIComponent(age)
+            state.selectedage = age
             event.preventDefault()
           },
           children: text`Grade ${age}`
