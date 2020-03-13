@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === 'development') {
 app.use(require('choo-meta')({
   origin: process.env.NODE_ENV === 'development'
     ? 'http://localhost:8080'
-    : process.env.npm_package_now_alias
+    : process.env.HOST
 }))
 app.use(require('./stores/prismic')({
   middleware: require('./lib/prismic-middleware')

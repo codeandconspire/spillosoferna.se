@@ -1,4 +1,4 @@
-if (!process.env.NOW) require('dotenv/config')
+if (!process.env.HEROKU) require('dotenv/config')
 
 var Prismic = require('prismic-javascript')
 var { get, post } = require('koa-route')
@@ -12,7 +12,7 @@ var imageproxy = require('./lib/cloudinary-proxy')
 
 var app = jalla('index.js', {
   sw: 'sw.js',
-  serve: Boolean(process.env.NOW)
+  serve: Boolean(process.env.HEROKU)
 })
 
 app.keys = [process.env.SESSION_SECRET]
@@ -207,7 +207,7 @@ app.use(function (ctx, next) {
 /**
  * Purge Cloudflare cache when starting production server
  */
-if (process.env.NOW && app.env === 'production') {
+if (process.env.HEROKU && app.env === 'production') {
   purge(app.entry, ['/sw.js'], function (err) {
     if (err) app.emit('error', err)
     else app.listen(process.env.PORT || 8080)
