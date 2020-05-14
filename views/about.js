@@ -1,6 +1,7 @@
 var html = require('choo/html')
 var view = require('../components/view')
 var embed = require('../components/embed')
+var accordion = require('../components/accordion')
 var serialize = require('../components/text/serialize')
 var {
   asText,
@@ -109,6 +110,24 @@ function about (state, emit) {
         return html`
           <div class="Text Text--wide Text--aligned Text--margin">
             ${children}
+          </div>
+        `
+      }
+      case 'faq': {
+        if (slice.items.length < 1) return null
+        console.log(slice)
+        return html`
+          <div class="Text-accordion">
+            ${accordion({
+              id: 'faq-slice-' + index,
+              inline: true,
+              items: slice.items.map(function (item) {
+                return {
+                  title: asText(item.faq_title),
+                  body: asElement(item.faq_body, resolve, serialize)
+                }
+              })
+            })}
           </div>
         `
       }

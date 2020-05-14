@@ -74,7 +74,7 @@
   display: none;
 }
 
-.Accordian-toggle {
+.Accordion-toggle {
   position: absolute;
   top: 0;
   left: 0;
@@ -95,4 +95,8 @@
 .Accordion-details[open],
 .Accordion-checkbox:checked ~ .Accordion-details {
   padding-bottom: 1.4rem;
+}
+
+.Accordion--inline { 
+  background: transparent
 }

@@ -139,6 +139,11 @@
   margin: 2.2em 0;
 }
 
+.Text-accordion {
+  margin: 2.2em auto;
+  max-width: var(--container-medium-width);
+}
+
 .Text-caption {
   font-size: 1rem;
   margin: -1rem 0 -0.5rem;

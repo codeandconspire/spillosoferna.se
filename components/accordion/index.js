@@ -8,7 +8,7 @@ function accordion (props) {
   }
 
   return html`
-    <section class="Accordion">
+    <section class="Accordion ${props.inline ? 'Accordion--inline' : ''}">
       ${props.title ? html`
         <div class="Text">
           <h2>${props.title}</h2>
@@ -21,7 +21,7 @@ function accordion (props) {
             <details class="Accordion-details">
               <summary class="Accordion-summary">
                 ${item.title}
-                <label for="${props.id}-${index}" class="Accordian-toggle"></label>
+                <label for="${props.id}-${index}" class="Accordion-toggle"></label>
               </summary>
               <div class="Accordion-body Text">
                 ${item.body}
