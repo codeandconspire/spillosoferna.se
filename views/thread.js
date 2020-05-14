@@ -105,22 +105,60 @@ function thread (state, emit) {
               `),
               grid.cell({ size: { lg: '1of3' } }, html`
                 <div>
-                  ${doc.data.goal.id && !doc.data.goal.isBroken ? card({
-                    panel: goal.heading({
-                      title: asText(doc.data.goal.data.title),
-                      number: doc.data.goal.data.number
-                    }),
-                    title: text`${asText(doc.data.title)} och mål ${doc.data.goal.data.number}`,
-                    body: more(html`
-                      <div class="Text Text--static">
-                        ${asElement(doc.data.goal_text.slice(0, 1), resolve, serialize)}
-                      </div>
-                    `, html`
-                      <div class="Text Text--static">
-                        ${asElement(doc.data.goal_text, resolve, serialize)}
-                      </div>
-                    `)
-                  }) : null}
+                  <div style="margin-bottom: 1.5rem">
+                    ${doc.data.goal.id && !doc.data.goal.isBroken ? card({
+                      panel: goal.heading({
+                        title: asText(doc.data.goal.data.title),
+                        number: doc.data.goal.data.number
+                      }),
+                      title: text`${asText(doc.data.title)} och mål ${doc.data.goal.data.number}`,
+                      body: more(html`
+                        <div class="Text Text--static">
+                          ${asElement(doc.data.goal_text.slice(0, 1), resolve, serialize)}
+                        </div>
+                      `, html`
+                        <div class="Text Text--static">
+                          ${asElement(doc.data.goal_text, resolve, serialize)}
+                        </div>
+                      `)
+                    }) : null}
+                  </div>
+                  <div style="margin-bottom: 1.5rem">
+                    ${doc.data.goal_secound.id && !doc.data.goal_secound.isBroken ? card({
+                      panel: goal.heading({
+                        title: asText(doc.data.goal_secound.data.title),
+                        number: doc.data.goal_secound.data.number
+                      }),
+                      title: text`${asText(doc.data.title)} och mål ${doc.data.goal_secound.data.number}`,
+                      body: more(html`
+                        <div class="Text Text--static">
+                          ${asElement(doc.data.goal_secound_text.slice(0, 1), resolve, serialize)}
+                        </div>
+                      `, html`
+                        <div class="Text Text--static">
+                          ${asElement(doc.data.goal_secound_text, resolve, serialize)}
+                        </div>
+                      `)
+                    }) : null}
+                  </div>
+                  <div style="margin-bottom: 1.5rem">
+                    ${doc.data.goal_third.id && !doc.data.goal_third.isBroken ? card({
+                      panel: goal.heading({
+                        title: asText(doc.data.goal_third.data.title),
+                        number: doc.data.goal_third.data.number
+                      }),
+                      title: text`${asText(doc.data.title)} och mål ${doc.data.goal_third.data.number}`,
+                      body: more(html`
+                        <div class="Text Text--static">
+                          ${asElement(doc.data.goal_third_text.slice(0, 1), resolve, serialize)}
+                        </div>
+                      `, html`
+                        <div class="Text Text--static">
+                          ${asElement(doc.data.goal_third_text, resolve, serialize)}
+                        </div>
+                      `)
+                    }) : null}
+                  </div>
                 </div>
               `)
             ])}

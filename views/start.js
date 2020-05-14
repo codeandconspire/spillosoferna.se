@@ -215,9 +215,12 @@ function start (state, emit) {
                         }) : false,
                         plate: !thread.data.published,
                         disabled: !thread.data.published,
+                        disabled_text: thread.data.upcoming_label,
                         title: thread.data.title ? asText(thread.data.title) : text`Namnlös utmaning`,
                         prefix: index === 0 ? text`Börja här` : false,
                         goal: thread.data.goal.data ? thread.data.goal.data.number : null,
+                        goal_secound: thread.data.goal_secound.data ? thread.data.goal_secound.data.number : null,
+                        goal_third: thread.data.goal_third.data ? thread.data.goal_third.data.number : null,
                         link: resolve(thread),
                         body: html`
                           <div style="margin-bottom: 0.75rem">${truncate(asText(thread.data.description), 180)}</div>
