@@ -28,7 +28,9 @@ var {
 module.exports = view(thread, meta, { back: true, green: true })
 
 function thread (state, emit) {
-  if (!state.user) throw HTTPError(401, 'Not authorized')
+  if (!state.href.includes('corona')) {
+    if (!state.user) throw HTTPError(401, 'Not authorized')
+  }
 
   return state.prismic.getByUID('thread', state.params.uid, function (err, doc) {
     if (err) throw HTTPError(404, err)

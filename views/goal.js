@@ -43,8 +43,6 @@ function goal (state, emit) {
   var doc = goals[goal - 1]
   var download = doc.data.resources.length ? doc.data.resources[0] : null
 
-  console.log(doc.data.targets[0])
-
   return html`
     <main class="View-main">
       <div class="View-hero View-hero--${goal}">

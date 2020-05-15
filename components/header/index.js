@@ -18,11 +18,15 @@ module.exports = class Header extends Component {
 
   createElement (href) {
     this.local.href = href.replace(/\/$/, '')
-    var that = this
+    var current = this.local.href
     var { id } = this.local
-    var home = this.local.href === '/start' || this.local.href === ''
-    var hideGoals = this.local.href === '' || this.local.href === '/om' || this.local.href === '/villkor'
-    var backlink = this.local.href.indexOf('/start') !== -1 ? '/start' : '/'
+    var that = this
+    var freecontent = href.includes('corona') && !this.state.user
+
+    var goalaction = current === '' || current === '/om' || current === '/villkor'
+
+    var backaction = (current === '/start' || current === '') || freecontent
+    var backlink = (current.indexOf('/start') !== -1 ? '/start' : '/')
 
     function onclick (event) {
       that.emit('pushState', that.state.prev, { persistScroll: false })
@@ -32,7 +36,7 @@ module.exports = class Header extends Component {
     return html`
       <div class="Header">
         <header class="Header-bar" id="${id}">
-          ${home ? html`
+          ${backaction ? html`
             <span class="Header-logo">
               <span class="u-hiddenVisually">${text`Till startsidan`}</span>
               <svg role="presentation" viewBox="0 0 1410 152">
@@ -67,7 +71,7 @@ module.exports = class Header extends Component {
             </a>
           `}
 
-          ${!hideGoals ? html`
+          ${!goalaction ? html`
             <a class="Header-gg" href="/malen">
               <span>${text`Globala målen`}</span>
               <svg role="presentation" viewBox="0 0 80 80">

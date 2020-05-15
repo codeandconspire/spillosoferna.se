@@ -27,6 +27,7 @@ app.route('/start/om', require('./views/about'))
 app.route('/start/:uid', require('./views/thread'))
 app.route('/malen', require('./views/goals'))
 app.route('/malen/:uid', require('./views/goal'))
+app.route('/*', catchall)
 
 try {
   module.exports = app.mount('body')
@@ -37,4 +38,20 @@ try {
     document.documentElement.removeAttribute('scripting-enabled')
     document.documentElement.setAttribute('scripting-initial-only', '')
   }
+}
+
+// custom view matching
+// (obj, fn) -> Element
+function catchall (state, emit) {
+  var view
+  var segments = state.href.split('/').slice(1)
+
+  if (segments.length < 3) {
+    state.params.slug = segments[segments.length - 1]
+    view = require('./views/page')
+  } else {
+    view = require('./views/404')
+  }
+
+  return view(state, emit)
 }

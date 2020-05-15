@@ -76,7 +76,7 @@ function view (render, getMeta = Function.prototype, props = {}) {
           `}
           ${children}
           <div class="u-container">
-            ${footer(props)}
+            ${footer(state, props)}
           </div>
           ${Player.render()}
         </body>

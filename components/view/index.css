@@ -164,6 +164,11 @@
   padding: 2rem;
 }
 
+.View-threadsWrap--inline { 
+  overflow: visible;
+  margin: 1rem 0 2rem;
+}
+
 .View-overlay {
   background: #fff;
   border-radius: 0.625rem;

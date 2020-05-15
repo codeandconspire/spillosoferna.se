@@ -14,9 +14,15 @@ module.exports = error
 function error (err, state, emit) {
   return html`
     <main class="View-main">
-      <h1>${text`Hoppsan`}</h1>
-      ${message(err.status)}
-      ${DEBUG ? html`<div class="Text"><pre>${err.stack}</pre></div>` : null}
+      <div clas="View-page">
+        <div class="u-container">
+          <div class="Text">
+            <h1>${text`Hoppsan`}</h1>
+            ${message(err.status)}
+            ${DEBUG ? html`<div class="Text"><pre>${err.stack}</pre></div>` : null}
+          </div>
+        </div>
+      </div>
     </main>
   `
 }

@@ -32,6 +32,7 @@ function resolve (doc) {
     case 'thread': return `/start/${doc.uid}`
     case 'goals': return '/malen'
     case 'goal': return `/malen/${doc.uid}`
+    case 'page': return `/${doc.uid}`
     case 'Web':
     case 'Media': return doc.url
     default: {

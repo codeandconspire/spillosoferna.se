@@ -176,11 +176,13 @@ app.use(async function (ctx, next) {
  * Assert user is signed in to access private content
  */
 app.use(get('/start/:thread?', async function (ctx, thread, next) {
-  try {
-    ctx.assert(ctx.session.user, 401, 'User not found')
-  } catch (err) {
-    if (ctx.accepts('html')) ctx.redirect('/')
-    else throw err
+  if (thread && !thread.includes('corona')) {
+    try {
+      ctx.assert(ctx.session.user, 401, 'User not found')
+    } catch (err) {
+      if (ctx.accepts('html')) ctx.redirect('/')
+      else throw err
+    }
   }
   return next()
 }))

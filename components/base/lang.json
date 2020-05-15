@@ -5,7 +5,7 @@
   "startsidan": "startsidan",
   "Här fanns det visst ingen sida. Kanske kan du hitta vad du söker i menyn eller via %s.": "Här fanns det visst ingen sida. Kanske kan du hitta vad du söker i menyn eller via %s.",
   "försöker igen": "försöker igen",
-  "Något har visst gått galet. Det kan vara tillfälligt och fungera om du %s.": "Något har visst gått galet. Det kan vara tillfälligt och fungera om du %s.",
+  "Något har visst gått galet. Det kan vara tillfälligt och fungera om du %s.": "Något har visst gått galet, eller så finns inte sidan. Det kan vara tillfälligt och fungera om du %s.",
   "Logga in": "Logga in",
   "Ange din kod": "Ange din kod",
   "Kontakt": "Kontakt",

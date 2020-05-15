@@ -3,10 +3,12 @@ var { text } = require('../base')
 
 module.exports = footer
 
-function footer (props = {}) {
+function footer (state, props = {}) {
+  var freecontent = state.href.includes('corona') && !state.user
+
   return html`
     <footer class="Footer ${props.back ? 'Footer--center' : ''}" role="contentinfo">
-      ${props.back ? html`
+      ${props.back && !freecontent ? html`
         <a href="/start">${text`Tillbaka till start`}</a>  
       ` : html`
         <span class="Footer-email"><a href="mailto:kontakt@spilloteket.se">kontakt@spilloteket.se</a></span>

@@ -1,6 +1,7 @@
 var html = require('choo/html')
 var view = require('../components/view')
 var embed = require('../components/embed')
+var card = require('../components/card')
 var accordion = require('../components/accordion')
 var serialize = require('../components/text/serialize')
 var {
@@ -8,7 +9,10 @@ var {
   srcset,
   resolve,
   HTTPError,
-  asElement
+  asElement,
+  img,
+  text,
+  truncate
 } = require('../components/base')
 
 module.exports = view(about, meta)
@@ -82,6 +86,50 @@ function about (state, emit) {
           </div>
         `
       }
+      case 'featured_threads': {
+        if (slice.items.length < 1) return null
+
+        return html`
+          <div class="View-threadsWrap View-threadsWrap--inline">
+            <div class="View-threadsContent">
+              <ul class="View-threads" style="justify-content: center">
+                ${slice.items.map(function (item, index) {
+                  if (item.thread.isBroken) {
+                    return null
+                  }
+                  return state.prismic.getByUID('thread', item.thread.uid, function (err, thread) {
+                    if (err || !thread) return null
+                    return html`
+                      <li class="View-thread">
+                        ${card({
+                          image: thread.data.image.url ? img(thread.data.image, { sizes: '35rem' }, {
+                            sizes: [400, 800, 1000, 1200]
+                          }) : false,
+                          plate: !thread.data.published,
+                          disabled: !thread.data.published,
+                          disabled_text: thread.data.upcoming_label,
+                          title: thread.data.title ? asText(thread.data.title) : text`Namnlös utmaning`,
+                          goal: thread.data.goal.data ? thread.data.goal.data.number : null,
+                          goal_secound: thread.data.goal_secound.data ? thread.data.goal_secound.data.number : null,
+                          goal_third: thread.data.goal_third.data ? thread.data.goal_third.data.number : null,
+                          link: resolve(thread),
+                          body: html`
+                            <div style="margin-bottom: 0.75rem">${truncate(asText(thread.data.description), 180)}</div>
+                            <div>
+                              <strong>${text`Grade ${thread.data.age}`}</strong>
+                              ${thread.data.subjects ? html`<br><span class="Text-muted">${thread.data.subjects}</span>` : null}
+                            </div>
+                          `
+                        })}
+                      </li>
+                    `
+                  })
+                })}
+              </ul>
+            </div>
+          </div>
+        `
+      }
       case 'image': {
         if (!slice.primary.image.url) return null
         var wide = slice.primary.width !== 'Spaltbredd'
@@ -115,7 +163,6 @@ function about (state, emit) {
       }
       case 'faq': {
         if (slice.items.length < 1) return null
-        console.log(slice)
         return html`
           <div class="Text-accordion">
             ${accordion({
