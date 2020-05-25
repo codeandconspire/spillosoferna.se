@@ -27,7 +27,8 @@
 }
 
 .Accordion-summary {
-  /* position: relative; */
+  position: relative;
+  text-align: left;
   list-style: none;
   user-select: none;
   padding: 1.4rem 0 1.4rem 0;
@@ -35,6 +36,7 @@
   font-size: 1.25rem;
   font-weight: 600;
   transition: color 125ms var(--ease);
+  cursor: default;
 }
 
 .Accordion-summary:hover {
@@ -55,7 +57,7 @@
   content: "";
   position: absolute;
   top: 1.9rem;
-  right: 0.4rem;
+  right: -2.5rem;
   width: 1rem;
   height: 1rem;
   padding: 1rem;
@@ -68,6 +70,7 @@
   transform-origin: center center;
   will-change: transform;
   box-sizing: content-box;
+  cursor: default;
 }
 
 .Accordion-body {
