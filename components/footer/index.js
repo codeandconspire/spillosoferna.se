@@ -11,9 +11,13 @@ function footer (state, props = {}) {
       ${props.back && !freecontent ? html`
         <a href="/start">${text`Tillbaka till start`}</a>  
       ` : html`
-        <span class="Footer-email"><a href="mailto:kontakt@spilloteket.se">kontakt@spilloteket.se</a></span>
-        <a class="" href="/villkor">${text`Användarvillkor`}</a>
-        <span class="Footer-copy">© ${(new Date()).getFullYear()}</span>
+        <div><span class="Footer-email"><a href="mailto:skola@spilloteket.se">skola@spilloteket.se</a></span></div>
+        <div><a class="" href="/villkor">${text`Användarvillkor`}</a></div>
+        <div><a target="_blank" href="https://www.spilloteket.se">${text`spilloteket.se`}</a></div>
+        <div class="Footer-logos">
+          <a class="Footer-logo1" target="_blank" href="https://www.arvsfonden.se/"><img src="/arvsfonden.png"></a>
+          <a class="Footer-logo2" target="_blank" href="https://www.spilloteket.se"><img src="/spilloteket.png"></a>
+        </div>
       `}
     </footer>
   `

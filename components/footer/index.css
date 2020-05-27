@@ -2,12 +2,13 @@
 
 /* @define Footer */
 .Footer {
-  display: flex;
   font-weight: 600;
   flex-direction: row;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   padding: 2rem 0;
   margin: 2rem 0 0;
+  line-height: 2;
+  position: relative;
 }
 
 .Footer a {
@@ -35,9 +36,45 @@
   display: none;
 }
 
+.Footer-logos img,
+.Footer-logos a {
+  display: block;
+}
+
+.Footer-logos a {
+  width: 10rem;
+  margin: 1rem 0;
+}
+
+.Footer-logos .Footer-logo2 {
+  margin: 1.4rem 0 0;
+}
+
 @media (min-width: 450px) {
-  .Footer-copy {
-    display: block;
-    margin-left: 0.8rem;
+  .Footer-logos {
+    position: absolute;
+    top: 1.5rem;
+    right: 0;
+  }
+}
+
+@media (min-width: 1050px) {
+  .Footer {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+  }
+
+  .Footer a {
+    margin-right: 1.5rem;
+  }
+
+  .Footer-logos {
+    top: 0.8rem;
+    display: flex;
+  }
+
+  .Footer-logos .Footer-logo2 {
+    margin-left: 1rem;
   }
 }
