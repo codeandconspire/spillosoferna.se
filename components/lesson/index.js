@@ -7,8 +7,8 @@ function lesson (props) {
   return html`
     <div class="Lesson">
       <input type="checkbox" id="${props.id}" class="Lesson-checkbox" hidden>
-      <details class="Lesson-wrap">
-        <summary class="Lesson-summary">
+      <div class="Lesson-wrap">
+        <div class="Lesson-summary">
           <div class="Text">
             <h2>${props.title ? props.title : ''}</h2>
             ${props.extra ? html`<p style="margin-top: -0.7em">${props.extra}</p>` : null}
@@ -21,16 +21,16 @@ function lesson (props) {
               ${props.time}
             ` : null}
           </span>
-        </summary>
+        </div>
         <div class="Lesson-content">
           <div class="Lesson-main">
             ${props.main ? html`
               <div class="Text">
                 <h3>${text`Introduktion`}</h3>
-                ${props.main} 
+                ${props.main}
               </div>
             ` : null}
-            
+
             ${props.steps ? html`
               <div class="Lesson-steps" style=${props.main ? '' : 'margin-top: 0'}>
                 <div class="Text">
@@ -104,9 +104,9 @@ function lesson (props) {
               ` : null}
               </div>
             </div>
-          
+
         </div>
-      </details>
+      </div>
     </div>
   `
 }

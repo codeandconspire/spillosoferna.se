@@ -18,15 +18,15 @@ function accordion (props) {
         ${props.items.map((item, index) => (item.title && item.body) ? html`
           <div>
             <input type="checkbox" id="${props.id}-${index}" class="Accordion-checkbox" hidden>
-            <details class="Accordion-details">
-              <summary class="Accordion-summary">
+            <div class="Accordion-details">
+              <div class="Accordion-summary">
                 ${item.title}
                 <label for="${props.id}-${index}" class="Accordion-toggle"></label>
-              </summary>
+              </div>
               <div class="Accordion-body Text">
                 ${item.body}
               </div>
-            </details>
+            </div>
           </div>
         ` : null)}
       </div>

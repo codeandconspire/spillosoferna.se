@@ -30,15 +30,10 @@
   height: 100%;
 }
 
-.Lesson-summary::marker {
-  display: none;
-}
-
 .Lesson:first-of-type {
   margin-top: 2rem;
 }
 
-.Lesson-wrap[open],
 .Lesson-checkbox:checked ~ .Lesson-wrap {
   box-shadow: 0 2px 44px rgba(0, 0, 0, 0.1);
 }
@@ -61,10 +56,6 @@
   margin: 0 0.1em 0 0.5em;
 }
 
-.Lesson-summary::-webkit-details-marker {
-  display: none;
-}
-
 .Lesson-summary:hover h2 {
   transition: color 125ms var(--ease);
 }
@@ -79,14 +70,13 @@
   transition: none;
 }
 
-.Lesson-wrap[open] .Lesson-summary,
 .Lesson-checkbox:checked ~ .Lesson-wrap .Lesson-summary {
   padding-bottom: 1.5rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   margin-bottom: 2.75rem;
 }
 
-.Lesson-summary::after {
+.Lesson-toggle::after {
   content: "";
   position: absolute;
   top: 2.35rem;
@@ -105,8 +95,7 @@
   will-change: transform;
 }
 
-.Lesson-wrap[open] .Lesson-summary::after,
-.Lesson-checkbox:checked ~ .Lesson-wrap .Lesson-summary::after {
+.Lesson-checkbox:checked ~ .Lesson-wrap Lesson-toggle::after {
   transform: rotate(180deg);
 }
 
@@ -115,14 +104,13 @@
   display: none;
 }
 
-.Lesson-wrap[open] .Lesson-content,
 .Lesson-checkbox:checked ~ .Lesson-wrap .Lesson-content {
   display: flex;
   flex-wrap: wrap-reverse;
 }
 
 @media (min-width: 1000px) {
-  .Lesson-summary::before {
+  .Lesson-toggle::before {
     content: "Visa";
     text-transform: uppercase;
     font-weight: 600;
@@ -131,8 +119,7 @@
     right: 4.4rem;
   }
 
-  .Lesson-wrap[open] .Lesson-summary::before,
-  .Lesson-checkbox:checked ~ .Lesson-wrap .Lesson-summary::before {
+  .Lesson-checkbox:checked ~ .Lesson-wrap .Lesson-toggle::before {
     content: "Stäng";
   }
 
@@ -192,7 +179,7 @@
   max-width: 37.4rem;
 }
 
-/** 
+/**
  * Aside
  */
 
@@ -201,7 +188,7 @@
 }
 
 @media (min-width: 1000px) {
-  .Lesson-wrap[open] .Lesson-content,
+
   .Lesson-checkbox:checked ~ .Lesson-wrap .Lesson-content {
     flex-wrap: nowrap;
     display: flex;

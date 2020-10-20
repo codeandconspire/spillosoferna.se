@@ -49,11 +49,19 @@
   opacity: 0.6;
 }
 
-.Accordion-summary::-webkit-details-marker {
+.Accordion-body {
   display: none;
 }
 
-.Accordion-summary::after {
+.Accordion-toggle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.Accordion-toggle::after {
   content: "";
   position: absolute;
   top: 1.9rem;
@@ -73,33 +81,18 @@
   cursor: default;
 }
 
-.Accordion-body {
-  display: none;
-}
-
-.Accordion-toggle {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%; 
-}
-
-.Accordion-details[open] .Accordion-body,
 .Accordion-checkbox:checked ~ .Accordion-details .Accordion-body {
   display: block;
 }
 
-.Accordion-details[open] .Accordion-summary::after,
 .Accordion-checkbox:checked ~ .Accordion-details .Accordion-summary::after {
   transform: rotate(180deg);
 }
 
-.Accordion-details[open],
 .Accordion-checkbox:checked ~ .Accordion-details {
   padding-bottom: 1.4rem;
 }
 
-.Accordion--inline { 
+.Accordion--inline {
   background: transparent
 }
