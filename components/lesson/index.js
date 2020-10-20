@@ -31,7 +31,7 @@ function lesson (props) {
               </div>
             ` : null}
 
-            ${props.steps ? html`
+            ${props.steps && props.steps.length ? html`
               <div class="Lesson-steps" style=${props.main ? '' : 'margin-top: 0'}>
                 <div class="Text">
                   <h3>${text`Gör så här`}</h3>

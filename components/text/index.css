@@ -29,7 +29,7 @@
 .Text--intro {
   text-align: center;
   font-size: 1.25rem;
-  margin: 0 auto 15vh;
+  margin: 0 auto 10vh;
   max-width: calc(var(--container-medium-width) + 7rem);
 }
 
@@ -63,11 +63,11 @@
 }
 
 @media (min-width: 600px) {
-  .Text-columns { 
+  .Text-columns {
     display: flex;
   }
 
-  .Text-column { 
+  .Text-column {
     flex-basis: 50%;
   }
 
