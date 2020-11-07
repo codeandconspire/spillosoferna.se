@@ -3,7 +3,6 @@ var { Predicates } = require('prismic-javascript')
 var view = require('../components/view')
 var card = require('../components/card')
 var {
-  img,
   asText,
   asElement,
   bytesToSize
@@ -103,7 +102,7 @@ function goal (state, emit) {
                     ${item.id ? html`<div class="View-targetsNumber">Delmål ${item.id}</div>` : null}
                     ${item.icon && item.icon.url ? html`<img src="${item.icon.url}" />` : null}
                   </div>
-                  
+
                   <div class="Text Text--smaller">
                     ${item.title.length ? asElement(item.title) : null}
                   </div>
