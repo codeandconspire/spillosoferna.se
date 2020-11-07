@@ -9,10 +9,10 @@ The application has a few dependencies to external services. Environment
 variables are used to configure these services. To set them up, copy
 `.env.example` to `.env` and fill in the missing credentials. Then:
 
-´´´bash
+```bash
 $ npm install
 $ npm run build
-´´´
+```
 
 ## Dependencies
 Most of the external dependencies should be easy enough to switch out would the
