@@ -75,7 +75,14 @@ function start (state, emit) {
 
         var cookie = false
         if (typeof document !== 'undefined') {
-          cookie = document.cookie ? document.cookie.split('; ').find(row => row.startsWith('spillo:age')).split('=')[1] : false
+          if (document.cookie) {
+            cookie = document.cookie.split('; ').find(function (row) {
+              if (row.startsWith('spillo:age')) {
+                return row.split('=')[1]
+              }
+            })
+            cookie = cookie ? cookie.split('=')[1] : false
+          }
         }
         state.age = state.query.age ? state.query.age : cookie
         var selected = age === state.age
