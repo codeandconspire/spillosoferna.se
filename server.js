@@ -26,7 +26,7 @@ app.use(session({
 /**
  * Proxy image transform requests to Cloudinary
  * By running all transforms through our own server we can cache the response
- * on our edge servers (Cloudinary) saving on costs. Seeing as Cloudflare has
+ * on our edge servers (Cloudflare) saving on costs. Seeing as Cloudflare has
  * free unlimited cache and Cloudinary does not, we will only be charged for
  * the actual image transforms, of which the first 25 000 are free
  */
@@ -56,7 +56,7 @@ app.use(post('/api/prismic-hook', compose([body(), function (ctx) {
 }])))
 
 /**
- * Proxy requesrts to Prismic
+ * Proxy requests to Prismic
  */
 app.use(get('/api/prismic-proxy', async function (ctx) {
   var { predicates, ...opts } = ctx.query
@@ -64,7 +64,7 @@ app.use(get('/api/prismic-proxy', async function (ctx) {
 }))
 
 /**
- * Read choice to skip intro
+ * Read choice to skipping user intro
  */
 app.use(function (ctx, next) {
   try {
@@ -76,7 +76,7 @@ app.use(function (ctx, next) {
 })
 
 /**
- * Persist choice to skip intro
+ * Persist choice to skipping user intro
  */
 app.use(post('/start', compose([body(), function (ctx, next) {
   if ('skipintro' in ctx.body) {
@@ -118,7 +118,7 @@ app.use(get('/konto', async function (ctx, next) {
 }))
 
 /**
- * Sign in
+ * Signin user
  */
 app.use(post('/', compose([body(), async function (ctx, next) {
   var body = ctx.request.body
