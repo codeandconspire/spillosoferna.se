@@ -85,7 +85,7 @@
   display: block;
 }
 
-.Accordion-checkbox:checked ~ .Accordion-details .Accordion-summary::after {
+.Accordion-checkbox:checked ~ .Accordion-details .Accordion-toggle::after {
   transform: rotate(180deg);
 }
 

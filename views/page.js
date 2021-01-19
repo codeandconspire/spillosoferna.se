@@ -2,7 +2,7 @@ var html = require('choo/html')
 var view = require('../components/view')
 var embed = require('../components/embed')
 var card = require('../components/card')
-var accordion = require('../components/accordion')
+var Accordion = require('../components/accordion')
 var serialize = require('../components/text/serialize')
 var {
   src,
@@ -147,13 +147,27 @@ function page (state, emit) {
           `
         }
         case 'faq': {
-          if (slice.items.length < 1) return null
+          var next = list[index + 1]
+          var result
+
+          if (next && next.slice_type === 'faq') {
+            return null
+          } else {
+            var other = list.filter(function (thing) {
+              return thing.slice_type === 'faq'
+            })
+            result = other.map(function (thing) {
+              return thing.items
+            }).flat()
+          }
+          result = result || slice.items
+          if (result.length < 1) return null
+
           return html`
             <div class="Text-accordion">
-              ${accordion({
-                id: 'faq-slice-' + index,
+              ${state.cache(Accordion, 'faq-slice-' + index).render({
                 inline: true,
-                items: slice.items.map(function (item) {
+                items: result.map(function (item) {
                   return {
                     title: asText(item.faq_title),
                     body: asElement(item.faq_body, resolve, serialize)

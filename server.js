@@ -11,8 +11,7 @@ var api = require('./lib/prismic-api')
 var imageproxy = require('./lib/cloudinary-proxy')
 
 var app = jalla('index.js', {
-  sw: 'sw.js',
-  serve: Boolean(process.env.HEROKU)
+  serve: +process.env.HEROKU
 })
 
 app.keys = [process.env.SESSION_SECRET]
@@ -76,14 +75,34 @@ app.use(function (ctx, next) {
 })
 
 /**
+ * Read choice of selected age
+ */
+app.use(function (ctx, next) {
+  try {
+    ctx.state.age = JSON.parse(ctx.cookies.get('spillo:age'))
+  } catch (e) {
+    ctx.state.age = false
+  }
+  return next()
+})
+
+/**
  * Persist choice to skipping user intro
  */
 app.use(post('/start', compose([body(), function (ctx, next) {
-  if ('skipintro' in ctx.body) {
-    ctx.cookies.set('spillo:skipintro', true, {
-      maxAge: 1000 * 60 * 60 * 24 * 365
-    })
-    ctx.state.skipintro = true
+  if (ctx.body) {
+    if ('skipintro' in ctx.body) {
+      ctx.cookies.set('spillo:skipintro', true, {
+        maxAge: 1000 * 60 * 60 * 24 * 365
+      })
+      ctx.state.skipintro = true
+    }
+    if ('age' in ctx.body) {
+      ctx.cookies.set('spillo:age', ctx.body.age, {
+        maxAge: 1000 * 60 * 60 * 24 * 365
+      })
+      ctx.state.age = ctx.body.age
+    }
   }
   ctx.redirect('/')
 }])))
@@ -209,8 +228,8 @@ app.use(function (ctx, next) {
 /**
  * Purge Cloudflare cache when starting production server
  */
-if (process.env.HEROKU && app.env === 'production') {
-  purge(app.entry, ['/sw.js'], function (err) {
+if (+process.env.HEROKU && app.env === 'production') {
+  purge(app.entry, function (err) {
     if (err) app.emit('error', err)
     else app.listen(process.env.PORT || 8080)
   })

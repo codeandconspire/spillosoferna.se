@@ -29,7 +29,7 @@ function goal (state, emit) {
         </div>
         <div class="u-container" style="position: absolute; top: 0; left: 0;">
           <div style="position: relative;">
-            <a class="View-back" href="/malen">
+            <a class="View-back" onclick=${goBack} href="/malen">
               <svg role="presentation" viewBox="0 0 7 12"><path fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M6 1.75736L1.75736 6 6 10.24264" /></svg>
               Tillbaka
             </a>
@@ -41,6 +41,16 @@ function goal (state, emit) {
 
   var doc = goals[goal - 1]
   var download = doc.data.resources.length ? doc.data.resources[0] : null
+
+  function goBack (event) {
+    window.history.back()
+    event.preventDefault()
+  }
+
+  function goToGoal (event) {
+    emit('replaceState', event.currentTarget.href)
+    event.preventDefault()
+  }
 
   return html`
     <main class="View-main">
@@ -60,7 +70,7 @@ function goal (state, emit) {
       </div>
       <div class="u-container u-nbfc" style="position: absolute; top: 0; left: 0;">
         <div style="position: relative;">
-          <a class="View-back" href="/malen">
+          <a class="View-back" onclick=${goBack} href="/malen">
             <svg role="presentation" viewBox="0 0 7 12"><path fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M6 1.75736L1.75736 6 6 10.24264" /></svg>
             Tillbaka
           </a>
@@ -152,7 +162,7 @@ function goal (state, emit) {
               var number = goal.data.number
               return html`
                 <li class="View-goalsItem">
-                  <a class="View-goalsGoal" href="/malen/${number}">
+                  <a class="View-goalsGoal" onclick=${goToGoal} href="/malen/${number}">
                     <img src="${goal.data.icon.url}">
                   </a>
                 </li>

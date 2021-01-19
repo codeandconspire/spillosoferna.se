@@ -5,11 +5,10 @@ module.exports = footer
 
 function footer (state, props = {}) {
   var freecontent = state.href.includes('corona') && !state.user
-
   return html`
     <footer class="Footer ${props.back ? 'Footer--center' : ''}" role="contentinfo">
       ${props.back && !freecontent ? html`
-        <a href="/start">${text`Tillbaka till start`}</a>  
+        <a href="/start">${text`Tillbaka till start`}</a>
       ` : html`
         <div><span class="Footer-email"><a href="mailto:skola@spilloteket.se">skola@spilloteket.se</a></span></div>
         <div><a class="" href="/villkor">${text`Användarvillkor`}</a></div>

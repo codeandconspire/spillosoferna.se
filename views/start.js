@@ -7,7 +7,7 @@ var gallery = require('../components/gallery')
 var callout = require('../components/callout')
 var Dropdown = require('../components/dropdown')
 var Featured = require('../components/featured')
-var accordion = require('../components/accordion')
+var Accordion = require('../components/accordion')
 var serialize = require('../components/text/serialize')
 var {
   img,
@@ -57,11 +57,9 @@ function start (state, emit) {
       `
     }
 
-    var featured = doc.data.featured_thread.id
+    var featured = doc.data.featured_thread.id && threads
       ? threads.find((thread) => thread.id === doc.data.featured_thread.id)
       : null
-
-    var selectedAge = state.query.age ? state.query.age : (state.selectedage ? state.selectedage : false)
 
     var options = AGES.map(function (age) {
       if (age === 'F-6') {
@@ -74,15 +72,23 @@ function start (state, emit) {
 
       return state.prismic.get(predicates, { pageSize: 1 }, function (err, res) {
         if (err || !res || !res.results_size) return null
-        var selected = age === selectedAge
+
+        var cookie = false
+        if (typeof document !== 'undefined') {
+          cookie = document.cookie ? document.cookie.split('; ').find(row => row.startsWith('spillo:age')).split('=')[1] : false
+        }
+        state.age = state.query.age ? state.query.age : cookie
+        var selected = age === state.age
         return {
           href: selected
             ? state.href
             : `${state.href}?age=${encodeURIComponent(age)}`,
           selected: selected,
+          name: 'age',
           onclick: function (event) {
             emit('pushState', event.currentTarget.href, { persistScroll: true })
-            state.selectedage = age
+            state.age = age
+            document.cookie = `spillo:age=${age}; max-age=${60 * 60 * 24 * 365}`
             event.preventDefault()
           },
           children: text`Grade ${age}`
@@ -133,14 +139,17 @@ function start (state, emit) {
         <section class="View-panel View-panel--divided">
           <div class="u-container" style="overflow: hidden; padding-bottom: 2rem;">
             <div class="View-threadsWrap">
-              ${!selectedAge ? html`
+              ${!state.age ? html`
                 <div class="View-alpha"></div>
                 <div class="View-overlay">
                   <div class="Text">
                     ${doc.data.age_question ? html`<h2>${doc.data.age_question}</h2>` : null}
                     ${doc.data.age_question_desc ? asElement(doc.data.age_question_desc) : null}
                   </div>
-                  ${pills({ large: true, items: options })}
+                  <form action="${this.href}" method="POST" onsubmit=${(event) => event.preventDefault()}>
+                    ${pills({ large: true, items: options })}
+                  </form>
+
                   <svg class="View-ageArt" viewBox="0 0 379 157">
                     <g fill="none" fill-rule="evenodd">
                       <path fill="#DFAAC3" d="M162.4 75.51c0 7.82-1.72 30.75 2.48 36.24 5.1 6.68 18.01 8.31 18.01-18.1 0-4 14.6-2.87 14.45 4.51-.6 28.52 23.42 18.77 18.22 1.53-2.34-7.76 2.46-14.85 2.46-24.18 0-17.33-12.45-31.38-27.81-31.38s-27.8 14.05-27.8 31.38"/>
@@ -173,66 +182,75 @@ function start (state, emit) {
                   </svg>
                 </div>
               ` : null}
-              <div class="View-threadsContent ${!selectedAge ? 'is-overlayed' : ''}">
+              <div class="View-threadsContent ${!state.age ? 'is-overlayed' : ''}">
                 <header class="View-header">
                   <div class="View-heading">
                     <div class="Text">
                       <h2>${text`Utmaningar`}</h2>
                     </div>
                   </div>
-                  ${pills({ large: false, items: options })}
+                  <form action="${this.href}" method="POST" onsubmit=${(event) => event.preventDefault()}>
+                    ${pills({ large: false, items: options })}
+                  </form>
                 </header>
-                <ul class="View-threads">
-                  ${threads.filter(function (doc) {
-                    if (doc.data.include === 'Nej') {
-                      return false
-                    }
+                ${threads.length ? html`
+                  <ul class="View-threads">
+                    ${threads.filter(function (doc) {
+                      if (doc.data.include === 'Nej') {
+                        return false
+                      }
 
-                    if (doc.data.age === 'F-6') {
+                      if (doc.data.age === 'F-6') {
+                        return true
+                      }
+
+                      if (state.age) {
+                        if (state.age !== doc.data.age) {
+                          return false
+                        }
+                      } else {
+                        if (doc.data.age !== 'F-6' && doc.data.age !== '4-6') {
+                          return false
+                        }
+                      }
+
                       return true
-                    }
-
-                    if (selectedAge) {
-                      if (selectedAge !== doc.data.age) {
-                        return false
-                      }
-                    } else {
-                      if (doc.data.age !== 'F-6' && doc.data.age !== '4-6') {
-                        return false
-                      }
-                    }
-
-                    return true
-                  }).sort(function (docPrev, docNext) {
-                    var docPrevGoal = docPrev.data.goal.data ? docPrev.data.goal.data.number : 0
-                    var docNextGoal = docNext.data.goal.data ? docNext.data.goal.data.number : 0
-                    return docPrevGoal - docNextGoal
-                  }).map((thread, index) => html`
-                    <li class="View-thread ${index === 0 ? 'View-thread--large' : ''}">
-                      ${card({
-                        image: thread.data.image.url ? img(thread.data.image, { sizes: '35rem' }, {
-                          sizes: [400, 800, 1000, 1200]
-                        }) : false,
-                        plate: !thread.data.published,
-                        disabled: !thread.data.published,
-                        disabled_text: thread.data.upcoming_label,
-                        title: thread.data.title ? asText(thread.data.title) : text`Namnlös utmaning`,
-                        prefix: index === 0 ? text`Börja här` : false,
-                        goal: thread.data.goal.data ? thread.data.goal.data.number : null,
-                        goal_secound: thread.data.goal_secound.data ? thread.data.goal_secound.data.number : null,
-                        goal_third: thread.data.goal_third.data ? thread.data.goal_third.data.number : null,
-                        link: resolve(thread),
-                        body: html`
-                          <div style="margin-bottom: 0.75rem">${truncate(asText(thread.data.description), 180)}</div>
-                          <div>
-                            <strong>${text`Grade ${thread.data.age}`}</strong>
-                            ${thread.data.subjects ? html`<br><span class="Text-muted">${thread.data.subjects}</span>` : null}
-                          </div>
-                        `
-                      })}
-                    </li>
-                  `)}
-                </ul>
+                    }).sort(function (docPrev, docNext) {
+                      var docPrevGoal = docPrev.data.goal.data ? docPrev.data.goal.data.number : 0
+                      var docNextGoal = docNext.data.goal.data ? docNext.data.goal.data.number : 0
+                      return docPrevGoal - docNextGoal
+                    }).map((thread, index) => html`
+                      <li class="View-thread ${index === 0 ? 'View-thread--large' : ''}">
+                        ${card({
+                          image: thread.data.image.url ? img(thread.data.image, { sizes: '35rem' }, {
+                            sizes: [400, 800, 1000, 1200]
+                          }) : false,
+                          plate: !thread.data.published,
+                          disabled: !thread.data.published,
+                          disabled_text: thread.data.upcoming_label,
+                          title: thread.data.title ? asText(thread.data.title) : text`Namnlös utmaning`,
+                          prefix: index === 0 ? text`Börja här` : false,
+                          goal: thread.data.goal.data ? thread.data.goal.data.number : null,
+                          goal_secound: thread.data.goal_secound.data ? thread.data.goal_secound.data.number : null,
+                          goal_third: thread.data.goal_third.data ? thread.data.goal_third.data.number : null,
+                          link: resolve(thread),
+                          onclick: function (event) {
+                            state.beforeThreadScroll = document.documentElement.scrollTop
+                            emit('pushState', resolve(thread))
+                            event.preventDefault()
+                          },
+                          body: html`
+                            <div style="margin-bottom: 0.75rem">${truncate(asText(thread.data.description), 180)}</div>
+                            <div>
+                              <strong>${text`Grade ${thread.data.age}`}</strong>
+                              ${thread.data.subjects ? html`<br><span class="Text-muted">${thread.data.subjects}</span>` : null}
+                            </div>
+                          `
+                        })}
+                      </li>
+                    `)}
+                  </ul>
+                ` : null}
               </div>
             </div>
           </div>
@@ -246,9 +264,8 @@ function start (state, emit) {
 
         <div class="View-panel View-panel--white">
           <div class="u-container u-nbfc">
-            ${accordion({
+            ${state.cache(Accordion, 'start-faq').render({
               title: text`Vanliga frågor`,
-              id: 'start-faq',
               items: doc.data.faq.map(function (item) {
                 return {
                   title: asText(item.faq_title),

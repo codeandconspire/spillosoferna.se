@@ -1,5 +1,5 @@
 var html = require('choo/html')
-var accordion = require('../components/accordion')
+var Accordion = require('../components/accordion')
 var callout = require('../components/callout')
 var view = require('../components/view')
 var goal = require('../components/goal')
@@ -284,9 +284,8 @@ function thread (state, emit) {
         ${hasFAQ ? html`
           <div class="View-panel View-panel--white" id="faq">
             <div class="u-container u-nbfc">
-              ${accordion({
+              ${state.cache(Accordion, 'thread-faq').render({
                 title: text`Vanliga frågor`,
-                id: 'thread-faq',
                 items: doc.data.faq.map(function (item) {
                   return {
                     title: asText(item.faq_title),
@@ -297,7 +296,7 @@ function thread (state, emit) {
             </div>
           </div>
         ` : null}
-        
+
 
         ${state.prismic.getSingle('website', function (err, website) {
           if (err) throw HTTPError(404, err)

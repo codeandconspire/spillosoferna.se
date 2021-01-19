@@ -1,7 +1,7 @@
 var html = require('choo/html')
 var view = require('../components/view')
 var { Predicates } = require('prismic-javascript')
-var accordion = require('../components/accordion')
+var Accordion = require('../components/accordion')
 var card = require('../components/card')
 var serialize = require('../components/text/serialize')
 var {
@@ -102,11 +102,11 @@ function goals (state, emit) {
           </div>
         </div>
 
+        ${doc.data.faq.lenght ? html`
         <div class="View-panel View-panel--white">
           <div class="u-container u-nbfc">
-            ${accordion({
+            ${state.cache(Accordion, 'goal-faq').render({
               title: text`Vanliga frågor`,
-              id: 'goal-faq',
               items: doc.data.faq.map(function (item) {
                 return {
                   title: asText(item.faq_title),
@@ -116,6 +116,7 @@ function goals (state, emit) {
             })}
           </div>
         </div>
+        ` : null}
 
         ${doc.data.resources.length ? html`
           <div class="View-panel">

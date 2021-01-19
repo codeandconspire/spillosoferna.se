@@ -27,9 +27,22 @@ module.exports = class Header extends Component {
 
     var backaction = (current === '/start' || current === '') || freecontent
     var backlink = (current.indexOf('/start') !== -1 ? '/start' : '/')
+    var controlledBack = that.state.route === 'start/:uid'
 
-    function onclick (event) {
-      that.emit('pushState', that.state.prev, { persistScroll: false })
+    function goBack (event) {
+      if (controlledBack) {
+        that.emit('pushState', event.currentTarget.href)
+        window.requestAnimationFrame(() => window.scrollTo(0, that.state.beforeThreadScroll))
+      } else {
+        window.history.back()
+      }
+      event.preventDefault()
+    }
+
+    function goToGoals (event) {
+      that.state.beforeGoalsScroll = document.documentElement.scrollTop
+      that.state.beforeGoalsPage = that.state.href === '' ? '/' : that.state.href
+      that.emit('pushState', '/malen')
       event.preventDefault()
     }
 
@@ -63,7 +76,7 @@ module.exports = class Header extends Component {
               </svg>
             </span>
           ` : html`
-            <a class="Header-back" href="${backlink}" onclick=${onclick}>
+            <a class="Header-back" href="${backlink}" onclick=${goBack}>
               <svg role="presentation" viewBox="0 0 7 12">
                 <path fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M6 1.75736L1.75736 6 6 10.24264"/>
               </svg>
@@ -72,7 +85,7 @@ module.exports = class Header extends Component {
           `}
 
           ${!goalaction ? html`
-            <a class="Header-gg" href="/malen">
+            <a class="Header-gg" href="/malen" onclick=${goToGoals}>
               <span>${text`Globala målen`}</span>
               <svg role="presentation" viewBox="0 0 80 80">
                 <g fill="none" fill-rule="evenodd">
