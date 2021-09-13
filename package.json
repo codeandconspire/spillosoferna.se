@@ -1,9 +1,6 @@
 {
   "name": "spillosoferna.se",
   "version": "1.0.0",
-  "engines": {
-    "node": "15.x"
-  },
   "description": "Educational platform Spillosoferna",
   "main": "index.js",
   "scripts": {
@@ -18,21 +15,6 @@
   },
   "browser": {
     "./lib/prismic-api": "./lib/prismic-api/browser"
-  },
-  "now": {
-    "alias": "www.spillosoferna.se",
-    "build": {
-      "env": {
-        "NODE_ENV": "production"
-      }
-    }
-  },
-  "postcss": {
-    "plugins": {
-      "postcss-focus-visible": {
-        "preserve": false
-      }
-    }
   },
   "standard": {
     "parser": "babel-eslint"
@@ -66,7 +48,7 @@
     "cloudinary": "^1.13.2",
     "dotenv": "^8.2.0",
     "focus-visible": "^5.0.2",
-    "hstream": "^1.2.0",
+    "hstream": "^3.1.1",
     "jalla": "^1.0.0-26",
     "koa-body": "^4.1.1",
     "koa-compose": "^4.1.0",
@@ -76,7 +58,7 @@
     "normalize.css": "^8.0.1",
     "postcss-focus-visible": "^4.0.0",
     "prismic-element": "^2.0.3",
-    "prismic-javascript": "^2.1.1",
+    "prismic-javascript": "^3.0.2",
     "prismic-richtext": "^1.0.3"
   }
 }
