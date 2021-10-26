@@ -25,7 +25,14 @@ var AGES = ['F-6', 'F-3', '2-3', '4-6']
 module.exports = view(start, meta)
 
 function start (state, emit) {
-  if (!state.user) throw HTTPError(401, 'Not authorized')
+  if (!state.user) {
+    if (typeof window === 'undefined') {
+      throw new HTTPError(401, 'Not authorized')
+    } else {
+      emit('pushState', '/')
+      return html`<main class="View-main"></main>`
+    }
+  }
 
   return state.prismic.getSingle('start', function (err, doc) {
     if (err) throw HTTPError(404, err)

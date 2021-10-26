@@ -19,20 +19,17 @@ module.exports = class Header extends Component {
   createElement (href) {
     this.local.href = href.replace(/\/$/, '')
     var current = this.local.href
-    var { id } = this.local
-    var that = this
-    var freecontent = href.includes('corona') && !this.state.user
+    var { local, state, emit } = this
+    var { id } = local
 
     var goalaction = current === '' || current === '/om' || current === '/villkor'
-
-    var backaction = (current === '/start' || current === '') || freecontent
-    var backlink = (current.indexOf('/start') !== -1 ? '/start' : '/')
-    var controlledBack = that.state.route === 'start/:uid'
+    var backaction = (current === '/start' || current === '')
+    var controlledBack = state.route === 'start/:uid'
 
     function goBack (event) {
       if (controlledBack) {
-        that.emit('pushState', event.currentTarget.href)
-        window.requestAnimationFrame(() => window.scrollTo(0, that.state.beforeThreadScroll))
+        emit('pushState', event.currentTarget.href)
+        window.requestAnimationFrame(() => window.scrollTo(0, state.beforeThreadScroll))
       } else {
         window.history.back()
       }
@@ -40,9 +37,9 @@ module.exports = class Header extends Component {
     }
 
     function goToGoals (event) {
-      that.state.beforeGoalsScroll = document.documentElement.scrollTop
-      that.state.beforeGoalsPage = that.state.href === '' ? '/' : that.state.href
-      that.emit('pushState', '/malen')
+      state.beforeGoalsScroll = document.documentElement.scrollTop
+      state.beforeGoalsPage = state.href === '' ? '/' : state.href
+      emit('pushState', '/malen')
       event.preventDefault()
     }
 
@@ -76,7 +73,7 @@ module.exports = class Header extends Component {
               </svg>
             </span>
           ` : html`
-            <a class="Header-back" href="${backlink}" onclick=${goBack}>
+            <a class="Header-back" href="${state.prev || '/start'}" onclick=${goBack}>
               <svg role="presentation" viewBox="0 0 7 12">
                 <path fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M6 1.75736L1.75736 6 6 10.24264"/>
               </svg>

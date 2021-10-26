@@ -28,10 +28,6 @@ var {
 module.exports = view(thread, meta, { back: true, green: true })
 
 function thread (state, emit) {
-  if (!state.href.includes('corona')) {
-    if (!state.user) throw HTTPError(401, 'Not authorized')
-  }
-
   return state.prismic.getByUID('thread', state.params.uid, function (err, doc) {
     if (err) throw HTTPError(404, err)
     if (!doc) {
@@ -51,6 +47,8 @@ function thread (state, emit) {
         </main>
       `
     }
+
+    if (!state.user && !doc.data.public) throw HTTPError(401, 'Not authorized')
 
     var special = doc.data.intro === 'Ja'
     var hasFAQ = doc.data.faq.length && doc.data.faq[0].faq_title.length

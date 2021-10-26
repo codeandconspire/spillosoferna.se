@@ -195,15 +195,17 @@ app.use(async function (ctx, next) {
  * Assert user is signed in to access private content
  */
 app.use(get('/start/:thread?', async function (ctx, thread, next) {
-  if (thread && !thread.includes('corona')) {
-    try {
-      ctx.assert(ctx.session.user, 401, 'User not found')
-    } catch (err) {
-      if (ctx.accepts('html')) ctx.redirect('/')
-      else throw err
-    }
+  if (ctx.session.user) return next()
+  try {
+    if (!thread) ctx.throw(401, 'Not authorized')
+    const query = Prismic.Predicates.at('my.thread.uid', thread)
+    const { results: [doc] } = await api(query, { req: ctx.req })
+    ctx.assert(doc.data.public, 401, 'Not authorized')
+    return next()
+  } catch (err) {
+    if (ctx.accepts('html')) ctx.redirect('/')
+    else ctx.throw(err.status || 500)
   }
-  return next()
 }))
 
 /**
