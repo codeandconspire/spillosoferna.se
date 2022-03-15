@@ -232,7 +232,8 @@ app.use(function (ctx, next) {
  */
 if (+process.env.HEROKU && app.env === 'production') {
   purge(app.entry, function (err) {
-    if (err) app.emit('error', err)
+    //if (err) app.emit('error', err)
+    if (err) console.log(err)
     else app.listen(process.env.PORT || 8080)
   })
 } else {
