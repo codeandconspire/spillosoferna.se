@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "standard",
-    "purge": "node -r dotenv/config -e 'require(\"./lib/purge.js\")(\"../index.js\", [\"/sw.js\"], console.log)'",
+    "purge": "node -r dotenv/config -e 'require(\"./lib/purge.js\")(\"../index.js\", console.log)'",
     "start": "node server.js",
-    "build": "jalla build index.js --sw sw.js"
+    "build": "jalla build index.js"
   },
   "repository": {
     "type": "git",
@@ -44,7 +44,6 @@
     "choo": "^7.0.0",
     "choo-devtools": "^3.0.1",
     "choo-meta": "^2.0.0",
-    "choo-service-worker": "^3.0.0",
     "cloudinary": "^1.13.2",
     "dotenv": "^8.2.0",
     "focus-visible": "^5.0.2",
